@@ -6,7 +6,8 @@ package com.example.jeffphung.dejaphoto;
  * This is dejaVuMode class which contains all boolean values for modes inside the dejaVuMode
  * all modes are true by default
  *
- * use set+Modename to set turn on/off the mode
+ * use set+Modename(boolean b) to set turn on/off the mode
+ *    - true is on, false is off
  * use is+Modename to get the current mode status
  *
  */
