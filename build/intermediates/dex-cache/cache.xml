@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c316c5cc0505f28886bd2897087052ca0a31653e">
+        <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_04466a5809b02a1e077a9ee22daf9999923062c1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_cb3b5cec3684312bd922ef5632c2b23c1a7d89b7/classes.dex" />
+    </item>
+
+</items>
