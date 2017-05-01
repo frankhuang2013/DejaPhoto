@@ -14,6 +14,8 @@ import static android.media.ExifInterface.TAG_GPS_LATITUDE_REF;
 import static android.media.ExifInterface.TAG_GPS_LONGITUDE;
 import static android.media.ExifInterface.TAG_GPS_LONGITUDE_REF;
 import static android.media.ExifInterface.TAG_GPS_TIMESTAMP;
+import static android.media.ExifInterface.TAG_IMAGE_LENGTH;
+import static android.media.ExifInterface.TAG_IMAGE_WIDTH;
 
 /**
  * Created by kaijiecai on 4/29/17.
@@ -39,32 +41,28 @@ public class PhotoLoader {
         PhotoList list = new PhotoList();
 
         for(int i = 0; i< 10; i++){
-            String path = "";
-            String time;
-            String date;
-            String karma;
-            String released;
-            String gps_longitude;
-            String gps_longitude_ref;
-            String gps_latitude_ref;
-            String gps_latitude;
-
             try {
+                String path = "";
                 ExifInterface exifInterface = new ExifInterface(path);
 
 
-                time = exifInterface.getAttribute(TAG_GPS_TIMESTAMP);
-                date = exifInterface.getAttribute(TAG_GPS_DATESTAMP);
-                karma = exifInterface.getAttribute(TAG_KARMA);
-                released = exifInterface.getAttribute(TAG_RELEASED);
-                gps_longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE);
-                gps_longitude_ref = exifInterface.getAttribute(TAG_GPS_LONGITUDE_REF);
-                gps_latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE);
-                gps_latitude_ref = exifInterface.getAttribute(TAG_GPS_LATITUDE_REF);
+                String imgWidth = exifInterface.getAttribute(TAG_IMAGE_WIDTH);
+                String imgLength = exifInterface.getAttribute(TAG_IMAGE_LENGTH);
+                String time = exifInterface.getAttribute(TAG_GPS_TIMESTAMP);
+                String date = exifInterface.getAttribute(TAG_GPS_DATESTAMP);
+                String karma = exifInterface.getAttribute(TAG_KARMA);
+                String released = exifInterface.getAttribute(TAG_RELEASED);
+                String gps_longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE);
+                String gps_longitude_ref = exifInterface.getAttribute(TAG_GPS_LONGITUDE_REF);
+                String gps_latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE);
+                String gps_latitude_ref = exifInterface.getAttribute(TAG_GPS_LATITUDE_REF);
 
 
-
-                Photo photo = new Photo(toGregorianCalendar(date,time),
+                Photo photo = new Photo(
+                        path,
+                        Integer.parseInt(imgWidth),
+                        Integer.parseInt(imgLength),
+                        toGregorianCalendar(date,time),
                         toLocation(gps_longitude,gps_longitude_ref,gps_latitude,gps_latitude_ref),
                         toBoolean(karma),
                         toBoolean(released));
@@ -78,10 +76,7 @@ public class PhotoLoader {
 
         }
 
-
-
-
-        return null;
+        return list;
     }
 
 

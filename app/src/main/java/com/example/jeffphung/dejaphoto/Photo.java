@@ -10,6 +10,10 @@ import java.util.GregorianCalendar;
 
 public class Photo implements Comparable<Photo> {
 
+
+    private String imgPath;
+    private int imgWidth;
+    private int imgLength;
     private GregorianCalendar calendar;
     private String locationName;
     private Location location;
@@ -21,12 +25,22 @@ public class Photo implements Comparable<Photo> {
 
     }
 
-    public Photo(GregorianCalendar calendar, Location location,
-                 Boolean Karma, Boolean Released){
+    public Photo(
+            String imgPath,
+            int imgWidth,
+            int imgLength,
+            GregorianCalendar calendar,
+            Location location,
+            Boolean karma,
+            Boolean released){
+
+        this.imgPath = imgPath;
+        this.imgWidth = imgWidth;
+        this.imgLength = imgLength;
         this.calendar = calendar;
         this.location = location;
-        this.karma = Karma;
-        this.released = Released;
+        this.karma = karma;
+        this.released = released;
     }
 
     public void addPoints(int points){
