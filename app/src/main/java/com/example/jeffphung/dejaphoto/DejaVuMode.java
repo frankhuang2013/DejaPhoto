@@ -9,7 +9,7 @@ package com.example.jeffphung.dejaphoto;
  * call set+Modename(boolean b) to set turn on/off the mode
  *    - true is on, false is off
  * call is+ModenameOn to get the current mode status
- *
+ *m
  */
 
 public class DejaVuMode {
