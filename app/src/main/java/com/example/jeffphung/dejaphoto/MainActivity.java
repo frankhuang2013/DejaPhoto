@@ -85,12 +85,13 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
 
         /* for test, do not delete */
+        /*
         com.example.jeffphung.dejaphoto.PhotoLoader pl = new com.example.jeffphung.dejaphoto.PhotoLoader();
         String a = pl.get();
 
         TextView text = (TextView) findViewById(R.id.text);
         text.setText(a);
-
+        */
         /* for test, do not delete */
 
 
