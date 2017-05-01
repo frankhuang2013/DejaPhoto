@@ -1,6 +1,8 @@
 package com.example.jeffphung.dejaphoto;
 
-import android.support.annotation.NonNull;
+import android.location.Location;
+
+import java.util.GregorianCalendar;
 
 /**
  * Created by kaijiecai on 4/29/17.
@@ -8,44 +10,32 @@ import android.support.annotation.NonNull;
 
 public class Photo implements Comparable<Photo> {
 
-    private String time;
-    private String dayOfWeek;
+    private GregorianCalendar calendar;
     private String locationName;
-    private Boolean Karma;
-    private Boolean Released;
-    private int points;
+    private Location location;
+    private Boolean karma = false;
+    private Boolean released = false;
+    private int points = 0;
 
     public Photo(){
 
     }
 
-    public Photo(String time, String dayOfWeek, String locationName, Boolean Karma, Boolean Released){
-        this.time = time;
-        this.dayOfWeek = dayOfWeek;
-        this.locationName = locationName;
-        this.Karma = Karma;
-        this.Released = Released;
+    public Photo(GregorianCalendar calendar, Location location,
+                 Boolean Karma, Boolean Released){
+        this.calendar = calendar;
+        this.location = location;
+        this.karma = Karma;
+        this.released = Released;
     }
 
-    public void AddPoints(){
-        this.points +=10;
+    public void addPoints(int points){
+        this.points +=points;
     }
 
-    public String getTime() {
-        return time;
-    }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
 
-    public String getDayOfWeek() {
-        return dayOfWeek;
-    }
 
-    public void setDayOfWeek(String dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
 
     public String getLocationName() {
         return locationName;
@@ -56,19 +46,19 @@ public class Photo implements Comparable<Photo> {
     }
 
     public Boolean getKarma() {
-        return Karma;
+        return karma;
     }
 
     public void setKarma(Boolean karma) {
-        Karma = karma;
+        this.karma = karma;
     }
 
     public Boolean getReleased() {
-        return Released;
+        return released;
     }
 
     public void setReleased(Boolean released) {
-        Released = released;
+        this.released = released;
     }
 
     public int getPoints() {
@@ -80,22 +70,30 @@ public class Photo implements Comparable<Photo> {
     }
 
 
+    public GregorianCalendar getCalendar() {
+        return calendar;
+    }
+
 
 
 
     @Override
-    public int compareTo(@NonNull Photo o) {
+    public int compareTo(Photo o) {
         if(getPoints() > o.getPoints()){
             return 1;
         }
         else if(getPoints() < o.getPoints())
             return -1;
 
-        else if (getTime().compareTo(o.getTime()) > 0){
+        else if (getCalendar().compareTo(o.getCalendar()) > 0){
             return 1;
         }
         else
             return -1;
 
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }
