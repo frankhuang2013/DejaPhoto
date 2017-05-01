@@ -3,13 +3,13 @@ package com.example.jeffphung.dejaphoto;
 /**
  * Created by kaijiecai on 4/28/17.
  *
- * This is dejaVuMode class which contains all boolean values for modes inside the dejaVuMode
+ * This is dejaVuMode class which contains boolean values of all modes inside the dejaVuMode
  * all modes are true by default
  *
  * call set+Modename(boolean b) to set turn on/off the mode
  *    - true is on, false is off
  * call is+ModenameOn to get the current mode status
- *
+ *m
  */
 
 public class DejaVuMode {
