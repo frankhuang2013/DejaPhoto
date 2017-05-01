@@ -35,8 +35,8 @@ public class PhotoLoader {
     }
 
 
-    public PhotoList load(com.example.jeffphung.dejaphoto.DejaVuMode dejaVuMode){
-        PhotoList list = new com.example.jeffphung.dejaphoto.PhotoList();
+    public PhotoList load(DejaVuMode dejaVuMode){
+        PhotoList list = new PhotoList();
 
         for(int i = 0; i< 10; i++){
             String path = "";
