@@ -16,7 +16,6 @@
         android:id="@+id/settingHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:gravity="center_horizontal"
         android:text="@string/header" />
 
@@ -113,7 +112,6 @@
     <Button
         android:id="@+id/customAlbum"
         android:layout_width="match_parent"
-=======
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -122,7 +120,6 @@
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
->>>>>>> e11020ac77fc4b46ff9ba09ab89edd1064cb3d9d
         android:layout_height="wrap_content"
         android:onClick="createAlbum"
         android:text="@string/custum_album" />

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jeffphung.dejaphoto">
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-=======
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="25"/>
@@ -13,7 +11,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
->>>>>>> e11020ac77fc4b46ff9ba09ab89edd1064cb3d9d
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

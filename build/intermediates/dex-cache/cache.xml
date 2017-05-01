@@ -7,17 +7,11 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-<<<<<<< HEAD
         sha1="c4efc794978977b58751ab69a03a7c6fc38d6503">
-=======
-<<<<<<< HEAD
         sha1="fb1821bd824d36cd56b69bad3dea952b0c3e1b96">
         <dex dex="/Users/kaijiecai/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_67aada78abb98ef3f12baf04a8a89687bf889bae/classes.dex" />
-=======
         sha1="49f30be82fda4113457405d2ddf1d341450a3752">
->>>>>>> e11020ac77fc4b46ff9ba09ab89edd1064cb3d9d
         <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_04466a5809b02a1e077a9ee22daf9999923062c1/classes.dex" />
->>>>>>> 964babfc2f9a484ee9781de05105a5a41c7784ab
     </item>
     <item
         is-multidex="true"

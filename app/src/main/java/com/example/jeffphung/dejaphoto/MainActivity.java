@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-<<<<<<< HEAD
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.ToggleButton;
 
 import java.io.File;
 import java.io.IOException;
-=======
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +22,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.jeffphung.dejaphoto.DejaVuMode;
->>>>>>> e11020ac77fc4b46ff9ba09ab89edd1064cb3d9d
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
@@ -32,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-<<<<<<< HEAD
         setContentView(R.layout.activity_main);
 
 
@@ -45,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         ToggleButton dayWeekButton = (ToggleButton) findViewById(R.id.dayWeekButton);
         dayWeekButton.setOnCheckedChangeListener(this);
 
-=======
         /* DejaVumode class */
         DejaVuMode dejaVuMode = new DejaVuMode();
         /*
@@ -55,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
->>>>>>> e11020ac77fc4b46ff9ba09ab89edd1064cb3d9d
 
         /*
         //TODO figure out how to test this code (android sim doesn't know how to save camera pics to gallery)
@@ -86,11 +80,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         }
         */
 
-<<<<<<< HEAD
-=======
-
-        //TODO TEST ahhh!!
-
 
 
 
@@ -107,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
 
 
->>>>>>> e11020ac77fc4b46ff9ba09ab89edd1064cb3d9d
     }
 
     @Override
