@@ -3,7 +3,6 @@ package com.example.jeffphung.dejaphoto;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-import com.example.jeffphung.dejaphoto.*;
 
 /**
  * Created by kaijiecai on 4/30/17.
@@ -23,7 +22,7 @@ public class PhotoFilter {
 
     }
 
-    public void filter(com.example.jeffphung.dejaphoto.PhotoList list){
+    public void filter(PhotoList list){
         list.clear(); //clear all points
         current = new GregorianCalendar();
 
@@ -52,6 +51,7 @@ public class PhotoFilter {
 
                 //check withinLocation
                 if(true){
+                    photo.addPoints(LOCATION_POINT);
 
                 }
 
