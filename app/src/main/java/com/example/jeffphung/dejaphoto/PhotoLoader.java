@@ -1,5 +1,8 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.app.Activity;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.os.Environment;
@@ -7,6 +10,7 @@ import android.os.Environment;
 import java.io.File;
 import java.io.IOException;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import static android.media.ExifInterface.TAG_GPS_DATESTAMP;
 import static android.media.ExifInterface.TAG_GPS_LATITUDE;
@@ -57,13 +61,16 @@ public class PhotoLoader {
                 String gps_latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE);
                 String gps_latitude_ref = exifInterface.getAttribute(TAG_GPS_LATITUDE_REF);
 
+                Location location = toLocation
+                        (gps_longitude,gps_longitude_ref,gps_latitude,gps_latitude_ref);
 
                 Photo photo = new Photo(
                         path,
                         Integer.parseInt(imgWidth),
                         Integer.parseInt(imgLength),
                         toGregorianCalendar(date,time),
-                        toLocation(gps_longitude,gps_longitude_ref,gps_latitude,gps_latitude_ref),
+                        location,
+                        toLoactionName(location),
                         toBoolean(karma),
                         toBoolean(released));
                 list.add(photo);
@@ -95,6 +102,7 @@ public class PhotoLoader {
     }
 
 
+    /* generate a GregorianCalendar by dateStamp and timeStamp */
     public GregorianCalendar toGregorianCalendar(String dateStamp, String timeStamp){
         GregorianCalendar calendar = null;
         if(dateStamp != null && timeStamp != null){
@@ -124,6 +132,22 @@ public class PhotoLoader {
             location.setLongitude(toDouble(lo,lo_ref));
         }
         return location;
+    }
+
+    /* get location name from its latitude and longtidu */
+    public List<Address> toLoactionName(Location location) {
+        List<Address> addresses = null;
+        if(location != null){
+            Geocoder geocoder = new Geocoder(new Activity());
+            try {
+                addresses = geocoder.getFromLocation(location.getLatitude(),
+                        location.getLongitude(),1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return addresses;
     }
 
     private Double toDouble(String gps,String ref) {

@@ -1,8 +1,10 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.location.Address;
 import android.location.Location;
 
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * Created by kaijiecai on 4/29/17.
@@ -15,7 +17,7 @@ public class Photo implements Comparable<Photo> {
     private int imgWidth;
     private int imgLength;
     private GregorianCalendar calendar;
-    private String locationName;
+    private List<Address> locationName;
     private Location location;
     private Boolean karma = false;
     private Boolean released = false;
@@ -31,6 +33,7 @@ public class Photo implements Comparable<Photo> {
             int imgLength,
             GregorianCalendar calendar,
             Location location,
+            List<Address> locationName,
             Boolean karma,
             Boolean released){
 
@@ -39,6 +42,7 @@ public class Photo implements Comparable<Photo> {
         this.imgLength = imgLength;
         this.calendar = calendar;
         this.location = location;
+        this.locationName = locationName;
         this.karma = karma;
         this.released = released;
     }
@@ -49,15 +53,6 @@ public class Photo implements Comparable<Photo> {
 
 
 
-
-
-    public String getLocationName() {
-        return locationName;
-    }
-
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
-    }
 
     public Boolean getKarma() {
         return karma;
@@ -88,7 +83,11 @@ public class Photo implements Comparable<Photo> {
         return calendar;
     }
 
+    public String getImgPath() { return imgPath;}
 
+    public int getImgWidth() { return imgWidth; }
+
+    public int getImgLength() { return imgLength;}
 
 
     @Override
@@ -110,4 +109,6 @@ public class Photo implements Comparable<Photo> {
     public Location getLocation() {
         return location;
     }
+
+
 }
