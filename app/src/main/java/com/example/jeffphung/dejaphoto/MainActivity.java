@@ -1,27 +1,12 @@
 package com.example.jeffphung.dejaphoto;
 
-import android.app.WallpaperManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import java.io.File;
-import java.io.IOException;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-
-import com.example.jeffphung.dejaphoto.DejaVuMode;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
@@ -82,17 +67,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
 
 
-
-
-        /* for test, do not delete */
-        /*
-        com.example.jeffphung.dejaphoto.PhotoLoader pl = new com.example.jeffphung.dejaphoto.PhotoLoader();
-        String a = pl.get();
-
-        TextView text = (TextView) findViewById(R.id.text);
-        text.setText(a);
-        */
-        /* for test, do not delete */
 
 
 

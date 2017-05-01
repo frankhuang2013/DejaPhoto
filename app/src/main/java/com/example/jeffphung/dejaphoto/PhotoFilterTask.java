@@ -1,6 +1,7 @@
 package com.example.jeffphung.dejaphoto;
 
 import android.location.Location;
+import android.os.AsyncTask;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -10,7 +11,7 @@ import java.util.Locale;
  * Created by kaijiecai on 4/30/17.
  */
 
-public class PhotoFilter {
+public class PhotoFilterTask extends AsyncTask<PhotoList,String,String>{
     final int KARMA_POINT = 10;
     final int LOCATION_POINT = 10;
     final int TIME_POINT = 10;
@@ -19,13 +20,17 @@ public class PhotoFilter {
     final int WITHINRANGE = 1000; // within 1000 feet
 
     GregorianCalendar currentCalendar;
+    DejaVuMode dejaVuMode;
 
 
-    public PhotoFilter(){
+    public PhotoFilterTask(DejaVuMode dejaVuMode){
+        this.dejaVuMode = dejaVuMode;
 
     }
 
-    public void filter(PhotoList list, DejaVuMode dejaVuMode){
+    @Override
+    protected String doInBackground(PhotoList...photoLists) {
+        PhotoList list = photoLists[0];
         list.clear(); //clear all points
         if(dejaVuMode.isDejaVuModeOn()) {
             currentCalendar = new GregorianCalendar();
@@ -76,6 +81,11 @@ public class PhotoFilter {
 
         //sort the list according to points
         list.sort();
+        return "";
+    }
+
+    public void filter(PhotoList list){
+
     }
 
 

@@ -5,6 +5,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.media.ExifInterface;
+import android.os.AsyncTask;
 import android.os.Environment;
 
 import java.io.File;
@@ -25,7 +26,7 @@ import static android.media.ExifInterface.TAG_IMAGE_WIDTH;
  * Created by kaijiecai on 4/29/17.
  */
 
-public class PhotoLoader {
+public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
     final private String TAG_KARMA = "TAG_KARMA";
     final private String TAG_RELEASED = "TAG_RELEASED";
     final private int YEAR_INDEX = 0;
@@ -36,12 +37,12 @@ public class PhotoLoader {
     final private int SECOND_INDEX = 2;
 
 
-    public PhotoLoader(){
+    public PhotoLoaderTask(){
 
     }
 
-
-    public PhotoList load(DejaVuMode dejaVuMode){
+    @Override
+    protected PhotoList doInBackground(Void... params) {
         PhotoList list = new PhotoList();
 
         for(int i = 0; i< 10; i++){
@@ -84,9 +85,8 @@ public class PhotoLoader {
         }
 
         return list;
+
     }
-
-
 
 
     /* convert string to boolean type */
@@ -164,7 +164,7 @@ public class PhotoLoader {
 
 
 
-    public String get(){
+    public String getA(){
 
         String dateTime = "asd";
 
