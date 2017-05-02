@@ -123,7 +123,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
 
 
     //TODO
-    /* convert longitude and latitu to double */
+    /* convert longitude and latitu to a Location Object */
     public Location toLocation(String lo, String lo_ref,String la, String la_ref){
         Location location= null;
         if(lo != null && la != null){
@@ -150,7 +150,8 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
         return addresses;
     }
 
-    private Double toDouble(String gps,String ref) {
+    /* convert a DMS to decimal */
+    public Double toDouble(String gps,String ref) {
         String[] gps_dms = gps.split(",");
         double d = Integer.parseInt(gps_dms[0].split("/")[0])/1.0;
         double min = Integer.parseInt(gps_dms[1].split("/")[0])/60.0;

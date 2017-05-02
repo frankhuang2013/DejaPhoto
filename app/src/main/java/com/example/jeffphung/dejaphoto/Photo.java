@@ -62,7 +62,7 @@ public class Photo implements Comparable<Photo> {
         this.karma = karma;
     }
 
-    public Boolean getReleased() {
+    public Boolean isReleased() {
         return released;
     }
 
