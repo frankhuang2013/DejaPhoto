@@ -1,5 +1,6 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.annotation.TargetApi;
 import android.app.WallpaperManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -43,33 +44,40 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         /* DejaVumode class */
         DejaVuMode dejaVuMode = new DejaVuMode();
-        /*
+
 
 
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //gets path to camera album photos
+        File cameraDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString());
 
-        /*
-        //TODO figure out how to test this code (android sim doesn't know how to save camera pics to gallery)
-        //should get path to camera album photos
-        File cameraDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath());
+        //there are multiple folders here, but we are only interested in the first one (ie Camera)
         File[] files = cameraDir.listFiles();
+        File finalCamDir = files[0];
 
+        File[] camFiles = finalCamDir.listFiles();
+
+        /* PRINTS OUT THE CAMERA LOCATION AND ALL SUBSEQUENT IMAGES
+        System.out.println(cameraDir);
+        for (File filess : camFiles){
+            System.out.println(filess.getName());
+        }
+        */
 
         // should set the wallpaper to the first in our file array
         File firstImage = null;
 
         //if no images set a whatever image, else use first image.
-        if (files.length == 0){
+        if (camFiles.length == 0){
             //TODO set default
         }
         else{
-            firstImage = files[0];
+            firstImage = camFiles[0];
         }
 
 
+        //sets wallpaper
         Bitmap bitmap = BitmapFactory.decodeFile(firstImage.getAbsolutePath());
         WallpaperManager myWallpaperManager = WallpaperManager.getInstance(getApplicationContext());
         try {
@@ -78,10 +86,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         } catch (IOException e) {
             Toast.makeText(MainActivity.this, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
         }
-        */
-
-
-
 
 
         /* for test, do not delete */
