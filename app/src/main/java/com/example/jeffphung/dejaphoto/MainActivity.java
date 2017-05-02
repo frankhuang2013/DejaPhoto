@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         DejaVuMode dejaVuMode = new DejaVuMode();
         /*
 
+        //Whatever
 
         setContentView(R.layout.activity_main);
 
