@@ -71,7 +71,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
                         Integer.parseInt(imgLength),
                         toGregorianCalendar(date,time),
                         location,
-                        toLoactionName(location),
+                        toLocationName(location),
                         toBoolean(karma),
                         toBoolean(released));
                 list.add(photo);
@@ -123,7 +123,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
 
 
     //TODO
-    /* convert longitude and latitu to a Location Object */
+    /* convert longitude and latitude to a Location Object */
     public Location toLocation(String lo, String lo_ref,String la, String la_ref){
         Location location= null;
         if(lo != null && la != null){
@@ -135,7 +135,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
     }
 
     /* get location name from its latitude and longtidu */
-    public List<Address> toLoactionName(Location location) {
+    public List<Address> toLocationName(Location location) {
         List<Address> addresses = null;
         if(location != null){
             Geocoder geocoder = new Geocoder(new Activity());

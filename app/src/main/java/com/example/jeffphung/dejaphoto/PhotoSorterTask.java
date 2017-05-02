@@ -69,6 +69,8 @@ public class PhotoSorterTask extends AsyncTask<PhotoList,String,String>{
 
                     //check withinLocation
                     if (location != null && dejaVuMode.isLocationModeOn()) {
+
+
                         photo.addPoints(LOCATION_POINT);
 
                     }
