@@ -45,9 +45,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         /* DejaVumode class */
         DejaVuMode dejaVuMode = new DejaVuMode();
 
-
-        //Whatever
-
         setContentView(R.layout.activity_main);
 
         //gets path to camera album photos
