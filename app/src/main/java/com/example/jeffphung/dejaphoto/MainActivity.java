@@ -94,18 +94,22 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         // should set the wallpaper to the first in our file array
         File firstImage = null;
+        Bitmap bitmap = null;
 
         //if no images set a whatever image, else use first image.
         if (camFiles.length == 0){
-            //TODO set default
+            bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.defaultwhatever);
+
         }
         else{
             firstImage = camFiles[0];
+            bitmap = BitmapFactory.decodeFile(firstImage.getAbsolutePath());
         }
 
 
         //sets wallpaper
-        Bitmap bitmap = BitmapFactory.decodeFile(firstImage.getAbsolutePath());
+
+
         WallpaperManager myWallpaperManager = WallpaperManager.getInstance(getApplicationContext());
         try {
             myWallpaperManager.setBitmap(bitmap);
