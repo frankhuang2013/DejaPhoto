@@ -5,18 +5,28 @@ import java.util.Collections;
 
 /**
  * Created by kaijiecai on 4/29/17.
+ *
+ * call next/previous to get the next/previous photo in the list
  */
+
 
 public class PhotoList{
     ArrayList<Photo> photoArrayList;
+    int index = 0;
 
     public Photo next(){
-        return null;
+        if(index == photoArrayList.size()){
+            index = 0;
+        }
+        return photoArrayList.get(index++);
     }
 
 
     public Photo previous(){
-        return null;
+        if( index == -1){
+            index = photoArrayList.size()-1;
+        }
+        return photoArrayList.get(index--);
     }
 
     public void add(Photo p){

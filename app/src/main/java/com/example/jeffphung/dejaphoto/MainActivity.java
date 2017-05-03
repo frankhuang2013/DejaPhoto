@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         setContentView(R.layout.activity_main);
 
 
+        /* toggleButtons */
         ToggleButton dButton = (ToggleButton) findViewById(R.id.dejaVuButton);
         dButton.setOnCheckedChangeListener(this);
         ToggleButton lButton = (ToggleButton) findViewById(R.id.locationButton);
@@ -64,14 +65,13 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         ToggleButton dayWeekButton = (ToggleButton) findViewById(R.id.dayWeekButton);
         dayWeekButton.setOnCheckedChangeListener(this);
 
+
         /* initialization */
-        /*
         photoList = new PhotoList();
         currentPhoto = new Photo();
         dejaVuMode = new DejaVuMode();
         photoLoader= new PhotoLoaderTask();
         photoSorter = new PhotoSorterTask(dejaVuMode,currentLocation);
-        */
         /* initialization */
 
         setContentView(R.layout.activity_main);
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
 
         /* run location and time chacek in the background */
-
+        /* haven't test yet */
         Intent locationIntent = new Intent(MainActivity.this,LocationService.class);
         startService(locationIntent);
         /* run location and time chacek in the background */
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
 
-    /* sort photos every hour or every 500 ft change */
+    /* this class doesn't work correctly now, don't use it */
 
     protected class LocationService extends Service {
 
@@ -272,8 +272,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         }
     }
+    /* this class doesn't work correctly now, don't use it */
 
     /* get location name from its latitude and longtidu */
+    /* haven't test yet */
     public List<Address> toLocationName(Location location) {
         List<Address> addresses = null;
         if(location != null){
@@ -288,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         }
         return addresses;
     }
+    /* haven't test yet */
 
 
 }

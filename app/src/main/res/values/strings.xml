@@ -9,4 +9,6 @@
     <string name="location">Location</string>
     <string name="timeday">Time of Day</string>
     <string name="day_week">Day of Week</string>
+    <string name="rightButtonText">Right</string>
+    <string name="leftButtonText">Left</string>
 </resources>
