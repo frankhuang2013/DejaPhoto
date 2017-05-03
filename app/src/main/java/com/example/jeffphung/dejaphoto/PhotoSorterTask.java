@@ -3,9 +3,7 @@ package com.example.jeffphung.dejaphoto;
 import android.location.Location;
 import android.os.AsyncTask;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
 /**
  * Created by kaijiecai on 4/30/17.
@@ -17,14 +15,18 @@ public class PhotoSorterTask extends AsyncTask<PhotoList,String,String>{
     private final int TIME_POINT = 10;
     private final int DAY_POINT = 10;
     private final int WITHINTIME = 2*3600; // within 2 hours
-    private final int WITHINRANGE = 1000; // within 1000 feet
+    private final double WITHINRANGE = 304.8; // within 1000 feet/304.8 meters
 
     GregorianCalendar currentCalendar;
     DejaVuMode dejaVuMode;
+    Location currentLocation;
 
 
-    public PhotoSorterTask(DejaVuMode dejaVuMode){
+    /* photoSorterTask constructor, pass current dejaVuMode as parmater */
+    public PhotoSorterTask(DejaVuMode dejaVuMode, Location location){
         this.dejaVuMode = dejaVuMode;
+        currentLocation = location;
+
 
     }
 
@@ -45,13 +47,7 @@ public class PhotoSorterTask extends AsyncTask<PhotoList,String,String>{
 
                     //check day of week
                     if (calendar != null && dejaVuMode.isDayModeOn()) {
-
-                        String currentDay = currentCalendar.getDisplayName(
-                                Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault());
-                        String calendarDay = calendar.getDisplayName(
-                                Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.getDefault());
-
-                        if (currentDay.equals(calendarDay)) {
+                        if(currentCalendar.DAY_OF_WEEK == calendar.DAY_OF_WEEK){
                             photo.addPoints(DAY_POINT);
                         }
                     }
@@ -69,9 +65,12 @@ public class PhotoSorterTask extends AsyncTask<PhotoList,String,String>{
 
                     //check withinLocation
                     if (location != null && dejaVuMode.isLocationModeOn()) {
+                        if(currentLocation.distanceTo(location) <= WITHINRANGE){
+                            photo.addPoints(LOCATION_POINT);
+
+                        }
 
 
-                        photo.addPoints(LOCATION_POINT);
 
                     }
 
@@ -93,9 +92,9 @@ public class PhotoSorterTask extends AsyncTask<PhotoList,String,String>{
 
 
     public int calendarToSecond(GregorianCalendar calendar){
-        int hour = calendar.get(Calendar.HOUR);
-        int minute = calendar.get(Calendar.MINUTE);
-        int second = calendar.get(Calendar.SECOND);
+        int hour = calendar.HOUR;
+        int minute = calendar.MINUTE;
+        int second = calendar.SECOND;
 
         return hour*3600+minute*60+second;
     }

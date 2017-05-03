@@ -33,7 +33,6 @@ public class Photo implements Comparable<Photo> {
             int imgLength,
             GregorianCalendar calendar,
             Location location,
-            List<Address> locationName,
             Boolean karma,
             Boolean released){
 
@@ -42,7 +41,6 @@ public class Photo implements Comparable<Photo> {
         this.imgLength = imgLength;
         this.calendar = calendar;
         this.location = location;
-        this.locationName = locationName;
         this.karma = karma;
         this.released = released;
     }
