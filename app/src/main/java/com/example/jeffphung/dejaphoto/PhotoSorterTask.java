@@ -29,6 +29,9 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
 
     }
+    public PhotoSorterTask(Location currentLocation){
+        this.currentLocation = currentLocation;
+    }
 
     @Override
     protected void onPreExecute(){
@@ -53,7 +56,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
                     //check day of week
                     if (calendar != null && dejaVuMode.isDayModeOn()) {
-                        if(currentCalendar.DAY_OF_WEEK == calendar.DAY_OF_WEEK){
+                        if(sameDayOfWeek(currentCalendar,calendar)){
                             photo.addPoints(DAY_POINTS);
                         }
                     }
@@ -67,11 +70,10 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
                     //check withinLocation
                     if (location != null && dejaVuMode.isLocationModeOn()) {
-                        if(currentLocation.distanceTo(location) <= WITHINRANGE){
+                        if(isLocationClose(currentLocation, location)){
                             photo.addPoints(LOCATION_POINTS);
 
                         }
-
 
 
                     }
@@ -90,8 +92,24 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
         return "";
     }
 
+    /* check if two location are close */
+    public boolean isLocationClose(Location currentLocation, Location location){
+        if(currentLocation.distanceTo(location) <= WITHINRANGE) {
+            return true;
+        }
+        return false;
+    }
 
-    /* convert time to second */
+    /* check if same day of week */
+    public boolean sameDayOfWeek(GregorianCalendar currentCalendar,GregorianCalendar calendar){
+        if(currentCalendar.get(Calendar.DAY_OF_WEEK)
+                == calendar.get(Calendar.DAY_OF_WEEK))
+            return true;
+
+        return false;
+    }
+
+    /* convert calendar time to second */
     public int calendarToSecond(GregorianCalendar calendar){
         int hour = calendar.get(Calendar.HOUR);
         int minute = calendar.get(Calendar.MINUTE);
@@ -100,6 +118,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
         return hour*3600+minute*60+second;
     }
 
+    /* check if two calendar time are close */
     public boolean withinHours(GregorianCalendar currentCalendar,GregorianCalendar calendar){
         int currentTime = calendarToSecond(currentCalendar);
         int calendarTime = calendarToSecond(calendar);
