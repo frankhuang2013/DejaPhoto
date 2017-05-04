@@ -18,6 +18,14 @@ public class DejaVuMode {
     private boolean timeModeOn = true;
     private boolean dayModeOn = true;
 
+    private static DejaVuMode dejaVuModeInstance = new DejaVuMode();
+
+    private DejaVuMode(){}
+
+    public static DejaVuMode getDejaVuModeInstance(){
+        return dejaVuModeInstance;
+    }
+
 
     /* return true if all sub-modes are off */
     private boolean isAllModeOff(){

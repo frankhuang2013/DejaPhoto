@@ -2,15 +2,12 @@ package com.example.jeffphung.dejaphoto;
 
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.app.Service;
-import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -23,13 +20,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
@@ -67,14 +63,21 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
 
         /* initialization */
-        photoList = new PhotoList();
+        photoList = PhotoList.getPhotoListInstance();
         currentPhoto = new Photo();
-        dejaVuMode = new DejaVuMode();
-        photoLoader= new PhotoLoaderTask();
-        photoSorter = new PhotoSorterTask(dejaVuMode,currentLocation);
+        dejaVuMode = DejaVuMode.getDejaVuModeInstance();
+        photoLoader= new PhotoLoaderTask(MainActivity.this);
+        photoLoader.execute();
+
+       /*
+        Log.d("execute","after");
+        TextView textV = (TextView) findViewById(R.id.text);
+        textV.setText(photoList.size());
+        photoSorter = new PhotoSorterTask(dejaVuMode,currentLocation);*/
         /* initialization */
 
         setContentView(R.layout.activity_main);
+
 
         //gets path to camera album photos
         File cameraDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString());
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         Bitmap bitmap = null;
 
         //if no images set a whatever image, else use first image.
+        /*
         if (camFiles.length == 0){
             bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.defaultwhatever);
 
@@ -117,22 +121,41 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         } catch (IOException e) {
             Toast.makeText(MainActivity.this, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
         }
-
+*/
 
 
 
 
         /* run location and time chacek in the background */
         /* haven't test yet */
+        /*
         Intent locationIntent = new Intent(MainActivity.this,LocationService.class);
         startService(locationIntent);
+        */
         /* run location and time chacek in the background */
 
+        if (ActivityCompat.checkSelfPermission(
+                MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(
+                MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 100);
+            return;
+        }
+
+        Button cButton = (Button) findViewById(R.id.customAlbum);
+        cButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
-
-
-
+                Toast.makeText(MainActivity.this, photoList.size()+"",
+                        Toast.LENGTH_SHORT).show();
+                AutoGPSTimer autoGPSTimer = new AutoGPSTimer(MainActivity.this);
+            }
+        });
     }
 
     @Override
@@ -160,15 +183,18 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Toast.makeText(MainActivity.this, photoList.size()+"",Toast.LENGTH_SHORT).show();
 
         switch (buttonView.getId()){
             case R.id.dejaVuButton:
                 if (isChecked) {
                     // The toggle is enabled
                     System.out.println("deja enabled!");
+                    Toast.makeText(MainActivity.this, "jjjjjj",Toast.LENGTH_SHORT).show();
                 } else {
                     // The toggle is disabled
                     System.out.println("deja disabled!");
+                    Toast.makeText(MainActivity.this, photoList.size()+"",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.locationButton:
@@ -231,22 +257,13 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         private class LocationChange {
 
             public void start() {
-                if (ActivityCompat.checkSelfPermission(
-                        MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(
-                        MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
 
-                    ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 100);
-                    return;
-                }
                 LocationListener locationListener = new LocationListener() {
 
                     @Override
                     public void onLocationChanged(Location location) {
                         currentLocation = location;
-                        photoSorter.execute(photoList);
+                        photoSorter.execute();
                         Toast.makeText(MainActivity.this, "Wallpaperjjjj", Toast.LENGTH_SHORT).show();
                     }
 
@@ -263,34 +280,26 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     }
                 };
 
-                locationManager = (LocationManager) MainActivity.this.getSystemService(Context.LOCATION_SERVICE);
-                locationManager.requestLocationUpdates(
-                        LocationManager.NETWORK_PROVIDER,
-                        TIMER,
-                        LOCATIONCHANGE, locationListener);
             }
 
         }
     }
     /* this class doesn't work correctly now, don't use it */
 
-    /* get location name from its latitude and longtidu */
+
     /* haven't test yet */
-    public List<Address> toLocationName(Location location) {
-        List<Address> addresses = null;
-        if(location != null){
-            Geocoder geocoder = new Geocoder(this);
-            try {
-                addresses = geocoder.getFromLocation(location.getLatitude(),
-                        location.getLongitude(),1);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+    private boolean isServiceRunning(Class<?> serviceClass){
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+
+        // Loop through the running services
+        for(ActivityManager.RunningServiceInfo service : activityManager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                // If the service is running then return true
+                return true;
             }
-
         }
-        return addresses;
+        return false;
     }
-    /* haven't test yet */
-
 
 }

@@ -20,7 +20,7 @@ public class DejaVuModeTester {
 
     @Before
     public void setUp(){
-        dejaVuMode = new DejaVuMode();
+        dejaVuMode = DejaVuMode.getDejaVuModeInstance();
     }
 
     @Test

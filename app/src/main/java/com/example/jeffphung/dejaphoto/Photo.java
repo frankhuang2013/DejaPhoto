@@ -4,7 +4,6 @@ import android.location.Address;
 import android.location.Location;
 
 import java.util.GregorianCalendar;
-import java.util.List;
 
 /**
  * Created by kaijiecai on 4/29/17.
@@ -17,7 +16,7 @@ public class Photo implements Comparable<Photo> {
     private int imgWidth;
     private int imgLength;
     private GregorianCalendar calendar;
-    private List<Address> locationName;
+    private Address locationName;
     private Location location;
     private Boolean karma = false;
     private Boolean released = false;
@@ -33,6 +32,7 @@ public class Photo implements Comparable<Photo> {
             int imgLength,
             GregorianCalendar calendar,
             Location location,
+            Address locationName,
             Boolean karma,
             Boolean released){
 
@@ -41,6 +41,7 @@ public class Photo implements Comparable<Photo> {
         this.imgLength = imgLength;
         this.calendar = calendar;
         this.location = location;
+        this.locationName = locationName;
         this.karma = karma;
         this.released = released;
     }
@@ -109,4 +110,7 @@ public class Photo implements Comparable<Photo> {
     }
 
 
+    public Address getLocationName() {
+        return locationName;
+    }
 }

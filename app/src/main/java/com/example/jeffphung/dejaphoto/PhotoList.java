@@ -11,8 +11,27 @@ import java.util.Collections;
 
 
 public class PhotoList{
-    ArrayList<Photo> photoArrayList;
+    private static PhotoList photoListInstance = new PhotoList();
+    ArrayList<Photo> photoArrayList ;
     int index = 0;
+
+
+    /**
+     * private constructor prevent other from initializing
+     */
+    private PhotoList(){
+        photoArrayList = new ArrayList<>();
+    }
+
+    /**
+     * get Photolist instance
+     * @return
+     */
+    public static PhotoList getPhotoListInstance(){
+        return photoListInstance;
+    }
+
+
 
     public Photo next(){
         if(index == photoArrayList.size()){

@@ -1,13 +1,15 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.content.Context;
 import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -26,7 +28,7 @@ import static android.media.ExifInterface.TAG_IMAGE_WIDTH;
 
 /* this class will load photo from default camera album */
  //
-public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
+public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     final private String TAG_KARMA = "TAG_KARMA";
     final private String TAG_RELEASED = "TAG_RELEASED";
     final private int YEAR_INDEX = 0;
@@ -36,15 +38,47 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
     final private int MINUTE_INDEX = 1;
     final private int SECOND_INDEX = 2;
 
+    PhotoList list;
+    Context mContext;
+
+    public PhotoLoaderTask(){
+
+    }
+
+    public PhotoLoaderTask(Context context){
+        this.mContext = context;
+    }
+
+    @Override
+    protected void onPreExecute(){
+        list = PhotoList.getPhotoListInstance();
+    }
+
+    /* convert string to boolean type */
+    public boolean toBoolean(String str){
+        if(str == null){
+            return false;
+        }
+        else if(str.equals("true")){
+            return true;
+        }
+        else
+            return false;
+    }
 
 
     @Override
-    protected PhotoList doInBackground(Void... params) {
-        PhotoList list = new PhotoList();
-
-        for(int i = 0; i< 10; i++){
+    protected String doInBackground(Void... params) {
+        Log.i("startbackground",0+"");
+        //Toast.makeText(mContext,"serviced started",Toast.LENGTH_SHORT).show();
+        for(int i = 0; i< 1; i++){
             try {
-                String path = "";
+                Log.i("startbackground",1+"");
+                String ExternalStorageDirectoryPath = Environment
+                        .getExternalStorageDirectory()
+                        .getAbsolutePath();
+
+                String path = ExternalStorageDirectoryPath + "/Download/img3.jpg";
                 ExifInterface exifInterface = new ExifInterface(path);
 
 
@@ -62,17 +96,17 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
                 Location location = toLocation
                         (gps_longitude,gps_longitude_ref,gps_latitude,gps_latitude_ref);
 
+
                 Photo photo = new Photo(
                         path,
                         Integer.parseInt(imgWidth),
                         Integer.parseInt(imgLength),
                         toGregorianCalendar(date,time),
                         location,
+                        toLocationName(location),
                         toBoolean(karma),
                         toBoolean(released));
                 list.add(photo);
-
-
             } catch (IOException e) {
                 e.printStackTrace();
 
@@ -80,23 +114,10 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
 
         }
 
-        return list;
-
+      //  Toast.makeText(mContext,list.size()+"",Toast.LENGTH_SHORT).show();
+        Log.i("startbackground",2+"");
+        return null;
     }
-
-
-    /* convert string to boolean type */
-    public boolean toBoolean(String str){
-        if(str == null){
-            return false;
-        }
-        else if(str.equals("true")){
-            return true;
-        }
-        else
-            return false;
-    }
-
 
     /* generate a GregorianCalendar by dateStamp and timeStamp */
     public GregorianCalendar toGregorianCalendar(String dateStamp, String timeStamp){
@@ -119,7 +140,6 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
     }
 
 
-    //TODO
     /* convert longitude and latitude to a Location Object */
     public Location toLocation(String lo, String lo_ref,String la, String la_ref){
         Location location= null;
@@ -144,155 +164,23 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,PhotoList> {
         return d+min+sec;
     }
 
-
-
-
-    public String getA(){
-
-        String ExternalStorageDirectoryPath = Environment
-                .getExternalStorageDirectory()
-                .getAbsolutePath();
-
-        String path1 = ExternalStorageDirectoryPath + "/Download/img2.jpg";
-
-        String exif="";
-        Double d;
-
-        double lo=0.0;
-        try {
-            //dateTime = "aaa";
-            ExifInterface exifInterface = new ExifInterface(path1);
-            //dateTime = "BBB";
-
-            exif += "\nIMAGE_LENGTH: " + exifInterface.getAttribute(ExifInterface.TAG_IMAGE_LENGTH);
-            exif += "\nIMAGE_WIDTH: " + exifInterface.getAttribute(ExifInterface.TAG_IMAGE_WIDTH);
-            exif += "\n DATETIME: " + exifInterface.getAttribute(ExifInterface.TAG_DATETIME);
-            exif += "\n TAG_MAKE: " + exifInterface.getAttribute(ExifInterface.TAG_MAKE);
-            exif += "\n TAG_MODEL: " + exifInterface.getAttribute(ExifInterface.TAG_MODEL);
-            exif += "\n TAG_ORIENTATION: " + exifInterface.getAttribute(ExifInterface.TAG_ORIENTATION);
-            exif += "\n TAG_WHITE_BALANCE: " + exifInterface.getAttribute(ExifInterface.TAG_WHITE_BALANCE);
-            exif += "\n TAG_FOCAL_LENGTH: " + exifInterface.getAttribute(ExifInterface.TAG_FOCAL_LENGTH);
-            exif += "\n TAG_FLASH: " + exifInterface.getAttribute(ExifInterface.TAG_FLASH);
-            exif += "\nGPS related:";
-            exif += "\n TAG_GPS_DATESTAMP: " + exifInterface.getAttribute(TAG_GPS_DATESTAMP);
-            exif += "\n TAG_GPS_TIMESTAMP: " + exifInterface.getAttribute(TAG_GPS_TIMESTAMP);
-            exif += "\n TAG_GPS_LATITUDE: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
-            exif += "\n TAG_GPS_LATITUDE_REF: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF);
-            exif += "\n TAG_GPS_LONGITUDE: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
-            exif += "\n TAG_GPS_LONGITUDE_REF: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF);
-            exif += "\n TAG_GPS_PROCESSING_METHOD: " + exifInterface.getAttribute(ExifInterface.TAG_GPS_PROCESSING_METHOD);
-            lo = toDouble(exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE),
-                    exifInterface.getAttribute(ExifInterface.TAG_GPS_LONGITUDE_REF));
-
-            //Double a;
-            lo = toDouble(exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE),exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE_REF));
-
-
-            exif = exifInterface.getAttribute(TAG_GPS_DATESTAMP);
-            exif = exifInterface.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+    /* get location name from its latitude and longtidu */
+    /* haven't test yet */
+    public Address toLocationName(Location location) {
+        List<Address> addresses = null;
+        if(location != null){
+            Geocoder geocoder = new Geocoder(mContext);
+            try {
+                addresses = geocoder.getFromLocation(location.getLatitude(),
+                        location.getLongitude(),1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
-
-        return exif;
+        return addresses.get(0);
     }
 
 
 
-
-    public GregorianCalendar getCalendar(){
-        GregorianCalendar calendar = new GregorianCalendar();
-        try {
-            String ExternalStorageDirectoryPath = Environment
-                    .getExternalStorageDirectory()
-                    .getAbsolutePath();
-
-            String path = ExternalStorageDirectoryPath + "/Download/img4.jpg";
-            ExifInterface exifInterface = new ExifInterface(path);
-
-
-            String imgWidth = exifInterface.getAttribute(TAG_IMAGE_WIDTH);
-            String imgLength = exifInterface.getAttribute(TAG_IMAGE_LENGTH);
-            String time = exifInterface.getAttribute(TAG_GPS_TIMESTAMP);
-            String date = exifInterface.getAttribute(TAG_GPS_DATESTAMP);
-            String karma = exifInterface.getAttribute(TAG_KARMA);
-            String released = exifInterface.getAttribute(TAG_RELEASED);
-            String gps_longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE);
-            String gps_longitude_ref = exifInterface.getAttribute(TAG_GPS_LONGITUDE_REF);
-            String gps_latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE);
-            String gps_latitude_ref = exifInterface.getAttribute(TAG_GPS_LATITUDE_REF);
-
-            Location location = toLocation
-                    (gps_longitude,gps_longitude_ref,gps_latitude,gps_latitude_ref);
-
-            /*
-            Photo photo = new Photo(
-                    path,
-                    Integer.parseInt(imgWidth),
-                    Integer.parseInt(imgLength),
-                    toGregorianCalendar(date,time),
-                    location,
-                    toLocationName(location),
-                    toBoolean(karma),
-                    toBoolean(released));
-*/
-
-            calendar = toGregorianCalendar(date,time);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-
-        return calendar;
-
-    }
-
-
-    public List<Address> getLocationName() {
-        List<Address> list = new ArrayList<Address>();
-        try {
-            String ExternalStorageDirectoryPath = Environment
-                    .getExternalStorageDirectory()
-                    .getAbsolutePath();
-
-            String path = ExternalStorageDirectoryPath + "/Download/img4.jpg";
-            ExifInterface exifInterface = new ExifInterface(path);
-
-
-            String imgWidth = exifInterface.getAttribute(TAG_IMAGE_WIDTH);
-            String imgLength = exifInterface.getAttribute(TAG_IMAGE_LENGTH);
-            String time = exifInterface.getAttribute(TAG_GPS_TIMESTAMP);
-            String date = exifInterface.getAttribute(TAG_GPS_DATESTAMP);
-            String karma = exifInterface.getAttribute(TAG_KARMA);
-            String released = exifInterface.getAttribute(TAG_RELEASED);
-            String gps_longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE);
-            String gps_longitude_ref = exifInterface.getAttribute(TAG_GPS_LONGITUDE_REF);
-            String gps_latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE);
-            String gps_latitude_ref = exifInterface.getAttribute(TAG_GPS_LATITUDE_REF);
-
-            Location location = toLocation
-                    (gps_longitude, gps_longitude_ref, gps_latitude, gps_latitude_ref);
-
-            /*
-            Photo photo = new Photo(
-                    path,
-                    Integer.parseInt(imgWidth),
-                    Integer.parseInt(imgLength),
-                    toGregorianCalendar(date,time),
-                    location,
-                    toLocationName(location),
-                    toBoolean(karma),
-                    toBoolean(released));*/
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-
-        return list;
-    }
 }
