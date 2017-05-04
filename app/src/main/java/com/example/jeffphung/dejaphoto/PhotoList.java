@@ -2,6 +2,7 @@ package com.example.jeffphung.dejaphoto;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.ListIterator;
 
 /**
  * Created by kaijiecai on 4/29/17.
@@ -14,6 +15,7 @@ public class PhotoList{
     private static PhotoList photoListInstance = new PhotoList();
     ArrayList<Photo> photoArrayList ;
     int index = 0;
+    ListIterator<Photo> listIterator;
 
 
     /**
@@ -21,6 +23,7 @@ public class PhotoList{
      */
     private PhotoList(){
         photoArrayList = new ArrayList<>();
+        listIterator = photoArrayList.listIterator();
     }
 
     /**
@@ -34,18 +37,34 @@ public class PhotoList{
 
 
     public Photo next(){
-        if(index == photoArrayList.size()){
-            index = 0;
+        if(photoArrayList.size() ==0) {
+            return null;//// TODO: 5/4/17
         }
-        return photoArrayList.get(index++);
+        else{
+            if(listIterator.hasNext()) {
+                return listIterator.next();
+            }
+            else{
+                listIterator = photoArrayList.listIterator();
+                return  listIterator.next();
+            }
+        }
     }
 
 
     public Photo previous(){
-        if( index == -1){
-            index = photoArrayList.size()-1;
+        if(photoArrayList.size() ==0){
+            return null ;//TODO
         }
-        return photoArrayList.get(index--);
+        else{
+            if(listIterator.hasPrevious()){
+                return listIterator.previous();
+            }
+            else{
+                listIterator = photoArrayList.listIterator(photoArrayList.size());
+                return listIterator.previous();
+            }
+        }
     }
 
     public void add(Photo p){
@@ -53,11 +72,14 @@ public class PhotoList{
     }
 
 
+    public void remove(){
+        listIterator.remove();
+    }
 
     public void clear(){
-        for(int i = 0; i < photoArrayList.size(); i++){
-            if(photoArrayList != null)
-                photoArrayList.get(i).setPoints(0);
+        ListIterator<Photo> clearIterator = photoArrayList.listIterator();
+        if(listIterator.hasNext()){
+            listIterator.next().setPoints(0);
         }
     }
 
