@@ -1,12 +1,20 @@
 package com.example.jeffphung.dejaphoto;
 
 //import android.app.PendingIntent;
+
 import android.app.PendingIntent;
+import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 /**
  * Implementation of App Widget functionality.
@@ -65,13 +73,51 @@ public class NewAppWidget extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         if (intent.getAction().equals(rightButtonClicked)) {
-            // put behavior here:
-            System.out.println("fghdgfhrsjkgfjhgjkrsjkghrjkgjkehfjkgaerhkjjhgjjjghvhjvhjvhjhjvjhgjhgkjgjhhfgh");
+
+            Log.i("start get img","start");
+            String path = PhotoList.getPhotoListInstance().next().getImgPath();
+            Log.i("finish get img","finished");
+            setWallPaper(context,path);
         }
-        if (intent.getAction().equals(leftButtonClicked)) {
+        else if (intent.getAction().equals(leftButtonClicked)) {
+
+            Log.i("start get img","start");
+            String path = PhotoList.getPhotoListInstance().previous().getImgPath();
+            Log.i("finish get img","finished");
+
+            setWallPaper(context,path);
             // put behavior here:
             System.out.println("????????????????????????????????????????????????????????????????????????????????");
         }
+    }
+
+
+    public void setWallPaper(Context mContext, String path){
+
+        WallpaperManager myWallpaperManager = WallpaperManager.getInstance(mContext);
+
+        // put behavior here:
+        System.out.println("fghdgfhrsjkgfjhgjkrsjkghrjkgjkehfjkgaerhkjjhgjjjghvhjvhjvhjhjvjhgjhgkjgjhhfgh");
+        try {
+
+            Bitmap bitmap = null;
+
+            if(path == null){
+                Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
+            }
+            else {
+
+                Log.i("start set","start");
+                bitmap = BitmapFactory.decodeFile(path);
+                myWallpaperManager.setBitmap(bitmap);
+
+                Log.i("finish set img","finished");
+            }
+            Toast.makeText(mContext, "Wallpaper set", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
 

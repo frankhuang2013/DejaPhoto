@@ -1,5 +1,6 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -38,8 +39,8 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     final private int MINUTE_INDEX = 1;
     final private int SECOND_INDEX = 2;
 
-    PhotoList list;
     Context mContext;
+    ProgressDialog progressDialog;
 
     public PhotoLoaderTask(){
 
@@ -51,7 +52,9 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
     @Override
     protected void onPreExecute(){
-        list = PhotoList.getPhotoListInstance();
+        progressDialog = ProgressDialog.show(mContext,
+                "ProgressDialog",
+                "Wait for loading photos");
     }
 
     /* convert string to boolean type */
@@ -69,17 +72,18 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
     @Override
     protected String doInBackground(Void... params) {
-        Log.i("startbackground",0+"");
-        //Toast.makeText(mContext,"serviced started",Toast.LENGTH_SHORT).show();
-        for(int i = 0; i< 1; i++){
+        Log.i("start loading","start loading");
+        String[] strings = {"img1.jpg","img2.jpg","img3.jpg","img4.jpg","img5.jpg","img6.jpg"
+        ,"img7.jpg","img8.jpg","img9.jpg","img10.jpg"};
+        for(int i = 0; i< strings.length; i++){
             try {
-                Log.i("startbackground",1+"");
-                String ExternalStorageDirectoryPath = Environment
+                Log.i("start loading","load "+i+"th photo");
+                String path = Environment
                         .getExternalStorageDirectory()
-                        .getAbsolutePath();
+                        .getAbsolutePath()+"/Download/" + strings[i];
 
-                String path = ExternalStorageDirectoryPath + "/Download/img3.jpg";
                 ExifInterface exifInterface = new ExifInterface(path);
+
 
 
                 String imgWidth = exifInterface.getAttribute(TAG_IMAGE_WIDTH);
@@ -97,6 +101,9 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                         (gps_longitude,gps_longitude_ref,gps_latitude,gps_latitude_ref);
 
 
+
+                Log.i("path",path);
+                Log.i(location+"",location+"");
                 Photo photo = new Photo(
                         path,
                         Integer.parseInt(imgWidth),
@@ -106,7 +113,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                         toLocationName(location),
                         toBoolean(karma),
                         toBoolean(released));
-                list.add(photo);
+                PhotoList.getPhotoListInstance().add(photo);
             } catch (IOException e) {
                 e.printStackTrace();
 
@@ -115,10 +122,16 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         }
 
       //  Toast.makeText(mContext,list.size()+"",Toast.LENGTH_SHORT).show();
-        Log.i("startbackground",2+"");
+        Log.i("end loading","end loading");
         return null;
     }
 
+
+    @Override
+    public void onPostExecute (String result){
+        progressDialog.dismiss();
+
+    }
     /* generate a GregorianCalendar by dateStamp and timeStamp */
     public GregorianCalendar toGregorianCalendar(String dateStamp, String timeStamp){
         GregorianCalendar calendar = null;
@@ -144,9 +157,15 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     public Location toLocation(String lo, String lo_ref,String la, String la_ref){
         Location location= null;
         if(lo != null && la != null){
-            location= new Location(lo+la);
-            location.setLatitude(toDouble(la,la_ref));
-            location.setLongitude(toDouble(lo,lo_ref));
+            double la_double = toDouble(la,la_ref);
+            double lo_double = toDouble(lo,lo_ref);
+            Log.i("la double",la_double+"");
+            Log.i("lo_double",lo_double+"");
+            if(la_double != 0.0 && lo_double != 0.0) {
+                location= new Location(lo+la);
+                location.setLatitude(la_double);
+                location.setLongitude(lo_double);
+            }
         }
         return location;
     }
@@ -164,8 +183,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         return d+min+sec;
     }
 
-    /* get location name from its latitude and longtidu */
-    /* haven't test yet */
+    /* get location name from its location object */
     public Address toLocationName(Location location) {
         List<Address> addresses = null;
         if(location != null){
@@ -173,12 +191,13 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
             try {
                 addresses = geocoder.getFromLocation(location.getLatitude(),
                         location.getLongitude(),1);
+                return addresses.get(0);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
-        return addresses.get(0);
+        return null;
     }
 
 

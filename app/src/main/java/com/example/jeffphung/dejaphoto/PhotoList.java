@@ -14,8 +14,7 @@ import java.util.ListIterator;
 public class PhotoList{
     private static PhotoList photoListInstance = new PhotoList();
     ArrayList<Photo> photoArrayList ;
-    int index = 0;
-    ListIterator<Photo> listIterator;
+    int index;
 
 
     /**
@@ -23,7 +22,7 @@ public class PhotoList{
      */
     private PhotoList(){
         photoArrayList = new ArrayList<>();
-        listIterator = photoArrayList.listIterator();
+        index = 0;
     }
 
     /**
@@ -41,14 +40,12 @@ public class PhotoList{
             return null;//// TODO: 5/4/17
         }
         else{
-            if(listIterator.hasNext()) {
-                return listIterator.next();
+            if(index == photoArrayList.size()){
+                index = 0;
             }
-            else{
-                listIterator = photoArrayList.listIterator();
-                return  listIterator.next();
-            }
+            return photoArrayList.get(index++);
         }
+
     }
 
 
@@ -57,13 +54,10 @@ public class PhotoList{
             return null ;//TODO
         }
         else{
-            if(listIterator.hasPrevious()){
-                return listIterator.previous();
+            if(index == 0){
+                index = photoArrayList.size()-1;
             }
-            else{
-                listIterator = photoArrayList.listIterator(photoArrayList.size());
-                return listIterator.previous();
-            }
+            return photoArrayList.get(index--);
         }
     }
 
@@ -71,25 +65,21 @@ public class PhotoList{
         photoArrayList.add(p);
     }
 
-
-    public void remove(){
-        listIterator.remove();
-    }
-
     public void clear(){
         ListIterator<Photo> clearIterator = photoArrayList.listIterator();
-        if(listIterator.hasNext()){
-            listIterator.next().setPoints(0);
+        if(clearIterator.hasNext()){
+            clearIterator.next().setPoints(0);
         }
+    }
+
+    public Photo getPhoto(int i){
+        return photoArrayList.get(i);
     }
 
     public int size(){
         return photoArrayList.size();
     }
 
-    public Photo get(int index){
-        return photoArrayList.get(index);
-    }
     public void sort(){
         Collections.sort(photoArrayList);
     }

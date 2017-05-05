@@ -29,6 +29,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
 
     }
+
     public PhotoSorterTask(Location currentLocation){
         this.currentLocation = currentLocation;
     }
@@ -48,7 +49,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
         if(dejaVuMode.isDejaVuModeOn()) {
 
             for (int i = 0; i < list.size(); i++) {
-                Photo photo = list.get(i);
+                Photo photo = list.getPhoto(i);
                 /* check if photo is null or if the photo is released by user */
                 if (photo != null && ! photo.isReleased()) {
                     GregorianCalendar calendar = photo.getCalendar(); //photo's calendar
