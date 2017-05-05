@@ -2,6 +2,7 @@ package com.example.jeffphung.dejaphoto;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -55,6 +56,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         progressDialog = ProgressDialog.show(mContext,
                 "ProgressDialog",
                 "Wait for loading photos");
+
     }
 
     /* convert string to boolean type */
@@ -130,6 +132,8 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     @Override
     public void onPostExecute (String result){
         progressDialog.dismiss();
+        Intent intent = new Intent(mContext,AutoGPSTimer.class);
+        mContext.startService(intent);
 
     }
     /* generate a GregorianCalendar by dateStamp and timeStamp */
@@ -161,7 +165,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
             double lo_double = toDouble(lo,lo_ref);
             Log.i("la double",la_double+"");
             Log.i("lo_double",lo_double+"");
-            if(la_double != 0.0 && lo_double != 0.0) {
+            if(la_double != 0 && lo_double != 0) {
                 location= new Location(lo+la);
                 location.setLatitude(la_double);
                 location.setLongitude(lo_double);
@@ -190,8 +194,10 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
             Geocoder geocoder = new Geocoder(mContext);
             try {
                 addresses = geocoder.getFromLocation(location.getLatitude(),
-                        location.getLongitude(),1);
-                return addresses.get(0);
+                        location.getLongitude(),5);
+                if(addresses.size() > 0) {
+                    return addresses.get(0);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

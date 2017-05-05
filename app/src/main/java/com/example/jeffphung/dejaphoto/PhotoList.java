@@ -2,7 +2,6 @@ package com.example.jeffphung.dejaphoto;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.ListIterator;
 
 /**
  * Created by kaijiecai on 4/29/17.
@@ -40,10 +39,10 @@ public class PhotoList{
             return null;//// TODO: 5/4/17
         }
         else{
-            if(index == photoArrayList.size()){
-                index = 0;
+            if(index == photoArrayList.size()-1){
+                index = -1;
             }
-            return photoArrayList.get(index++);
+            return photoArrayList.get(++index);
         }
 
     }
@@ -55,9 +54,9 @@ public class PhotoList{
         }
         else{
             if(index == 0){
-                index = photoArrayList.size()-1;
+                index = photoArrayList.size();
             }
-            return photoArrayList.get(index--);
+            return photoArrayList.get(--index);
         }
     }
 
@@ -65,12 +64,6 @@ public class PhotoList{
         photoArrayList.add(p);
     }
 
-    public void clear(){
-        ListIterator<Photo> clearIterator = photoArrayList.listIterator();
-        if(clearIterator.hasNext()){
-            clearIterator.next().setPoints(0);
-        }
-    }
 
     public Photo getPhoto(int i){
         return photoArrayList.get(i);
@@ -81,7 +74,7 @@ public class PhotoList{
     }
 
     public void sort(){
-        Collections.sort(photoArrayList);
+        Collections.sort(photoArrayList,Collections.<Photo>reverseOrder());
     }
 
 

@@ -97,12 +97,12 @@ public class Photo implements Comparable<Photo> {
         else if(getPoints() < o.getPoints())
             return -1;
 
-        else if (getCalendar().compareTo(o.getCalendar()) > 0){
-            return 1;
+        else if (getCalendar() != null && o.getCalendar() != null) {
+            if (getCalendar().compareTo(o.getCalendar()) > 0) {
+                return 1;
+            }
         }
-        else
-            return -1;
-
+        return 0;
     }
 
     public Location getLocation() {

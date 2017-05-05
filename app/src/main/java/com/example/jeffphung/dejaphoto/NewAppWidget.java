@@ -72,22 +72,28 @@ public class NewAppWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
+        Photo photo = null;
         if (intent.getAction().equals(rightButtonClicked)) {
 
             Log.i("start get img","start");
-            String path = PhotoList.getPhotoListInstance().next().getImgPath();
-            Log.i("finish get img","finished");
-            setWallPaper(context,path);
+            photo = PhotoList.getPhotoListInstance().next();
+            if(photo!=null) {
+                String path = photo.getImgPath();
+                Log.i("finish get img", "finished");
+                setWallPaper(context, path);
+            }
         }
         else if (intent.getAction().equals(leftButtonClicked)) {
 
-            Log.i("start get img","start");
-            String path = PhotoList.getPhotoListInstance().previous().getImgPath();
-            Log.i("finish get img","finished");
-
-            setWallPaper(context,path);
-            // put behavior here:
-            System.out.println("????????????????????????????????????????????????????????????????????????????????");
+            photo = PhotoList.getPhotoListInstance().previous();
+            if(photo != null) {
+                Log.i("start get img", "start");
+                String path = photo.getImgPath();
+                Log.i("finish get img", "finished");
+                setWallPaper(context, path);
+                // put behavior here:
+                System.out.println("????????????????????????????????????????????????????????????????????????????????");
+            }
         }
     }
 

@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
 
     PhotoList photoList; // PhotoList contains all photo in the app
-    Photo currentPhoto; // photo that is dispalying now
     DejaVuMode dejaVuMode; // DejaVumode class
     PhotoLoaderTask photoLoader; // PhotoLoader class: load photo to app from photo
     // PhotoSorter class: sort the photo according to location and time
@@ -49,10 +49,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         /* initialization */
         photoList = PhotoList.getPhotoListInstance();
-        currentPhoto = new Photo();
         dejaVuMode = DejaVuMode.getDejaVuModeInstance();
+        /*
         photoLoader= new PhotoLoaderTask(MainActivity.this);
         photoLoader.execute();
+        */
+
 
        /*
         Log.d("execute","after");
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             firstImage = camFiles[0];
             bitmap = BitmapFactory.decodeFile(firstImage.getAbsolutePath());
         }
+
 
 
         //sets wallpaper
@@ -144,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 if (isChecked) {
                     // The toggle is enabled
                     System.out.println("deja enabled!");
+                    Log.i("dejaVuButton","button pressed");
                     Toast.makeText(MainActivity.this, "jjjjjj",Toast.LENGTH_SHORT).show();
                 } else {
                     // The toggle is disabled
@@ -178,12 +182,16 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     System.out.println("day of week disabled!");
                 }
                 break;
+
+
+
         }
 
     }
 
     public void createAlbum(View v){
         System.out.println("Creating Custom Album");
+
 
     }
 

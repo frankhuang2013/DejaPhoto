@@ -2,6 +2,7 @@ package com.example.jeffphung.dejaphoto;
 
 import android.location.Location;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -42,35 +43,41 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     }
 
+    @Override
+    public void onPostExecute (String result){
+
+    }
+
 
     @Override
     protected String doInBackground(Void...params) {
-        list.clear(); //clear all points
+        Log.i("photo sorter", "sorter invoked");
         if(dejaVuMode.isDejaVuModeOn()) {
 
             for (int i = 0; i < list.size(); i++) {
                 Photo photo = list.getPhoto(i);
+                photo.setPoints(0);
                 /* check if photo is null or if the photo is released by user */
                 if (photo != null && ! photo.isReleased()) {
                     GregorianCalendar calendar = photo.getCalendar(); //photo's calendar
                     Location location = photo.getLocation(); //photo's location
 
                     //check day of week
-                    if (calendar != null && dejaVuMode.isDayModeOn()) {
+                    if (calendar != null && currentCalendar!= null && dejaVuMode.isDayModeOn()) {
                         if(sameDayOfWeek(currentCalendar,calendar)){
                             photo.addPoints(DAY_POINTS);
                         }
                     }
 
                     //check within two hours
-                    if (calendar != null && dejaVuMode.isTimeModeOn()){
+                    if (calendar != null && currentCalendar!= null &&dejaVuMode.isTimeModeOn()){
                         if (withinHours(currentCalendar,calendar)) {
                             photo.addPoints(TIME_POINTS);
                         }
                     }
 
                     //check withinLocation
-                    if (location != null && dejaVuMode.isLocationModeOn()) {
+                    if (location != null && currentLocation !=null &&dejaVuMode.isLocationModeOn()) {
                         if(isLocationClose(currentLocation, location)){
                             photo.addPoints(LOCATION_POINTS);
 
@@ -84,6 +91,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                     }
 
                 }
+                Log.i("Karma Point",photo.getPoints()+""+photo.getImgPath());
             }
 
         }

@@ -130,4 +130,10 @@
         android:onClick="createAlbum"
         android:text="@string/custum_album" />
 
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="temp switch" />
+
 </LinearLayout>

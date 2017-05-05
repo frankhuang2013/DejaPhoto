@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -23,35 +24,34 @@ public class AutoGPSTimer extends Service implements LocationListener {
     Location location;
     // Declaring a Location Manager
     protected LocationManager locationManager;
-    private Context mContext;
-    final long TIMER = 1; //60mins
+    final long TIMER = 1000*10;  //1000*100 millseconds = 10 seconds
     final float LOCATIONCHANGE = 152.4f; // 500 ft/152.4 meters
 
 
     public AutoGPSTimer(){
 
     }
-    public AutoGPSTimer(Context context) {
-        this.mContext = context;
-    }
 
     @Override
     public void onCreate(){
-        Toast.makeText(mContext, "running gps in the background", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "running gps in the background", Toast.LENGTH_SHORT).show();
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
     }
 
     @Override
     public void onDestroy(){
-        Toast.makeText(mContext, "background gps stopped", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "background gps stopped", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startID) {
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
+
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
             //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -66,21 +66,18 @@ public class AutoGPSTimer extends Service implements LocationListener {
                     TIMER, LOCATIONCHANGE, this);
             if(locationManager!= null){
                 location= locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                if(location != null) {
-                    callPhotoSorter();
-                }
             }
         }
 
         else if(locationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                     TIMER, LOCATIONCHANGE, this);
+
             if(locationManager!= null){
                 location= locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if(location != null) {
-                    callPhotoSorter();
-                }
+
             }
         }
 
@@ -105,6 +102,10 @@ public class AutoGPSTimer extends Service implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+        if(location != null) {
+            callPhotoSorter();
+        }
+        Log.i("location change","on location changed");
 
     }
 
