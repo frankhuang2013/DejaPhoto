@@ -56,9 +56,9 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
             for (int i = 0; i < list.size(); i++) {
                 Photo photo = list.getPhoto(i);
-                photo.setPoints(0);
                 /* check if photo is null or if the photo is released by user */
                 if (photo != null && ! photo.isReleased()) {
+                    photo.setPoints(0);
                     GregorianCalendar calendar = photo.getCalendar(); //photo's calendar
                     Location location = photo.getLocation(); //photo's location
 

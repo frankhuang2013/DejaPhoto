@@ -45,6 +45,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
     public PhotoLoaderTask(){
 
+
     }
 
     public PhotoLoaderTask(Context context){
