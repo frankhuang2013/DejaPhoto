@@ -14,6 +14,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by kaijiecai on 5/5/17.
@@ -34,6 +35,9 @@ public class AutoAlarmTimer extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startID){
 
+
+        Log.i("TIMER", "START TIMER");
+        Toast.makeText(this, "running timer in the background", Toast.LENGTH_SHORT).show();
         alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         Intent mIntent = new Intent(this, AlarmReceiver.class);
         alarmIntent = PendingIntent.getBroadcast(this, 0, mIntent, 0);

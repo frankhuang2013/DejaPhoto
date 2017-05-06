@@ -135,6 +135,8 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         progressDialog.dismiss();
         Intent intent = new Intent(mContext,AutoGPSTimer.class);
         mContext.startService(intent);
+        Intent alarmIntent = new Intent(mContext, AutoAlarmTimer.class);
+        mContext.startService(alarmIntent);
 
     }
     /* generate a GregorianCalendar by dateStamp and timeStamp */

@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         /* initialization */
         photoList = PhotoList.getPhotoListInstance();
         dejaVuMode = DejaVuMode.getDejaVuModeInstance();
-        /*
+
         photoLoader= new PhotoLoaderTask(MainActivity.this);
         photoLoader.execute();
-        */
+
 
 
        /*

@@ -38,8 +38,16 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/new_app_widget_info" />
         </receiver>
-        <service android:name=".AutoGPSTimer"
-            />
+
+        <service
+            android:name=".AutoAlarmTimer"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".AutoGPSTimer"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
