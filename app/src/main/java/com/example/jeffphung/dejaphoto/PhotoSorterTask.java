@@ -66,6 +66,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                     if (calendar != null && currentCalendar!= null && dejaVuMode.isDayModeOn()) {
                         if(sameDayOfWeek(currentCalendar,calendar)){
                             photo.addPoints(DAY_POINTS);
+                            Log.i("Same Day of Week",calendar.get(calendar.DAY_OF_WEEK)+"");
                         }
                     }
 
@@ -73,6 +74,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                     if (calendar != null && currentCalendar!= null &&dejaVuMode.isTimeModeOn()){
                         if (withinHours(currentCalendar,calendar)) {
                             photo.addPoints(TIME_POINTS);
+                            Log.i("Hour of Day",calendar.get(calendar.HOUR_OF_DAY)+"");
                         }
                     }
 
@@ -80,6 +82,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                     if (location != null && currentLocation !=null &&dejaVuMode.isLocationModeOn()) {
                         if(isLocationClose(currentLocation, location)){
                             photo.addPoints(LOCATION_POINTS);
+                            Log.i("Within Location",location+"");
 
                         }
 
@@ -88,6 +91,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                     //check Karma
                     if (photo.getKarma()) {
                         photo.addPoints(KARMA_POINTS);
+                        Log.i("Karm Pressed","Karma");
                     }
 
                 }

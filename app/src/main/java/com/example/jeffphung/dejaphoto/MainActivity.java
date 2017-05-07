@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.activity_main);
 
 
@@ -51,10 +52,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         photoList = PhotoList.getPhotoListInstance();
         dejaVuMode = DejaVuMode.getDejaVuModeInstance();
 
-
+        /*
         photoLoader= new PhotoLoaderTask(MainActivity.this);
         photoLoader.execute();
-
+        */
 
 
 

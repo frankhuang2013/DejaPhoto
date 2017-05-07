@@ -12,7 +12,7 @@ import static junit.framework.Assert.assertTrue;
  *
  * Test DejaVuMode class
  */
-/*
+
 public class DejaVuModeTester {
 
 
@@ -93,4 +93,3 @@ public class DejaVuModeTester {
         assertTrue(dejaVuMode.isTimeModeOn());
     }
 }
-*/

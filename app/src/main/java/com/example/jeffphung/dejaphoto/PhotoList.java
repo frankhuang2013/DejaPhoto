@@ -63,6 +63,11 @@ public class PhotoList{
         photoArrayList.add(p);
     }
 
+    public Photo getCurrentPhoto(){
+        if(photoArrayList.size() == 0)
+            return null;
+        return photoArrayList.get(index);
+    }
 
     public Photo getPhoto(int i){
         return photoArrayList.get(i);

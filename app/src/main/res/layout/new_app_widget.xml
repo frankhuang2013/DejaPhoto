@@ -6,20 +6,6 @@
     <!--  android:resizeMode="vertical"  -->
 
 
-    <TextView
-        android:id="@+id/appwidget_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
-        android:background="#09C"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
-
     <Button
         android:id="@+id/buttonLeft"
         android:layout_width="wrap_content"
@@ -30,6 +16,26 @@
         android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
         android:text="@string/leftButtonText" />
+
+    <ImageButton
+        android:id="@+id/buttonKarma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/karma"
+        android:background="@android:color/transparent"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/buttonLeft"
+        android:layout_toEndOf="@+id/buttonLeft" />
+
+    <Button
+        android:id="@+id/buttonRelease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/releaseText"
+        android:layout_alignBaseline="@+id/buttonRight"
+        android:layout_alignBottom="@+id/buttonRight"
+        android:layout_toLeftOf="@+id/buttonRight"
+        android:layout_toStartOf="@+id/buttonRight" />
 
     <Button
         android:id="@+id/buttonRight"

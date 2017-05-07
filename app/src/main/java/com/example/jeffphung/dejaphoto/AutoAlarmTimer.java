@@ -4,13 +4,13 @@ import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -27,7 +27,7 @@ public class AutoAlarmTimer extends Service {
     LocationManager locationManager;
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
-    private long INTERVAL_HOURS = AlarmManager.INTERVAL_HOUR *2;
+    private long INTERVAL_HOURS = AlarmManager.INTERVAL_HOUR;
     public AutoAlarmTimer(){
 
     }
@@ -37,14 +37,19 @@ public class AutoAlarmTimer extends Service {
 
 
         Log.i("TIMER", "START TIMER");
+
+
+
         Toast.makeText(this, "running timer in the background", Toast.LENGTH_SHORT).show();
         alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         Intent mIntent = new Intent(this, AlarmReceiver.class);
-        alarmIntent = PendingIntent.getBroadcast(this, 0, mIntent, 0);
-
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME,
-                System.currentTimeMillis(),
+        //Intent mIntent = new Intent("android.intent.action.BOOT_COMPLETED");
+        alarmIntent = PendingIntent.getBroadcast(this, 0, mIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        Log.i("TIMER", "Set TIMER");
+        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime(),
                 INTERVAL_HOURS, alarmIntent);
+        Log.i("TIMER", "END set TIMER");
 
         return START_STICKY;
     }
@@ -71,6 +76,7 @@ public class AutoAlarmTimer extends Service {
     }
 
 
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -78,13 +84,5 @@ public class AutoAlarmTimer extends Service {
     }
 
 
-    protected class AlarmReceiver extends BroadcastReceiver{
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.i("Alarm Receiver","Start sort list");
-            PhotoSorterTask photoSorterTask = new PhotoSorterTask(getCurrentLocation());
-            photoSorterTask.execute();
-        }
-    }
 }
