@@ -49,6 +49,7 @@ public class NewAppWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
 
+
     }
 
     @Override

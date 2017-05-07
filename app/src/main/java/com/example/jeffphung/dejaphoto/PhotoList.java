@@ -33,7 +33,6 @@ public class PhotoList{
     }
 
 
-
     public Photo next(){
         if(photoArrayList.size() ==0) {
             return null;//// TODO: 5/4/17
