@@ -64,6 +64,9 @@ public class PhotoList{
         photoArrayList.add(p);
     }
 
+    public Photo getCurrentPhoto(){
+        return photoArrayList.get(index);
+    }
 
     public Photo getPhoto(int i){
         return photoArrayList.get(i);

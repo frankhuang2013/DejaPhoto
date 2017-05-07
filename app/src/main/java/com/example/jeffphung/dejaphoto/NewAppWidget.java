@@ -10,7 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -23,6 +25,9 @@ import java.io.IOException;
 public class NewAppWidget extends AppWidgetProvider {
     private static  String rightButtonClicked = "rightButtonClicked";
     private static  String leftButtonClicked = "leftButtonClicked";
+    private static  String karmaButtonClicked = "karmaButtonClicked";
+
+    static boolean karmaGiven = false;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -30,21 +35,28 @@ public class NewAppWidget extends AppWidgetProvider {
         CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-
-        views.setTextViewText(R.id.appwidget_text, widgetText);
-
         // Intent for Right Button
         Intent leftButtonIntent = new Intent(context, NewAppWidget.class);
         leftButtonIntent.setAction(leftButtonClicked);
-        PendingIntent leftButtonPendingIntent = PendingIntent.getBroadcast(context, 0, leftButtonIntent, 0);
+        leftButtonIntent.putExtra("appWidgetId", appWidgetId);
+        PendingIntent leftButtonPendingIntent = PendingIntent.getBroadcast(context, appWidgetId, leftButtonIntent, 0);
 
         // Intent for Right Button
         Intent rightButtonIntent = new Intent(context, NewAppWidget.class);
         rightButtonIntent.setAction(rightButtonClicked);
-        PendingIntent rightButtonPendingIntent = PendingIntent.getBroadcast(context, 0, rightButtonIntent, 0);
+        rightButtonIntent.putExtra("appWidgetId", appWidgetId);
+        PendingIntent rightButtonPendingIntent = PendingIntent.getBroadcast(context, appWidgetId, rightButtonIntent, 0);
+
+        // Intent for Karma Button
+        Intent karmaButtonIntent = new Intent(context, NewAppWidget.class);
+        karmaButtonIntent.setAction(karmaButtonClicked);
+        karmaButtonIntent.putExtra("appWidgetId", appWidgetId);
+        PendingIntent karmaButtonPendingIntent = PendingIntent.getBroadcast(context, appWidgetId, karmaButtonIntent, 0);
 
         views.setOnClickPendingIntent(R.id.buttonRight, rightButtonPendingIntent);
         views.setOnClickPendingIntent(R.id.buttonLeft, leftButtonPendingIntent);
+        views.setOnClickPendingIntent(R.id.buttonKarma, karmaButtonPendingIntent);
+
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
@@ -55,6 +67,7 @@ public class NewAppWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
+
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
     }
@@ -71,6 +84,7 @@ public class NewAppWidget extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        int appWidgetId;
         super.onReceive(context, intent);
         Photo photo = null;
         if (intent.getAction().equals(rightButtonClicked)) {
@@ -82,6 +96,16 @@ public class NewAppWidget extends AppWidgetProvider {
                 Log.i("finish get img", "finished");
                 setWallPaper(context, path);
             }
+            appWidgetId = intent.getIntExtra("appWidgetId", -1);
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
+            if (photo.getKarma()) {
+                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma2);
+            }
+            else {
+                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma);
+            }
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            appWidgetManager.updateAppWidget(appWidgetId, views);
         }
         else if (intent.getAction().equals(leftButtonClicked)) {
 
@@ -92,8 +116,30 @@ public class NewAppWidget extends AppWidgetProvider {
                 Log.i("finish get img", "finished");
                 setWallPaper(context, path);
                 // put behavior here:
-                System.out.println("????????????????????????????????????????????????????????????????????????????????");
             }
+            appWidgetId = intent.getIntExtra("appWidgetId", -1);
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
+            if (photo.getKarma()) {
+                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma2);
+            }
+            else {
+                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma);
+            }
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            appWidgetManager.updateAppWidget(appWidgetId, views);
+        }
+        else if (intent.getAction().equals(karmaButtonClicked))
+        {
+            Photo currentPhoto = PhotoList.getPhotoListInstance().getCurrentPhoto();
+            if (!currentPhoto.getKarma()) {
+                currentPhoto.setKarma(true);
+            }
+
+            appWidgetId = intent.getIntExtra("appWidgetId", -1);
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
+            views.setImageViewResource(R.id.buttonKarma, R.drawable.karma2);
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            appWidgetManager.updateAppWidget(appWidgetId, views);
         }
     }
 

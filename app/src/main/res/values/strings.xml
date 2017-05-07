@@ -11,4 +11,7 @@
     <string name="day_week">Day of Week</string>
     <string name="rightButtonText">Right</string>
     <string name="leftButtonText">Left</string>
+    <string name="karmaText">Karma</string>
+    <string name="releaseText">Release</string>
+
 </resources>
