@@ -24,16 +24,20 @@
         android:src="@drawable/karma"
         android:background="@android:color/transparent"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/buttonLeft"
-        android:layout_toEndOf="@+id/buttonLeft" />
+        android:layout_toLeftOf="@+id/buttonRelease"
+        android:layout_toStartOf="@+id/buttonRelease"
+        android:layout_marginRight="35dp"
+        android:layout_marginEnd="35dp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/buttonRelease"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/releaseText"
-        android:layout_alignBaseline="@+id/buttonRight"
-        android:layout_alignBottom="@+id/buttonRight"
+        android:src="@drawable/release"
+        android:background="@android:color/transparent"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_alignTop="@+id/buttonRight"
         android:layout_toLeftOf="@+id/buttonRight"
         android:layout_toStartOf="@+id/buttonRight" />
 

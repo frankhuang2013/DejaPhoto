@@ -20,9 +20,6 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
 
-
-
-
     PhotoList photoList; // PhotoList contains all photo in the app
     DejaVuMode dejaVuMode; // DejaVumode class
     PhotoLoaderTask photoLoader; // PhotoLoader class: load photo to app from photo
@@ -56,12 +53,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         photoLoader= new PhotoLoaderTask(MainActivity.this);
         photoLoader.execute();
 
-/*
-        SharedPreferences sharedPreferences = getSharedPreferences("DejaVuMode",1);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("Location", true);
 
-*/
+
+
        /*
         Log.d("execute","after");
         TextView textV = (TextView) findViewById(R.id.text);
@@ -70,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         /* initialization */
 
         setContentView(R.layout.activity_main);
-
 
 
         //gets path to camera album photos
@@ -82,13 +75,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         File[] camFiles = finalCamDir.listFiles();
 
-        // PRINTS OUT THE CAMERA LOCATION AND ALL SUBSEQUENT IMAGES
+        /* PRINTS OUT THE CAMERA LOCATION AND ALL SUBSEQUENT IMAGES
         System.out.println(cameraDir);
         for (File filess : camFiles){
             System.out.println(filess.getName());
         }
-
-
+        */
 
         // should set the wallpaper to the first in our file array
         File firstImage = null;
@@ -102,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         }
         else{
             firstImage = camFiles[0];
-
             bitmap = BitmapFactory.decodeFile(firstImage.getAbsolutePath());
         }
 
@@ -118,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         } catch (IOException e) {
             Toast.makeText(MainActivity.this, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
         }
+
+
 
 
     }
