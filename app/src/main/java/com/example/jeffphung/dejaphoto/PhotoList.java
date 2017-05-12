@@ -1,5 +1,14 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.app.WallpaperManager;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -24,6 +33,12 @@ public class PhotoList{
         index = 0;
     }
 
+    //need context to be able to set background when there is no pictures
+    Context context;
+    public void setContext(Context c) {
+        context = c;
+    }
+
     /**
      * get Photolist instance
      * @return
@@ -41,7 +56,29 @@ public class PhotoList{
             if(index == photoArrayList.size()-1){
                 index = -1;
             }
-            return photoArrayList.get(++index);
+
+            // check if the next photo is released
+            int counter = 0;
+            while (photoArrayList.get(++index).isReleased() && ++counter <= photoArrayList.size())
+            {
+                if(index == photoArrayList.size()-1){
+                    index = -1;
+                }
+
+            }
+            if (counter > photoArrayList.size())
+            {
+                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.nophotos);
+                WallpaperManager myWallpaperManager = WallpaperManager.getInstance(context);
+                try {
+                    myWallpaperManager.setBitmap(bitmap);
+                } catch (IOException e) {
+                    Toast.makeText(context, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
+                }
+                return null;
+            }
+
+            return photoArrayList.get(index);
         }
 
     }
@@ -55,7 +92,27 @@ public class PhotoList{
             if(index == 0){
                 index = photoArrayList.size();
             }
-            return photoArrayList.get(--index);
+
+            // check if the previous photo is released
+            int counter = 0;
+            while (photoArrayList.get(--index).isReleased() && ++counter <= photoArrayList.size())
+            {
+                if(index == 0){
+                    index = photoArrayList.size();
+                }
+            }
+            if (counter > photoArrayList.size())
+            {
+                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.nophotos);
+                WallpaperManager myWallpaperManager = WallpaperManager.getInstance(context);
+                try {
+                    myWallpaperManager.setBitmap(bitmap);
+                } catch (IOException e) {
+                    Toast.makeText(context, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
+                }
+                return null;
+            }
+            return photoArrayList.get(index);
         }
     }
 
