@@ -1,5 +1,7 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -35,12 +37,15 @@ public class PhotoList{
 
     public Photo next(){
         if(photoArrayList.size() ==0) {
+            Log.i("aaaa","aaaaaa");
             return null;//// TODO: 5/4/17
+
         }
         else{
             if(index == photoArrayList.size()-1){
                 index = -1;
             }
+            Log.i("aaaa",index+"");
             return photoArrayList.get(++index);
         }
 
@@ -57,6 +62,12 @@ public class PhotoList{
             }
             return photoArrayList.get(--index);
         }
+    }
+
+    public Photo removeCurrentPhoto(){
+        photoArrayList.get(index).setReleased(true);
+        photoArrayList.remove(index);
+        return next();
     }
 
     public void add(Photo p){
