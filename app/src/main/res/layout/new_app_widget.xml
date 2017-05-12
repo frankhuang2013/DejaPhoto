@@ -52,4 +52,13 @@
         android:layout_marginRight="15dp"
         android:text="@string/rightButtonText" />
 
+    <TextView
+        android:id="@+id/locationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="TextView" />
+
 </RelativeLayout>

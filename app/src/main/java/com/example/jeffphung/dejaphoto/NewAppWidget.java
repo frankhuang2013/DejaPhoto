@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -208,6 +209,9 @@ public class NewAppWidget extends AppWidgetProvider {
             //Toast.makeText(mContext, "Wallpaper set", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
+
+
+            // test
         }
 
     }
