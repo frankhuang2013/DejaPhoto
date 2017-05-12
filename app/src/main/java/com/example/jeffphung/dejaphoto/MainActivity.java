@@ -2,7 +2,6 @@ package com.example.jeffphung.dejaphoto;
 
 
 import android.app.WallpaperManager;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -48,10 +47,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         /* initialization */
         photoList = PhotoList.getPhotoListInstance();
-        photoList.setContext(this);
         dejaVuMode = DejaVuMode.getDejaVuModeInstance();
 
-
+        photoList.setContext(this);
         photoLoader= new PhotoLoaderTask(MainActivity.this);
         photoLoader.execute();
 

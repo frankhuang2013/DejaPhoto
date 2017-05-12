@@ -33,6 +33,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     public PhotoSorterTask(Location currentLocation){
         this.currentLocation = currentLocation;
+        Log.i("current Location",currentLocation+"");
     }
 
     @Override
@@ -95,7 +96,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                     }
 
                 }
-                Log.i("Karma Point",photo.getPoints()+""+photo.getImgPath());
+                Log.i("Path",photo.getPoints()+""+photo.getImgPath());
             }
 
         }
@@ -115,12 +116,17 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     /* check if same day of week */
     public boolean sameDayOfWeek(GregorianCalendar currentCalendar,GregorianCalendar calendar){
-        if(currentCalendar.get(Calendar.DAY_OF_WEEK)
-                == calendar.get(Calendar.DAY_OF_WEEK))
+        Log.i("day of week",""+currentCalendar.get(Calendar.DAY_OF_WEEK));
+        Log.i("day of week",""+calendar.get(Calendar.DAY_OF_WEEK));
+        System.out.print(""+currentCalendar.get(Calendar.DAY_OF_WEEK));
+        if(currentCalendar.get(Calendar.DAY_OF_WEEK)==
+                (calendar.get(Calendar.DAY_OF_WEEK))) {
             return true;
+        }
 
         return false;
     }
+
 
     /* convert calendar time to second */
     public int calendarToSecond(GregorianCalendar calendar){
@@ -133,6 +139,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     /* check if two calendar time are close */
     public boolean withinHours(GregorianCalendar currentCalendar,GregorianCalendar calendar){
+        Log.i("current time", currentCalendar.get(Calendar.HOUR)+"");
         int currentTime = calendarToSecond(currentCalendar);
         int calendarTime = calendarToSecond(calendar);
         if(Math.abs(currentTime - calendarTime) <= WITHINTIME){

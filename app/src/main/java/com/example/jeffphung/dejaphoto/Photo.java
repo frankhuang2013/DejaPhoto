@@ -1,8 +1,10 @@
 package com.example.jeffphung.dejaphoto;
 
-import android.location.Address;
 import android.location.Location;
+import android.media.ExifInterface;
+import android.util.Log;
 
+import java.io.IOException;
 import java.util.GregorianCalendar;
 
 /**
@@ -12,39 +14,35 @@ import java.util.GregorianCalendar;
 public class Photo implements Comparable<Photo> {
 
 
+    final private String TAG_KARMA = ExifInterface.TAG_USER_COMMENT;
+    final private String TAG_RELEASED = "TAG_RELEASED";
     private String imgPath;
-    private int imgWidth;
-    private int imgLength;
     private GregorianCalendar calendar;
-    private Address locationName;
+    private String locationName;
     private Location location;
     private Boolean karma = false;
     private Boolean released = false;
     private int points = 0;
 
-    public Photo(){
-
+    public Photo(String imgPath){
+        this.imgPath = imgPath;
     }
 
     public Photo(
             String imgPath,
-            int imgWidth,
-            int imgLength,
             GregorianCalendar calendar,
             Location location,
-            Address locationName,
-            Boolean karma,
-            Boolean released){
+            String locationName,
+            Boolean karma){
 
         this.imgPath = imgPath;
-        this.imgWidth = imgWidth;
-        this.imgLength = imgLength;
         this.calendar = calendar;
         this.location = location;
         this.locationName = locationName;
         this.karma = karma;
-        this.released = released;
     }
+
+
 
     public void addPoints(int points){
         this.points +=points;
@@ -59,6 +57,16 @@ public class Photo implements Comparable<Photo> {
 
     public void setKarma(Boolean karma) {
         this.karma = karma;
+        try {
+            ExifInterface exifInterface = new ExifInterface(imgPath);
+            exifInterface.setAttribute(TAG_KARMA,"true");
+            exifInterface.saveAttributes();
+            Log.i("write karma to photo","successfully");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public Boolean isReleased() {
@@ -67,6 +75,13 @@ public class Photo implements Comparable<Photo> {
 
     public void setReleased(Boolean released) {
         this.released = released;
+        try {
+            ExifInterface exifInterface = new ExifInterface(imgPath);
+            exifInterface.setAttribute(TAG_RELEASED,released+"");
+            exifInterface.saveAttributes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getPoints() {
@@ -84,9 +99,6 @@ public class Photo implements Comparable<Photo> {
 
     public String getImgPath() { return imgPath;}
 
-    public int getImgWidth() { return imgWidth; }
-
-    public int getImgLength() { return imgLength;}
 
 
     @Override
@@ -98,9 +110,19 @@ public class Photo implements Comparable<Photo> {
             return -1;
 
         else if (getCalendar() != null && o.getCalendar() != null) {
-            if (getCalendar().compareTo(o.getCalendar()) > 0) {
+            if (getCalendar().compareTo(o.getCalendar())>0) {
                 return 1;
             }
+            else if(getCalendar().compareTo(o.getCalendar())<0){
+                return -1;
+
+            }
+        }
+        else if( getCalendar() == null){
+            return -1;
+        }
+        else if( o.getCalendar() == null){
+            return 1;
         }
         return 0;
     }
@@ -110,7 +132,8 @@ public class Photo implements Comparable<Photo> {
     }
 
 
-    public Address getLocationName() {
+    /* return a city name string, it will return null if no such information */
+    public String getCityName() {
         return locationName;
     }
 }

@@ -4,8 +4,6 @@ import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -33,12 +31,6 @@ public class PhotoList{
         index = 0;
     }
 
-    //need context to be able to set background when there is no pictures
-    Context context;
-    public void setContext(Context c) {
-        context = c;
-    }
-
     /**
      * get Photolist instance
      * @return
@@ -47,6 +39,26 @@ public class PhotoList{
         return photoListInstance;
     }
 
+
+    //need context to be able to set background when there is no pictures
+    Context context;
+    public void setContext(Context c) {
+        context = c;
+    }
+    /*
+    public Photo next(){
+        if(photoArrayList.size() ==0) {
+            return null;
+
+        }
+        else{
+            if(index == photoArrayList.size()-1){
+                index = -1;
+            }
+            return photoArrayList.get(++index);
+        }
+
+    }*/
 
     public Photo next(){
         if(photoArrayList.size() ==0) {
@@ -68,7 +80,7 @@ public class PhotoList{
             }
             if (counter > photoArrayList.size())
             {
-                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.nophotos);
+                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.defaultwhatever);
                 WallpaperManager myWallpaperManager = WallpaperManager.getInstance(context);
                 try {
                     myWallpaperManager.setBitmap(bitmap);
@@ -103,7 +115,7 @@ public class PhotoList{
             }
             if (counter > photoArrayList.size())
             {
-                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.nophotos);
+                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.defaultwhatever);
                 WallpaperManager myWallpaperManager = WallpaperManager.getInstance(context);
                 try {
                     myWallpaperManager.setBitmap(bitmap);
@@ -114,6 +126,25 @@ public class PhotoList{
             }
             return photoArrayList.get(index);
         }
+    }
+
+    /*
+    public Photo previous(){
+        if(photoArrayList.size() ==0){
+            return null ;//TODO
+        }
+        else{
+            if(index == 0){
+                index = photoArrayList.size();
+            }
+            return photoArrayList.get(--index);
+        }
+    }*/
+
+    public Photo removeCurrentPhoto(){
+        photoArrayList.get(index).setReleased(true);
+        photoArrayList.remove(index);
+        return next();
     }
 
     public void add(Photo p){
