@@ -1,8 +1,12 @@
 package test;
 
+import android.support.test.rule.ActivityTestRule;
+
+import com.example.jeffphung.dejaphoto.MainActivity;
 import com.example.jeffphung.dejaphoto.PhotoSorterTask;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.GregorianCalendar;
@@ -17,9 +21,12 @@ import static org.junit.Assert.assertTrue;
 public class PhotoSorterTester {
     PhotoSorterTask photoSorterTask;
 
+    @Rule
+    public ActivityTestRule<MainActivity> mainActivity = new ActivityTestRule<MainActivity>(MainActivity.class);
+
     @Before
     public void setUp(){
-        photoSorterTask = new PhotoSorterTask();
+        photoSorterTask = new PhotoSorterTask(mainActivity.getActivity());
 
     }
 

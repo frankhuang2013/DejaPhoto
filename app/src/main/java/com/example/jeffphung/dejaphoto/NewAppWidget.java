@@ -27,6 +27,7 @@ public class NewAppWidget extends AppWidgetProvider {
     private static  String karmaButtonClicked = "karmaButtonClicked";
     private static  String releaseButtonClicked = "releaseButtonClicked";
 
+
     static boolean noPhotos = false;
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -91,15 +92,12 @@ public class NewAppWidget extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         //if there are no photos, then nothing can be done from the widget
-        if (noPhotos) {
-            Log.i("working", "noppppppppppppppppppppppppppppppppppppppppppeee");
-            return;
-        }
+        MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
         int appWidgetId;
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetId = intent.getIntExtra("appWidgetId", -1);
-        Log.i("loog", appWidgetId + "IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+
         super.onReceive(context, intent);
         Photo photo = null;
         if (intent.getAction().equals(rightButtonClicked)) {
@@ -107,22 +105,18 @@ public class NewAppWidget extends AppWidgetProvider {
             Log.i("start get img","start");
             photo = PhotoList.getPhotoListInstance().next();
             if(photo!=null) {
-                String path = photo.getImgPath();
                 Log.i("finish get img", "finished");
-                setWallPaper(context, path);
+                myWallPaperManager.setWallPaper(photo);
+                if (photo.getKarma()) {
+                    views.setImageViewResource(R.id.buttonKarma, R.drawable.karma2);
+                }
+                else {
+                    views.setImageViewResource(R.id.buttonKarma, R.drawable.karma);
+                }
             }
             //case in which there are no photos in list
-            else if (photo == null) {
-                noPhotos = true;
-                return;
-            }
 
-            if (photo.getKarma()) {
-                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma2);
-            }
-            else {
-                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma);
-            }
+
 
         }
         else if (intent.getAction().equals(leftButtonClicked)) {
@@ -130,25 +124,21 @@ public class NewAppWidget extends AppWidgetProvider {
             photo = PhotoList.getPhotoListInstance().previous();
             if(photo != null) {
                 Log.i("start get img", "start");
-                String path = photo.getImgPath();
                 Log.i("finish get img", "finished");
-                setWallPaper(context, path);
+                myWallPaperManager.setWallPaper(photo);
                 // put behavior here:
-            }
-            //case in which there are no photos in list
-            else if (photo == null) {
-                noPhotos = true;
-                return;
-            }
-            if (photo.getKarma()) {
-                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma2);
-            }
-            else {
-                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma);
+                //case in which there are no photos in list
+                if (photo.getKarma()) {
+                    views.setImageViewResource(R.id.buttonKarma, R.drawable.karma2);
+                }
+                else {
+                    views.setImageViewResource(R.id.buttonKarma, R.drawable.karma);
+                }
             }
 
+
         }
-        else if (intent.getAction().equals(karmaButtonClicked) && !noPhotos)
+        else if (intent.getAction().equals(karmaButtonClicked))
         {
             photo = PhotoList.getPhotoListInstance().getCurrentPhoto();
             if (!photo.getKarma()) {
@@ -161,59 +151,26 @@ public class NewAppWidget extends AppWidgetProvider {
         }
         else if (intent.getAction().equals(releaseButtonClicked))
         {
-            photo = PhotoList.getPhotoListInstance().getCurrentPhoto();
-            photo.setReleased(true);
-            //Toast.makeText(context, "Photo Released", Toast.LENGTH_SHORT).show();
-
             // switch to the next photo
-            photo = PhotoList.getPhotoListInstance().next();
+            photo = PhotoList.getPhotoListInstance().removeCurrentPhoto();
             if(photo!=null) {
-                String path = photo.getImgPath();
                 Log.i("finish get img", "finished");
-                setWallPaper(context, path);
+                myWallPaperManager.setWallPaper(photo);
+                views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
+                if (photo.getKarma()) {
+                    views.setImageViewResource(R.id.buttonKarma, R.drawable.karma2);
+                }
+                else {
+                    views.setImageViewResource(R.id.buttonKarma, R.drawable.karma);
+                }
             }
-            views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
-            if (photo.getKarma()) {
-                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma2);
-            }
-            else {
-                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma);
-            }
+
         }
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
     }
 
 
-    public void setWallPaper(Context mContext, String path){
 
-        WallpaperManager myWallpaperManager = WallpaperManager.getInstance(mContext);
-
-        // put behavior here:
-        System.out.println("fghdgfhrsjkgfjhgjkrsjkghrjkgjkehfjkgaerhkjjhgjjjghvhjvhjvhjhjvjhgjhgkjgjhhfgh");
-        try {
-
-            Bitmap bitmap = null;
-
-            if(path == null){
-                Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
-            }
-            else {
-
-                Log.i("start set","start");
-                bitmap = BitmapFactory.decodeFile(path);
-                myWallpaperManager.setBitmap(bitmap);
-
-                Log.i("finish set img","finished");
-            }
-            //Toast.makeText(mContext, "Wallpaper set", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
-
-
-            // test
-        }
-
-    }
 }
 

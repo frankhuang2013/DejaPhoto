@@ -45,7 +45,7 @@ public class PhotoList{
     public void setContext(Context c) {
         context = c;
     }
-    /*
+
     public Photo next(){
         if(photoArrayList.size() ==0) {
             return null;
@@ -58,8 +58,9 @@ public class PhotoList{
             return photoArrayList.get(++index);
         }
 
-    }*/
+    }
 
+    /*
     public Photo next(){
         if(photoArrayList.size() ==0) {
             return null;//// TODO: 5/4/17
@@ -93,9 +94,10 @@ public class PhotoList{
             return photoArrayList.get(index);
         }
 
-    }
+    }*/
 
 
+    /*
     public Photo previous(){
         if(photoArrayList.size() ==0){
             return null ;//TODO
@@ -126,9 +128,9 @@ public class PhotoList{
             }
             return photoArrayList.get(index);
         }
-    }
+    }*/
 
-    /*
+
     public Photo previous(){
         if(photoArrayList.size() ==0){
             return null ;//TODO
@@ -139,11 +141,11 @@ public class PhotoList{
             }
             return photoArrayList.get(--index);
         }
-    }*/
+    }
 
     public Photo removeCurrentPhoto(){
         photoArrayList.get(index).setReleased(true);
-        photoArrayList.remove(index);
+        photoArrayList.remove(index--);
         return next();
     }
 

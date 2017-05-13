@@ -1,5 +1,6 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.content.Context;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -23,10 +24,13 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
     DejaVuMode dejaVuMode;
     Location currentLocation;
     PhotoList list;
+    Context mContext;
 
 
     /* photoSorterTask constructor, pass current dejaVuMode as parmater */
-    public PhotoSorterTask(){
+    public PhotoSorterTask(Context context){
+        mContext = context;
+
 
 
     }
@@ -103,6 +107,10 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
         //sort the list according to points
         list.sort();
+
+        // set the first photo in the list as background
+        MyWallPaperManager myWallPaperManager = new MyWallPaperManager(mContext);
+        myWallPaperManager.setWallPaper(list.getPhoto(0));
         return "";
     }
 
