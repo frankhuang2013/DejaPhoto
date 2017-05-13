@@ -103,4 +103,9 @@ public class MyWallPaperManager {
 
 
     }
+
+
+    public void setTimer(){
+
+    }
 }
