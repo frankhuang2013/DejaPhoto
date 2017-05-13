@@ -31,7 +31,10 @@ public class MyWallPaperManager {
 
     public void setWallPaper(Photo p){
 
-
+        if (PhotoList.getPhotoListInstance().size() == 0) {
+            setDefaultWallpaper();
+            return;
+        }
 
         if(PhotoList.getPhotoListInstance().isAllowed()) {
             if (p != null) {
@@ -51,7 +54,6 @@ public class MyWallPaperManager {
                             Bitmap bitmap = BitmapFactory.decodeFile(path);
                             Log.i("BITMAP", bitmap + "");
                             bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-
                             Canvas c = new Canvas(bitmap);
                             Paint textPaint = new Paint();
                             textPaint.setTextSize(textSize);
@@ -81,9 +83,10 @@ public class MyWallPaperManager {
                         // test
                     }
                 }
-            } else if (PhotoList.getPhotoListInstance().size() == 0) {
-                setDefaultWallpaper();
             }
+            /*else if (PhotoList.getPhotoListInstance().size() == 0) {
+                setDefaultWallpaper();
+            }*/
         }
         else{
             Toast.makeText(mContext,"Sorting photos now, try later", Toast.LENGTH_SHORT).show();

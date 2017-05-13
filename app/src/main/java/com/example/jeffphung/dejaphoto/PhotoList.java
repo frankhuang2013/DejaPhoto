@@ -52,7 +52,6 @@ public class PhotoList{
     public Photo next(){
         if(photoArrayList.size() ==0) {
             return null;
-
         }
         else{
             if(index == photoArrayList.size()-1){
@@ -78,6 +77,7 @@ public class PhotoList{
     }
 
     public Photo removeCurrentPhoto(){
+        if (photoArrayList.size() == 0) return null;
         photoArrayList.get(index).setReleased(true);
         photoArrayList.remove(index--);
         return next();
@@ -94,7 +94,10 @@ public class PhotoList{
     }
 
     public Photo getPhoto(int i){
-        return photoArrayList.get(i);
+        if(size() != 0) {
+            return photoArrayList.get(i);
+        }
+        return null;
     }
 
     public int size(){
