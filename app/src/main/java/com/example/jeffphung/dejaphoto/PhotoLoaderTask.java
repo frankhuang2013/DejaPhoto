@@ -21,6 +21,8 @@ import static android.media.ExifInterface.TAG_GPS_LATITUDE;
 import static android.media.ExifInterface.TAG_GPS_LATITUDE_REF;
 import static android.media.ExifInterface.TAG_GPS_LONGITUDE;
 import static android.media.ExifInterface.TAG_GPS_LONGITUDE_REF;
+import static android.media.ExifInterface.TAG_IMAGE_LENGTH;
+import static android.media.ExifInterface.TAG_IMAGE_WIDTH;
 
 /**
  * Created by kaijiecai on 4/29/17.
@@ -117,6 +119,11 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                     Log.i("ImageLatitude", gps_latitude + "");
                     String gps_latitude_ref = exifInterface.getAttribute(TAG_GPS_LATITUDE_REF);
                     Log.i("ImageLatitude_ref", gps_latitude_ref + "");
+                    String width = exifInterface.getAttribute(TAG_IMAGE_WIDTH);
+                    Log.i("ImageWidth",width+"");
+                    String height = exifInterface.getAttribute(TAG_IMAGE_LENGTH);
+                    Log.i("ImageHeight",height+"");
+
 
                     Location location = toLocation
                             (gps_longitude, gps_longitude_ref, gps_latitude, gps_latitude_ref);
@@ -125,6 +132,8 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
                     Photo photo = new Photo(
                             path,
+                            toInt(width),
+                            toInt(height),
                             toGregorianCalendar(dateTime),
                             location,
                             toLocationName(location),
@@ -141,6 +150,18 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
       //  Toast.makeText(mContext,list.size()+"",Toast.LENGTH_SHORT).show();
         Log.i("end loading","end loading");
         return null;
+    }
+
+
+    public int toInt(String str){
+        if(str != null) {
+            try {
+                return Integer.parseInt(str);
+            } catch (Exception e){
+                return -1;
+            }
+        }
+        return -1;
     }
 
 
@@ -237,6 +258,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                 addresses = geocoder.getFromLocation(location.getLatitude(),
                         location.getLongitude(),5);
                 if(addresses.size() > 0) {
+                    //Log.i("---------",addresses.get(0).getLocality());
                     return addresses.get(0).getLocality();
                 }
             } catch (IOException e) {

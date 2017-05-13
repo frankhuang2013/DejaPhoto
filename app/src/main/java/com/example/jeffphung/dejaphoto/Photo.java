@@ -23,22 +23,32 @@ public class Photo implements Comparable<Photo> {
     private Boolean karma = false;
     private Boolean released = false;
     private int points = 0;
+    private Integer width;
+    private Integer height;
 
+
+
+    /* this is a constructor for test purpose, use this constructor to declare a new Photo */
     public Photo(String imgPath){
         this.imgPath = imgPath;
     }
 
     public Photo(
             String imgPath,
+            Integer width,
+            Integer height,
             GregorianCalendar calendar,
             Location location,
             String locationName,
             Boolean karma){
 
         this.imgPath = imgPath;
+        this.width = width;
+        this.height = height;
         this.calendar = calendar;
         this.location = location;
         this.locationName = locationName;
+        Log.i(imgPath,locationName+"");
         this.karma = karma;
     }
 
@@ -132,9 +142,21 @@ public class Photo implements Comparable<Photo> {
     }
 
 
+    public String city(){
+        return locationName;
+    }
 
     /* return a city name string, it will return null if no such information */
     public String getCityName() {
+        Log.i("City",locationName+"");
         return locationName;
+    }
+
+    public Integer getWidth(){
+        return width;
+    }
+
+    public Integer getHeight(){
+        return  height;
     }
 }

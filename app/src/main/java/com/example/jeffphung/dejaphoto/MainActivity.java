@@ -46,15 +46,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         photoLoader= new PhotoLoaderTask(MainActivity.this);
         photoLoader.execute();
 
-
-
-
-
         setContentView(R.layout.activity_main);
-
-
-
-
 
 
     }

@@ -16,6 +16,7 @@ public class PhotoList{
     private static PhotoList photoListInstance = new PhotoList();
     ArrayList<Photo> photoArrayList ;
     int index;
+    boolean allowed = true;
 
 
     /**
@@ -26,6 +27,13 @@ public class PhotoList{
         index = 0;
     }
 
+    public Boolean isAllowed(){
+        return allowed;
+    }
+
+    public void setAllowed(Boolean b){
+        allowed = b;
+    }
     /**
      * get Photolist instance
      * @return
@@ -55,75 +63,6 @@ public class PhotoList{
 
     }
 
-    /*
-    public Photo next(){
-        if(photoArrayList.size() ==0) {
-            return null;//// TODO: 5/4/17
-        }
-        else{
-            if(index == photoArrayList.size()-1){
-                index = -1;
-            }
-
-            // check if the next photo is released
-            int counter = 0;
-            while (photoArrayList.get(++index).isReleased() && ++counter <= photoArrayList.size())
-            {
-                if(index == photoArrayList.size()-1){
-                    index = -1;
-                }
-
-            }
-            if (counter > photoArrayList.size())
-            {
-                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.defaultwhatever);
-                WallpaperManager myWallpaperManager = WallpaperManager.getInstance(context);
-                try {
-                    myWallpaperManager.setBitmap(bitmap);
-                } catch (IOException e) {
-                    Toast.makeText(context, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
-                }
-                return null;
-            }
-
-            return photoArrayList.get(index);
-        }
-
-    }*/
-
-
-    /*
-    public Photo previous(){
-        if(photoArrayList.size() ==0){
-            return null ;//TODO
-        }
-        else{
-            if(index == 0){
-                index = photoArrayList.size();
-            }
-
-            // check if the previous photo is released
-            int counter = 0;
-            while (photoArrayList.get(--index).isReleased() && ++counter <= photoArrayList.size())
-            {
-                if(index == 0){
-                    index = photoArrayList.size();
-                }
-            }
-            if (counter > photoArrayList.size())
-            {
-                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.drawable.defaultwhatever);
-                WallpaperManager myWallpaperManager = WallpaperManager.getInstance(context);
-                try {
-                    myWallpaperManager.setBitmap(bitmap);
-                } catch (IOException e) {
-                    Toast.makeText(context, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
-                }
-                return null;
-            }
-            return photoArrayList.get(index);
-        }
-    }*/
 
 
     public Photo previous(){

@@ -58,6 +58,9 @@ public class PhotoLoaderTester {
         assertEquals(new Double(-10.1944),
                 Double.valueOf(twoDForm.format(photoLoaderTask.toDouble("10/1,10/1,100/100","W"))));
 
+
+
+
         //more test cases
         //google DMS to decimal convertor
 
