@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         photoList = PhotoList.getPhotoListInstance();
         dejaVuMode = DejaVuMode.getDejaVuModeInstance();
 
-        photoList.setContext(this);
+        photoList.setContext(this); //comment
         photoLoader= new PhotoLoaderTask(MainActivity.this);
         photoLoader.execute();
 
