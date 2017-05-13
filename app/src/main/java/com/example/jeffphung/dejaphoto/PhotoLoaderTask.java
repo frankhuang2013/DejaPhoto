@@ -87,6 +87,8 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
                 ExifInterface exifInterface = new ExifInterface(path);
 
+                exifInterface.setAttribute(TAG_KARMA,"false");
+                exifInterface.saveAttributes();
 
                 Log.i("ImagePath",path);
 
