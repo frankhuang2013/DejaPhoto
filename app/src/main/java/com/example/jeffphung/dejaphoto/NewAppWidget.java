@@ -110,7 +110,7 @@ public class NewAppWidget extends AppWidgetProvider {
                 String path = photo.getImgPath();
                 Log.i("finish get img", "finished");
                 setWallPaper(context, path);
-                setKarmImage(context,photo);
+                setKarmImage(context, views, photo);
             }
             //case in which there are no photos in list
             else {
@@ -130,7 +130,7 @@ public class NewAppWidget extends AppWidgetProvider {
                 Log.i("finish get img", "finished");
                 setWallPaper(context, path);
                 // put behavior here:
-                setKarmImage(context,photo);
+                setKarmImage(context, views, photo);
             }
             //case in which there are no photos in list
             else {
@@ -152,18 +152,12 @@ public class NewAppWidget extends AppWidgetProvider {
         }
         else if (intent.getAction().equals(releaseButtonClicked))
         {
-            photo = PhotoList.getPhotoListInstance().getCurrentPhoto();
-            photo.setReleased(true);
-            //Toast.makeText(context, "Photo Released", Toast.LENGTH_SHORT).show();
-
-            // switch to the next photo
-            photo = PhotoList.getPhotoListInstance().next();
-
+            photo = PhotoList.getPhotoListInstance().removeCurrentPhoto();
             if(photo!=null) {
                 String path = photo.getImgPath();
                 Log.i("finish get img", "finished");
                 setWallPaper(context, path);
-                setKarmImage(context,photo);
+                setKarmImage(context, views, photo);
             }
 
         }
@@ -207,9 +201,9 @@ public class NewAppWidget extends AppWidgetProvider {
 
     }
 
-    public void setKarmImage(Context context, Photo p){
+    public void setKarmImage(Context context, RemoteViews v, Photo p){
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
+        RemoteViews views = v;
         if (p.getKarma()) {
             views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
         }

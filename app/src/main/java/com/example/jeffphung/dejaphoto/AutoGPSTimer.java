@@ -28,10 +28,6 @@ public class AutoGPSTimer extends Service implements LocationListener {
     final float LOCATIONCHANGE = 152.4f; // 500 ft/152.4 meters
 
 
-    public AutoGPSTimer(){
-
-    }
-
     @Override
     public void onCreate(){
         Toast.makeText(this, "running gps in the background", Toast.LENGTH_SHORT).show();
@@ -46,6 +42,7 @@ public class AutoGPSTimer extends Service implements LocationListener {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startID) {
+
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
@@ -87,7 +84,7 @@ public class AutoGPSTimer extends Service implements LocationListener {
     }
 
     private void callPhotoSorter() {
-        PhotoSorterTask photoSorterTask = new PhotoSorterTask(location);
+        PhotoSorterTask photoSorterTask = new PhotoSorterTask(location, AutoGPSTimer.this);
         photoSorterTask.execute();
 
     }

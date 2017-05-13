@@ -1,12 +1,7 @@
 package com.example.jeffphung.dejaphoto;
 
-import android.app.WallpaperManager;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -45,7 +40,7 @@ public class PhotoList{
     public void setContext(Context c) {
         context = c;
     }
-    /*
+
     public Photo next(){
         if(photoArrayList.size() ==0) {
             return null;
@@ -58,8 +53,9 @@ public class PhotoList{
             return photoArrayList.get(++index);
         }
 
-    }*/
+    }
 
+    /*
     public Photo next(){
         if(photoArrayList.size() ==0) {
             return null;//// TODO: 5/4/17
@@ -93,9 +89,10 @@ public class PhotoList{
             return photoArrayList.get(index);
         }
 
-    }
+    }*/
 
 
+    /*
     public Photo previous(){
         if(photoArrayList.size() ==0){
             return null ;//TODO
@@ -126,9 +123,9 @@ public class PhotoList{
             }
             return photoArrayList.get(index);
         }
-    }
+    }*/
 
-    /*
+
     public Photo previous(){
         if(photoArrayList.size() ==0){
             return null ;//TODO
@@ -139,11 +136,11 @@ public class PhotoList{
             }
             return photoArrayList.get(--index);
         }
-    }*/
+    }
 
     public Photo removeCurrentPhoto(){
         photoArrayList.get(index).setReleased(true);
-        photoArrayList.remove(index);
+        photoArrayList.remove(index--);
         return next();
     }
 

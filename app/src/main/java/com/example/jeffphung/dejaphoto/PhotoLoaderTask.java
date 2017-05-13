@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -41,10 +42,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     Context mContext;
     ProgressDialog progressDialog;
 
-    public PhotoLoaderTask(){
 
-
-    }
 
     public PhotoLoaderTask(Context context){
         this.mContext = context;
@@ -76,15 +74,26 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     @Override
     protected String doInBackground(Void... params) {
         Log.i("start loading","start loading");
+        /*
         String[] strings = {"img1.jpg","img2.jpg","img3.jpg","img4.jpg","img5.jpg","img6.jpg"
-        ,"img7.jpg","img8.jpg","img9.jpg","img10.jpg"};
-        for(int i = 0; i< strings.length; i++){
+        ,"img7.jpg","img8.jpg","img9.jpg","img10.jpg"};*/
+        //gets path to camera album photos
+        File cameraDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString());
+
+        //there are multiple folders here, but we are only interested in the first one (ie Camera)
+        File[] files = cameraDir.listFiles();
+        File finalCamDir = files[0];
+
+        File[] camFiles = finalCamDir.listFiles();
+        for(int i = 0; i< camFiles.length; i++){
             try {
                 Log.i("start loading","load "+i+"th photo");
+                /*
                 String path = Environment
                         .getExternalStorageDirectory()
-                        .getAbsolutePath()+"/Download/" + strings[i];
+                        .getAbsolutePath()+"/Download/" + strings[i];*/
 
+                String path = camFiles[i].toString();
                 ExifInterface exifInterface = new ExifInterface(path);
 
                 exifInterface.setAttribute(TAG_KARMA,"false");
