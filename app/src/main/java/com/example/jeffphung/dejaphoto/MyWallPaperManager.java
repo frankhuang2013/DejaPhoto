@@ -82,7 +82,7 @@ public class MyWallPaperManager {
                     }
                 }
             } else if (PhotoList.getPhotoListInstance().size() == 0) {
-                setDefaultWalpaper();
+                setDefaultWallpaper();
             }
         }
         else{
@@ -91,7 +91,7 @@ public class MyWallPaperManager {
 
     }
 
-    public void setDefaultWalpaper(){
+    public void setDefaultWallpaper(){
 
         Log.i("start set", "start");
         try {
