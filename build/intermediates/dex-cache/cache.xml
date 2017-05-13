@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/kaijiecai/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5061f784f1a6575b1e4c0900b5732dcb8b5fd042">
+        <dex dex="/Users/kaijiecai/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_2b1e171ae88b5a3603f71b21789fceee0aceecad/classes.dex" />
+    </item>
+
+</items>
