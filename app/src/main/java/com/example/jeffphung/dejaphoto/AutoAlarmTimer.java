@@ -53,10 +53,10 @@ public class AutoAlarmTimer extends Service {
 
 
     @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
+    @Override public IBinder onBind(Intent intent) {
         return null;
     }
+
 
 
 
