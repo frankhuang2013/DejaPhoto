@@ -2,6 +2,7 @@ package com.example.jeffphung.dejaphoto;
 
 import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -71,6 +72,7 @@ public class MyWallPaperManager {
                             }
 
                             myWallPaperManager.setBitmap(bitmap);
+                            setTimer();
 
 
                             Log.i("finish set img", "finished");
@@ -109,6 +111,8 @@ public class MyWallPaperManager {
 
 
     public void setTimer(){
+        Intent wallPaperIntent = new Intent(mContext, AutoChangeWallPaper.class);
+        mContext.startService(wallPaperIntent);
 
     }
 }
