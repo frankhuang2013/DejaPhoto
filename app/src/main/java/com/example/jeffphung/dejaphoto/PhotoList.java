@@ -93,8 +93,11 @@ public class PhotoList{
         return photoArrayList.get(index);
     }
 
-    public Photo getPhoto(int i){
-        return photoArrayList.get(i);
+    public Photo getPhoto(int i) {
+        if (size() != 0) {
+            return photoArrayList.get(i);
+        }
+        return null;
     }
 
     public int size(){
