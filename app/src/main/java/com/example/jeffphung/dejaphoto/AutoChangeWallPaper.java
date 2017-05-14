@@ -9,7 +9,6 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * Created by kaijiecai on 5/13/17.
@@ -18,7 +17,7 @@ import android.widget.Toast;
 public class AutoChangeWallPaper extends Service {
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
-    private long INTERVAL = 1000*60; //TODO set it 5 minutes
+    private long INTERVAL = 1000*60*5; //TODO set it 5 minutes
     private int id = 1;
     private String alarmName = "Auto change photo alarm";
 
@@ -28,7 +27,7 @@ public class AutoChangeWallPaper extends Service {
 
 
         Log.i(alarmName, "start "+alarmName);
-        Toast.makeText(this, alarmName + "running in the background", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, alarmName + "running in the background", Toast.LENGTH_SHORT).show();
 
         alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
