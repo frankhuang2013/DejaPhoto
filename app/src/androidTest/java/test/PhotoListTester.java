@@ -78,17 +78,86 @@ public class PhotoListTester {
 
     @Test
     public void testremoveCurrentPhoto() {
+        //list of one, index is at 0
+        Photo photoOne = new Photo("/storage/sdcard/DCIM/Camera/img1.JPG");
+        photoList.add(photoOne);
+        assertEquals(null,photoList.removeCurrentPhoto());
+        assertEquals(0,photoList.size());
+        assertTrue(photoOne.isReleased());
 
+        //list of three, remove last photo
+        photoList.add(photoOne);
+        Photo photoTwo = new Photo("/storage/sdcard/DCIM/Camera/img2.JPG");
+        photoList.add(photoTwo);
+        Photo photoThree = new Photo("/storage/sdcard/DCIM/Camera/img3.JPG");
+        photoList.add(photoThree);
+        photoList.setIndex(2);
+        assertEquals(photoOne,photoList.removeCurrentPhoto());
+        assertEquals(2,photoList.size());
+        assertTrue(photoThree.isReleased());
+        //from middle
+        photoList.add(photoThree);
+        photoList.setIndex(1);
+        assertEquals(photoThree,photoList.removeCurrentPhoto());
+        assertEquals(2,photoList.size());
+        assertTrue(photoTwo.isReleased());
     }
 
     @Test
     public void testgetCurrentPhoto() {
+        //empty list
+        assertEquals(null,photoList.getCurrentPhoto());
 
+        //4-photo list
+        photoList.add(new Photo("/storage/sdcard/DCIM/Camera/img1.JPG"));
+        photoList.add(new Photo("/storage/sdcard/DCIM/Camera/img2.JPG"));
+        Photo photoCurr = new Photo("/storage/sdcard/DCIM/Camera/img3.JPG");
+        photoList.add(photoCurr);
+        photoList.add(new Photo("/storage/sdcard/DCIM/Camera/img4.JPG"));
+        photoList.setIndex(2);
+        assertEquals(photoCurr,photoList.getCurrentPhoto());
     }
 
     @Test
     public void testgetPhoto() {
+        //empty list, invalid index
+        assertEquals(null,photoList.getPhoto(0));
 
+        //4-photo list
+        photoList.add(new Photo("/storage/sdcard/DCIM/Camera/img1.JPG"));
+        Photo photoCurr = new Photo("/storage/sdcard/DCIM/Camera/img2.JPG");
+        photoList.add(photoCurr);
+        photoList.add(new Photo("/storage/sdcard/DCIM/Camera/img3.JPG"));
+        assertEquals(photoCurr,photoList.getPhoto(1));
+    }
+
+    @Test
+    public void testsort() {
+        //add photos
+        Photo photoOne = new Photo("/storage/sdcard/DCIM/Camera/img2.JPG");
+        photoList.add(photoOne);
+        Photo photoTwo = new Photo("/storage/sdcard/DCIM/Camera/img2.JPG");
+        photoList.add(photoTwo);
+        Photo photoThree = new Photo("/storage/sdcard/DCIM/Camera/img2.JPG");
+        photoList.add(photoThree);
+        Photo photoFour = new Photo("/storage/sdcard/DCIM/Camera/img2.JPG");
+        photoList.add(photoFour);
+        //making sure photos are in original order
+        assertEquals(photoOne,photoList.getPhoto(0));
+        assertEquals(photoTwo,photoList.getPhoto(1));
+        assertEquals(photoThree,photoList.getPhoto(2));
+        assertEquals(photoFour,photoList.getPhoto(3));
+        //add points
+        photoOne.setPoints(0);
+        photoTwo.setPoints(30);
+        photoThree.setPoints(10);
+        photoFour.setPoints(20);
+        //call sort
+        photoList.sort();
+        assertEquals(photoTwo,photoList.getPhoto(0));
+        assertEquals(photoFour,photoList.getPhoto(1));
+        assertEquals(photoThree,photoList.getPhoto(2));
+        assertEquals(photoOne,photoList.getPhoto(3));
     }
 
     @Test
