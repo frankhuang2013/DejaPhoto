@@ -111,40 +111,47 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             case R.id.dejaVuButton:
                 if (isChecked) {
                     // The toggle is enabled
-                    System.out.println("deja enabled!");
-                    Log.i("dejaVuButton","button pressed");
-                    Toast.makeText(MainActivity.this, "jjjjjj",Toast.LENGTH_SHORT).show();
+                    Log.i("dejaVu","button enabled");
+                    dejaVuMode.setDejaVuModeOn(true);
+
                 } else {
                     // The toggle is disabled
-                    System.out.println("deja disabled!");
-                    Toast.makeText(MainActivity.this, photoList.size()+"",Toast.LENGTH_SHORT).show();
+                    Log.i("dejaVu","button disabled");
+                    dejaVuMode.setDejaVuModeOn(false);
                 }
                 break;
             case R.id.locationButton:
                 if (isChecked) {
                     // The toggle is enabled
-                    System.out.println("location enabled!");
+                    Log.i("location","enabled");
+                    dejaVuMode.setLocationModeOn(true);
+
                 } else {
                     // The toggle is disabled
-                    System.out.println("location disabled!");
+                    Log.i("location","disabled");
+                    dejaVuMode.setLocationModeOn(false);
                 }
                 break;
             case R.id.timeDayButton:
                 if (isChecked) {
                     // The toggle is enabled
-                    System.out.println("time of day enabled!");
+                    Log.i("timeDay","enabled");
+                    dejaVuMode.setTimeModeOn(true);
                 } else {
                     // The toggle is disabled
-                    System.out.println("time of day disabled!");
+                    Log.i("timeDay","disabled");
+                    dejaVuMode.setTimeModeOn(false);
                 }
                 break;
             case R.id.dayWeekButton:
                 if (isChecked) {
                     // The toggle is enabled
-                    System.out.println("day of week enabled!");
+                    Log.i("day of week","enabled!");
+                    dejaVuMode.setDayModeOn(true);
                 } else {
                     // The toggle is disabled
-                    System.out.println("day of week disabled!");
+                    Log.i("day of week", "disabled");
+                    dejaVuMode.setDayModeOn(false);
                 }
                 break;
 
@@ -155,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     public void createAlbum(View v){
-        System.out.println("Creating Custom Album");
+        Log.i("creating custom album","Creating Custom Album");
 
 
     }

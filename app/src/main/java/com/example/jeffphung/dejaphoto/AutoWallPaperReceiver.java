@@ -8,7 +8,8 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 
 /**
- * Created by kaijiecai on 5/13/17.
+ * This class will receive the message from AutoChamgeWallpaper, and will call
+ * MyWallPaperManager to change the background
  */
 
 public class AutoWallPaperReceiver extends BroadcastReceiver {
@@ -25,6 +26,7 @@ public class AutoWallPaperReceiver extends BroadcastReceiver {
 
 
         Log.i("------------","------------");
+        //call to change the wallPaper.
         MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
         myWallPaperManager.setWallPaper(PhotoList.getPhotoListInstance().next());
     }

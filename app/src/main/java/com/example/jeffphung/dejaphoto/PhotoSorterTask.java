@@ -58,6 +58,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     @Override
     protected String doInBackground(Void...params) {
+        Log.i("photo sorter","--------------");
         Log.i("photo sorter", "sorter invoked");
         if(PhotoList.getPhotoListInstance().isAllowed()) {
             PhotoList.getPhotoListInstance().setAllowed(false);
@@ -110,6 +111,8 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
             }
 
+
+            Log.i("photo sorter ends","--------------");
             //sort the list according to points
             list.sort();
             list.setIndex(0);
@@ -154,8 +157,8 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     /* check if two calendar time are close */
     public boolean withinHours(GregorianCalendar currentCalendar,GregorianCalendar calendar){
-        Log.i("current UTC time", currentCalendar.get(Calendar.HOUR_OF_DAY)+"");
-        Log.i("photo's UTC time", calendar.get(Calendar.HOUR_OF_DAY)+"");
+        Log.i("sorter current UTC time", currentCalendar.get(Calendar.HOUR_OF_DAY)+"");
+        Log.i("sorter photo's UTC time", calendar.get(Calendar.HOUR_OF_DAY)+"");
         int currentTime = calendarToSecond(currentCalendar);
         int calendarTime = calendarToSecond(calendar);
         if(Math.abs(currentTime - calendarTime) <= WITHINTIME){

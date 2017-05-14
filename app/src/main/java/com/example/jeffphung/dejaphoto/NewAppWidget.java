@@ -147,18 +147,5 @@ public class NewAppWidget extends AppWidgetProvider {
     }
 
 
-
-
-    public void setKarmImage(RemoteViews v, Photo p){
-
-        RemoteViews views = v;
-        if (p.getKarma()) {
-            views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
-        }
-        else {
-            views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_greyed);
-        }
-
-    }
 }
 

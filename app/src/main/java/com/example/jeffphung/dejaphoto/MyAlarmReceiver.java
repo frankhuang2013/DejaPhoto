@@ -14,7 +14,8 @@ import android.util.Log;
 import static android.R.attr.id;
 
 /**
- * Created by kaijiecai on 5/6/17.
+ * This class will receive the alarm call from MyAlarmManager every hour
+ * and call sorter to sort all photos
  */
 
 
@@ -37,6 +38,7 @@ public class MyAlarmReceiver extends BroadcastReceiver {
                 PackageManager.DONT_KILL_APP);
 
         Log.i(id+"", "start sort list");
+        //call sorter
         PhotoSorterTask photoSorterTask = new PhotoSorterTask(getCurrentLocation(context), context);
         photoSorterTask.execute();
 
