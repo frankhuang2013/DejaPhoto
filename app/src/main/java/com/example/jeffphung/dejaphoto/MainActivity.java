@@ -1,42 +1,72 @@
 package com.example.jeffphung.dejaphoto;
 
 
-import android.app.WallpaperManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import java.io.File;
-import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener{
-
-
-
+public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     PhotoList photoList; // PhotoList contains all photo in the app
     DejaVuMode dejaVuMode; // DejaVumode class
     PhotoLoaderTask photoLoader; // PhotoLoader class: load photo to app from photo
     // PhotoSorter class: sort the photo according to location and time
 
+    EditText waitTimeText;
+    String waitTimeStr = "";
+    int waitTimeInt = -1;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
+        Button waitTimeButton = (Button)findViewById(R.id.waitTimeButton);
+        waitTimeText = (EditText)findViewById(R.id.waitTimeEditText);
+        intent = new Intent(this, AutoChangeWallPaper.class);
+        waitTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                waitTimeInt = -1;
+                waitTimeStr = waitTimeText.getText().toString();
+                boolean isNum = true;
+                for (int i = 0; i < waitTimeStr.length(); i++) {
+                    if (!Character.isDigit(waitTimeStr.charAt(i))) {
+                        i = waitTimeStr.length();
+                        isNum = false;
+                    }
+                }
+                if (isNum) {
+                    waitTimeInt = Integer.parseInt(waitTimeStr);
+                }
+                intent.putExtra("waitTimeInt", waitTimeInt);
+                Toast.makeText(v.getContext(), "Set wait time to " + waitTimeInt + " seconds", Toast.LENGTH_SHORT).show();
+                startService(intent);
 
-        /* toggleButtons */
+            }
+        });
+
+        /* initialization */
+        photoList = PhotoList.getPhotoListInstance();
+        dejaVuMode = DejaVuMode.getDejaVuModeInstance();
+
+        photoList.setContext(this);
+        photoLoader = new PhotoLoaderTask(MainActivity.this);
+        photoLoader.execute();
+
+          /* toggleButtons */
         ToggleButton dButton = (ToggleButton) findViewById(R.id.dejaVuButton);
         dButton.setOnCheckedChangeListener(this);
         ToggleButton lButton = (ToggleButton) findViewById(R.id.locationButton);
@@ -45,72 +75,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         timeDayButton.setOnCheckedChangeListener(this);
         ToggleButton dayWeekButton = (ToggleButton) findViewById(R.id.dayWeekButton);
         dayWeekButton.setOnCheckedChangeListener(this);
-
-
-        /* initialization */
-        photoList = PhotoList.getPhotoListInstance();
-        dejaVuMode = DejaVuMode.getDejaVuModeInstance();
-
-        photoLoader= new PhotoLoaderTask(MainActivity.this);
-        photoLoader.execute();
-
-
-
-       /*
-        Log.d("execute","after");
-        TextView textV = (TextView) findViewById(R.id.text);
-        textV.setText(photoList.size());
-        photoSorter = new PhotoSorterTask(dejaVuMode,currentLocation);*/
-        /* initialization */
-
-        setContentView(R.layout.activity_main);
-
-
-        //gets path to camera album photos
-        File cameraDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString());
-
-        //there are multiple folders here, but we are only interested in the first one (ie Camera)
-        File[] files = cameraDir.listFiles();
-        File finalCamDir = files[0];
-
-        File[] camFiles = finalCamDir.listFiles();
-
-        /* PRINTS OUT THE CAMERA LOCATION AND ALL SUBSEQUENT IMAGES
-        System.out.println(cameraDir);
-        for (File filess : camFiles){
-            System.out.println(filess.getName());
-        }
-        */
-
-        // should set the wallpaper to the first in our file array
-        File firstImage = null;
-        Bitmap bitmap = null;
-
-        //if no images set a whatever image, else use first image.
-
-        if (camFiles.length == 0){
-            bitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.defaultwhatever);
-
-        }
-        else{
-            firstImage = camFiles[0];
-            bitmap = BitmapFactory.decodeFile(firstImage.getAbsolutePath());
-        }
-
-
-
-        //sets wallpaper
-
-
-        WallpaperManager myWallpaperManager = WallpaperManager.getInstance(getApplicationContext());
-        try {
-            myWallpaperManager.setBitmap(bitmap);
-            Toast.makeText(MainActivity.this, "Wallpaper set", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            Toast.makeText(MainActivity.this, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
-        }
-
-
 
 
     }
@@ -141,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         Toast.makeText(MainActivity.this, photoList.size()+"",Toast.LENGTH_SHORT).show();
+
 
         switch (buttonView.getId()){
             case R.id.dejaVuButton:

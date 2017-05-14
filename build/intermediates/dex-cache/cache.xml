@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\964ab02fe36b481bafe57d538a9db371a0586514\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a890ee8445927649d9ed50f625a315d8758688be">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\classes_dd776cc4698775776c7b149c682474066dc2a305.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1aa62f34835c41b863f3448ee5becb0e3362349a">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_87a2a21299d2530ea663fa67383daa7d06adec5d\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\41cb69e4b827ff51a770c4c6aafbb0d613c56eb1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_95b4304887ccdb8e7912db9d48d23246cc606145.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_eac91c5ff9909c31f5da071598aecc26f9fb5d7d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\c29b2702a3d246c2ca43ca082a3878d220812132\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="905f3e63973d47fedf2d945fa31d8c0f0c98816e">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\classes_522add12c90fd91bcdc84c2cef08ff46f2385fc2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\c1d5c13d36360f4c4ef3f3491554111f4858095d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_e9cf65f45bd9435107e0cf83b869e3753005f6bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\a45c05a83026466ccfe62adc6df3c085de469f0a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_6b0b19f247ffe7b18b5638d7136ddfd3397622f0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\0e4708b1fea1332cbdce61f00ccef698e831e029\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d115b0e9e1501135fe91254ba884fcbd83d374c0">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\classes_bae9a3ddfc2d1a62afc84da500bfc793dbba7a46.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\e092c47a5293c040cd27ef8fca0ef6b2457b90e6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_f1215844f5fcedd626a06bda75832c74d4dde19b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="42a25dc3219429f0e5d060061f71acb49bf010a0">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-core-1.3_95699b4f52b646ffdab1f294aa56facdaaf73526.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.gradle\caches\modules-2\files-2.1\javax.annotation\javax.annotation-api\1.2\479c1e06db31c432330183f5cae684163f186146\javax.annotation-api-1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="479c1e06db31c432330183f5cae684163f186146">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\javax.annotation-api-1.2_e567a2c6638031c6039ed59b08ca5a0e0cc9d63d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.gradle\caches\modules-2\files-2.1\com.squareup\javawriter\2.1.1\67ff45d9ae02e583d0f9b3432a5ebbe05c30c966\javawriter-2.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67ff45d9ae02e583d0f9b3432a5ebbe05c30c966">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\javawriter-2.1.1_8574ec3d4676f2e2e541f9116cd15aa7e3a93f14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\746aab3b0dfbbf662ffae701b8a19d63c2add716\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_8fcf18b1b2b9efed96d0e3597d411d794e229012.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\AppData\Local\Android\Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_7f82cba20b122d15749a2f6ecaf4c1f56193470f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-library\1.3\4785a3c21320980282f9f33d0d1264a69040538f\hamcrest-library-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4785a3c21320980282f9f33d0d1264a69040538f">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-library-1.3_4720ab2a92a2f8d384b267c4243a5c250e18633d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\bcc55c9f19f3778f5c226757a9611d62e0a83643\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="796f9229948e907471c5595fbe94655ccf03ff73">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\classes_c95dff1a0d87a9633adcc4b70610cb150b21f47f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\8d825f307df1a450cdc3829958593b60e57aebf4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_35b677e45f40a618b48c394053eb89d6360fa867.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\d922d7fcf5265301266c13dc4b03949a420707a8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_243dcef3b5128aa4e4711cdb301ec712bf5fd822.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\1892926b3e8b922f8471375eedda2d513aac50ad\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_850698e0cc458d3f939d1670d56da5630c4b4571.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-integration\1.3\5de0c73fef18917cd85d0ab70bb23818685e4dfd\hamcrest-integration-1.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5de0c73fef18917cd85d0ab70bb23818685e4dfd">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\hamcrest-integration-1.3_dbf7f9548a32e1fc161841c2864a8bad15c91971.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="12920f9016b8b05acbc2af7cdc13cef6946fe7d3">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_e841e7ac37c58de20f1587cf3fa684314168a70a\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\7de7f57fbf23d1ca373344798701eab10ffb375c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_6e90f071e40622328281bddb2f434fed7d777b1b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\b62f98eb3ccc4ffaf30e7ad3141e372d0928ae9e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_fca584b6cef5a5dfc7281bcf4ccf6c59b8d73270.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\a564b9df6a1b768583b41b2bd8896970dec8d1a3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7e11799d8a26bfa5d48acafe012ee5545b9bf468">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\classes_b4de4d6e8691fda69e6eea079c075710b6f10d4d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\ad2d96e7a99ae925d3d91fe942625460ca6500c1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_5032acbe7cb5181c40c70368480bbf3f9e0653e5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\javax.inject-1_e0ebbc82fe559887179a9fc33c7e549e304810fb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\01ea7b4dee0cbf3c7ad3e7cd4cb01b2a1c5ddcba\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_8cd33b6d5c22af9d459dbcf2b2da6e4297d08f04.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.android\build-cache\bfa18bcd25f009e554a770920cb6ee8503c00342\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\debug\classes_3592f8846c63606cec086a330dc02d9a596742cc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\2.0.1\516c03b21d50a644d538de0f0369c620989cd8f0\jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\jsr305-2.0.1_55353fe10adede578747e5a7c34ac2984f93b878.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kaiji\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2973d150c0dc1fefe998f834810d68f278ea58ec">
+        <dex dex="D:\AndroidStudioProject\DejaPhoto\app\build\intermediates\pre-dexed\androidTest\debug\junit-4.12_f2630c7f7aefaa9b4aa7fb5edc6d038f7c1bfb28.jar" />
+    </item>
+
+</items>

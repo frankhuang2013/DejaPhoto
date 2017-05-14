@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jeffphung.dejaphoto">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -38,8 +38,39 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/new_app_widget_info" />
         </receiver>
-        <service android:name=".AutoGPSTimer"
-            />
+
+        <service
+            android:name=".MyAlarmManager"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service android:name=".AutoChangeWallPaper"
+            android:enabled="true"
+            android:exported="true"/>
+
+        <service
+            android:name=".AutoGPSTimer"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name=".MyAlarmReceiver"
+            android:enabled="true"
+            android:exported="true"/>
+            <intent-filter>
+                <action android:name="android.intent.action.COMPONENT_ENABLED_STATE_ENABLED" />
+            </intent-filter>
+
+        />
+
+        <receiver android:name=".AutoWallPaperReceiver"
+            android:enabled="true"
+            android:exported="true"/>
+        <intent-filter>
+            <action android:name="android.intent.action.COMPONENT_ENABLED_STATE_ENABLED" />
+        </intent-filter>
+
+        />
+
     </application>
 
 </manifest>

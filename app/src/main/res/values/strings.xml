@@ -13,5 +13,7 @@
     <string name="leftButtonText">Left</string>
     <string name="karmaText">Karma</string>
     <string name="releaseText">Release</string>
+    <string name="waitTimeText">Auto photo switch wait time (sec)</string>
+    <string name="waitTimeButtonText">Enter</string>
 
 </resources>

@@ -1,8 +1,10 @@
 package com.example.jeffphung.dejaphoto;
 
-import android.location.Address;
 import android.location.Location;
+import android.media.ExifInterface;
+import android.util.Log;
 
+import java.io.IOException;
 import java.util.GregorianCalendar;
 
 /**
@@ -12,40 +14,49 @@ import java.util.GregorianCalendar;
 public class Photo implements Comparable<Photo> {
 
 
+    final private String TAG_KARMA = ExifInterface.TAG_USER_COMMENT;
+    final private String TAG_RELEASED = ExifInterface.TAG_IMAGE_DESCRIPTION;
     private String imgPath;
-    private int imgWidth;
-    private int imgLength;
     private GregorianCalendar calendar;
-    private Address locationName;
+    private String locationName;
     private Location location;
     private Boolean karma = false;
     private Boolean released = false;
     private int points = 0;
+    private Integer width;
+    private Integer height;
 
-    public Photo(){
 
+
+    /* this is a constructor for test purpose, use this constructor to declare a new Photo */
+    public Photo(String imgPath){
+        this.imgPath = imgPath;
     }
 
     public Photo(
             String imgPath,
-            int imgWidth,
-            int imgLength,
+            Integer width,
+            Integer height,
             GregorianCalendar calendar,
             Location location,
-            Address locationName,
-            Boolean karma,
-            Boolean released){
+            String locationName,
+            Boolean karma){
 
         this.imgPath = imgPath;
-        this.imgWidth = imgWidth;
-        this.imgLength = imgLength;
+        this.width = width;
+        this.height = height;
         this.calendar = calendar;
         this.location = location;
         this.locationName = locationName;
+        Log.i(imgPath,locationName+"");
         this.karma = karma;
-        this.released = released;
     }
 
+
+
+    /*
+     * add points to photo
+     */
     public void addPoints(int points){
         this.points +=points;
     }
@@ -57,51 +68,109 @@ public class Photo implements Comparable<Photo> {
         return karma;
     }
 
+    /*
+     * set Karma to be true or false, and write it to the photo
+     */
     public void setKarma(Boolean karma) {
         this.karma = karma;
+        try {
+            ExifInterface exifInterface = new ExifInterface(imgPath);
+            exifInterface.setAttribute(TAG_KARMA,"true");
+            exifInterface.saveAttributes();
+            Log.i("write karma to photo","successfully");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public Boolean isReleased() {
         return released;
     }
 
+
+    /*
+     * remove the photo from list
+     * and mark it as removed in the photo
+     */
     public void setReleased(Boolean released) {
         this.released = released;
+        try {
+            ExifInterface exifInterface = new ExifInterface(imgPath);
+            exifInterface.setAttribute(TAG_RELEASED,released+"");//// TODO: 5/13/17  
+            exifInterface.saveAttributes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    /*
+     * return the points of photo
+     */
     public int getPoints() {
         return points;
     }
 
+    /*
+     * set points
+     */
     public void setPoints(int points) {
         this.points = points;
     }
 
 
+    /*
+     * return calendar of photo
+     */
     public GregorianCalendar getCalendar() {
         return calendar;
     }
 
+    /*
+     * return image path in photo
+     */
     public String getImgPath() { return imgPath;}
 
-    public int getImgWidth() { return imgWidth; }
-
-    public int getImgLength() { return imgLength;}
 
 
+    /*
+     * compare two photos
+     * return 1 if the photo has higher points
+     * return -1 if the photo has lower points
+     * if two photos have same points
+     *   return 1 if photo was taken recent
+     * if two photos have same points and taken at the same time, then 0 will be returned
+     */
     @Override
     public int compareTo(Photo o) {
+        //compare points
         if(getPoints() > o.getPoints()){
             return 1;
         }
         else if(getPoints() < o.getPoints())
             return -1;
 
+        //compare taken time
         else if (getCalendar() != null && o.getCalendar() != null) {
-            if (getCalendar().compareTo(o.getCalendar()) > 0) {
+            if (getCalendar().compareTo(o.getCalendar())>0) {
                 return 1;
             }
+            else if(getCalendar().compareTo(o.getCalendar())<0){
+                return -1;
+
+            }
         }
+
+        //if photo has no time info, then return -1
+        else if( getCalendar() == null){
+            return -1;
+        }
+        else if( o.getCalendar() == null){
+            return 1;
+        }
+
+        // return 0 if photos have same points and taken at same time
         return 0;
     }
 
@@ -110,7 +179,17 @@ public class Photo implements Comparable<Photo> {
     }
 
 
-    public Address getLocationName() {
+    /* return a city name string, it will return null if no such information */
+    public String getCityName() {
+        Log.i("City",locationName+"");
         return locationName;
+    }
+
+    public Integer getWidth(){
+        return width;
+    }
+
+    public Integer getHeight(){
+        return  height;
     }
 }
