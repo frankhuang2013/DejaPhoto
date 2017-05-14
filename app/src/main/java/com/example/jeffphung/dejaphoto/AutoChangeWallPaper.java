@@ -28,7 +28,7 @@ public class AutoChangeWallPaper extends Service {
 
 
         Log.i(alarmName, "start "+alarmName);
-        Toast.makeText(this, alarmName + "running in the background", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, alarmName + "running in the background", Toast.LENGTH_SHORT).show();
 
         alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 

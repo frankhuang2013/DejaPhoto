@@ -142,11 +142,6 @@ public class Photo implements Comparable<Photo> {
         return location;
     }
 
-
-    public String city(){
-        return locationName;
-    }
-
     /* return a city name string, it will return null if no such information */
     public String getCityName() {
         Log.i("City",locationName+"");
