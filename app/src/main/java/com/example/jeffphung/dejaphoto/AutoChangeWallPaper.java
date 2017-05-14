@@ -9,6 +9,8 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * Created by kaijiecai on 5/13/17.
@@ -17,15 +19,24 @@ import android.util.Log;
 public class AutoChangeWallPaper extends Service {
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
-    private long INTERVAL = 1000*60*5; //TODO set it 5 minutes
+    private long INTERVAL = 1000*300;
     private int id = 1;
     private String alarmName = "Auto change photo alarm";
-
+    private Button waitTimeButton;
+    private EditText waitTimeText;
+    private String waitTimeStr;
+    private int waitTimeInt = -1;
+    private Intent mIntent;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startID){
 
-
+        if (intent != null) {
+            waitTimeInt = intent.getIntExtra("waitTimeInt", -1);
+        }
+        if (waitTimeInt != -1) {
+            INTERVAL = 1000 * waitTimeInt;
+        }
         Log.i(alarmName, "start "+alarmName);
         //Toast.makeText(this, alarmName + "running in the background", Toast.LENGTH_SHORT).show();
 
@@ -43,6 +54,7 @@ public class AutoChangeWallPaper extends Service {
 
         return START_STICKY;
     }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

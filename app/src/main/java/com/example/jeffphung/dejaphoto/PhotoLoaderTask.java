@@ -29,7 +29,6 @@ import static android.media.ExifInterface.TAG_IMAGE_WIDTH;
  */
 
 /* this class will load photo from default camera album */
- //
 public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
     final private String TAG_KARMA = ExifInterface.TAG_USER_COMMENT;
@@ -176,10 +175,10 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         mContext.startService(intent);
 
         //invoke AlarmManager to sort list every hour
+
         Intent alarmIntent = new Intent(mContext, MyAlarmManager.class);
         mContext.startService(alarmIntent);
 
-        //invoke autoWallPaper change to change background every x seconds.
         Intent wallPaperIntent = new Intent(mContext, AutoChangeWallPaper.class);
         mContext.startService(wallPaperIntent);
 

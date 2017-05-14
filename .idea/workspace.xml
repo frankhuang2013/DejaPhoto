@@ -10,6 +10,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     <list default="true" id="3fbb345b-dd8e-40c6-a87a-0c77c107fde4" name="Default" comment="SSH-51 Removed the released photo from the cycle, fixed when photolist is empty, should just display default photo and the widget should not be functional at all">
 =======
@@ -55,14 +56,17 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-05-13-17-16-35-010.rawproto" afterPath="" />
 <<<<<<< HEAD
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
+=======
+    <list default="true" id="3fbb345b-dd8e-40c6-a87a-0c77c107fde4" name="Default" comment="">
+>>>>>>> Stashed changes
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+<<<<<<< Updated upstream
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_3_1.xml" />
 =======
       <change type="DELETED" beforePath="$PROJECT_DIR$/build/android-profile/profile-2017-05-13-16-01-06-304.rawproto" afterPath="" />
@@ -122,6 +126,17 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
 >>>>>>> 5f6019bb2b4f825bbf7c34ca7fc519e3e74bf4dc
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-25.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoChangeWallPaper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoChangeWallPaper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyAlarmManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyAlarmManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+>>>>>>> Stashed changes
     </list>
     <ignored path="DejaPhoto.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -155,6 +170,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       <file leaf-file-name="PhotoList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoList.java">
@@ -172,6 +188,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+=======
+      <file leaf-file-name="AutoWallPaperReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoWallPaperReceiver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+>>>>>>> Stashed changes
               <folding />
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
             </state>
@@ -191,14 +214,25 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="45">
               <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
               <folding />
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
+=======
+            <state relative-caret-position="475">
+              <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1349#2200#0" expanded="true" />
+                <element signature="e#2199#2200#0" expanded="true" />
+              </folding>
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       <file leaf-file-name="Photo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/Photo.java">
@@ -216,25 +250,44 @@
             <state relative-caret-position="120">
               <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
               <folding />
+=======
+      <file leaf-file-name="PhotoLoaderTask.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="179" column="10" selection-start-line="179" selection-start-column="10" selection-end-line="179" selection-end-column="10" />
+              <folding>
+                <element signature="e#1537#1538#0" expanded="true" />
+                <element signature="e#1576#1577#0" expanded="true" />
+              </folding>
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AutoChangeWallPaper.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoChangeWallPaper.java">
+      <file leaf-file-name="MyWallPaperManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+            <state relative-caret-position="319">
+              <caret line="75" column="28" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="content_main.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
+=======
+      <file leaf-file-name="NewAppWidget.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/NewAppWidget.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -243,11 +296,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <file leaf-file-name="AutoChangeWallPaper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoChangeWallPaper.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="240">
               <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+=======
+            <state relative-caret-position="209">
+              <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+>>>>>>> Stashed changes
               <folding />
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
             </state>
@@ -2124,13 +2182,16 @@
         <option value="$PROJECT_DIR$/app/src/androidTest/java/test/PhotoSorterTester.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AlarmReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoGPSTimer.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoSorterTask.java" />
         <option value="$PROJECT_DIR$/app/src/androidTest/java/test/PhotoLoaderTester.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/new_app_widget.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java" />
+=======
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoList.java" />
+>>>>>>> Stashed changes
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/NewAppWidget.java" />
 <<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoList.java" />
@@ -2138,11 +2199,18 @@
 =======
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/Photo.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
         <option value="$PROJECT_DIR$/local.properties" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyAlarmManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoChangeWallPaper.java" />
+<<<<<<< Updated upstream
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
+=======
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MainActivity.java" />
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -2232,6 +2300,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       <pane id="Scope" />
 =======
@@ -2239,6 +2308,9 @@
         <subPane />
       </pane>
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
+=======
+      <pane id="Scope" />
+>>>>>>> Stashed changes
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2369,11 +2441,14 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+<<<<<<< Updated upstream
 =======
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
+=======
+>>>>>>> Stashed changes
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2392,7 +2467,10 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -2402,11 +2480,17 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< Updated upstream
               <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
 =======
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
+=======
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+>>>>>>> Stashed changes
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2429,7 +2513,10 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -2527,7 +2614,9 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
       <pane id="PackagesPane" />
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
     </panes>
@@ -3151,7 +3240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494719059681</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Edited the UI for the settings app, included an EditText for the user to input their desired wait time.">
+      <created>1494721707099</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1494721707099</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -3196,6 +3292,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
     <frame x="-11" y="-11" width="1942" height="1046" extended-state="6" />
@@ -3217,10 +3314,18 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.48569384" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44165435" sideWeight="0.5100143" order="11" side_tool="false" content_ui="tabs" />
 >>>>>>> 5f6019bb2b4f825bbf7c34ca7fc519e3e74bf4dc
+=======
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.48569384" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44235295" sideWeight="0.5100143" order="11" side_tool="false" content_ui="tabs" />
+>>>>>>> Stashed changes
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8124077" sideWeight="0.50214595" order="6" side_tool="true" content_ui="tabs" />
+<<<<<<< Updated upstream
 <<<<<<< HEAD
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54522926" sideWeight="0.49785408" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1920694" sideWeight="0.73390555" order="2" side_tool="false" content_ui="tabs" />
@@ -3228,6 +3333,11 @@
 =======
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54588234" sideWeight="0.49785408" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49187592" sideWeight="0.73390555" order="2" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4164706" sideWeight="0.49785408" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4917647" sideWeight="0.73390555" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> Stashed changes
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.032941177" sideWeight="0.5243205" order="8" side_tool="false" content_ui="tabs" />
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3670588" sideWeight="0.43705294" order="10" side_tool="false" content_ui="tabs" />
@@ -3256,7 +3366,6 @@
       <window_info id="Find Sample Code" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970026" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41008174" sideWeight="0.49713877" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -3350,7 +3459,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-25/android.jar!/dalvik/system/BaseDexClassLoader.class" />
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/android/app/PendingIntent.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/BootRecevier.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/karma2.bmp" />
@@ -3412,14 +3520,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="101" column="47" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/DejaVuMode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="409">
@@ -3440,6 +3540,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoAlarmTimer.java" />
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/new_app_widget.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -3452,6 +3553,8 @@
         <state />
       </provider>
     </entry>
+=======
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/test/PhotoListTester.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -3482,14 +3585,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
@@ -3561,32 +3664,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoList.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/Photo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="103" column="28" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="2684">
+          <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/NewAppWidget.java">
+    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/test/PhotoLoaderTester.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="40" selection-start-line="0" selection-start-column="40" selection-end-line="0" selection-end-column="40" />
-          <folding />
+        <state relative-caret-position="726">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3613,18 +3706,26 @@
           <folding />
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/Photo.java">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2684">
-          <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+        <state relative-caret-position="352">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/test/PhotoLoaderTester.java">
+    <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="726">
           <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
+=======
+        <state relative-caret-position="220">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -3636,6 +3737,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/androidTest/java/test/PhotoSorterTester.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3647,6 +3749,27 @@
         <state relative-caret-position="240">
           <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2016">
+          <caret line="103" column="28" selection-start-line="103" selection-start-column="28" selection-end-line="103" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2183#2184#0" expanded="true" />
+            <element signature="e#2227#2228#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/new_app_widget.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
@@ -3670,17 +3793,27 @@
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="45">
           <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
           <folding />
+=======
+        <state relative-caret-position="234">
+          <caret line="124" column="44" selection-start-line="124" selection-start-column="44" selection-end-line="124" selection-end-column="44" />
+          <folding>
+            <element signature="e#4801#4823#0" expanded="true" />
+            <element signature="e#5048#5076#0" expanded="true" />
+          </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/local.properties">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         <state relative-caret-position="220">
           <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
@@ -3690,6 +3823,14 @@
           <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
 >>>>>>> 5f6019bb2b4f825bbf7c34ca7fc519e3e74bf4dc
           <folding />
+=======
+        <state relative-caret-position="417">
+          <caret line="179" column="10" selection-start-line="179" selection-start-column="10" selection-end-line="179" selection-end-column="10" />
+          <folding>
+            <element signature="e#1537#1538#0" expanded="true" />
+            <element signature="e#1576#1577#0" expanded="true" />
+          </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -3716,24 +3857,62 @@
 =======
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="45">
           <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+=======
+        <state relative-caret-position="475">
+          <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1349#2200#0" expanded="true" />
+            <element signature="e#2199#2200#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoChangeWallPaper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoWallPaperReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="120">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+=======
+        <state relative-caret-position="233">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/AutoChangeWallPaper.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyAlarmManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        <state relative-caret-position="528">
+          <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/NewAppWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="75" column="28" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
           <folding />
 >>>>>>> bd1d07c27ce703e6416058e841c0c8ab384e7b7a
         </state>

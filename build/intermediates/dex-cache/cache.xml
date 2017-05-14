@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\DejaPhoto\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="12920f9016b8b05acbc2af7cdc13cef6946fe7d3">
+        <dex dex="D:\DejaPhoto\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_44ae089e9bf2233cf4a8459346d1144b7a55eb59\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\DejaPhoto\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e7c581d27e85b5bf1822081b3dbb2addb2829656">
+        <dex dex="D:\DejaPhoto\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_3a2a56c2e20187b0803564c5fab6c8c402dc78e1\classes.dex" />
+    </item>
+
+</items>

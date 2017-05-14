@@ -11,7 +11,10 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -24,10 +27,12 @@ public class MyWallPaperManager {
     Context mContext;
     WallpaperManager myWallPaperManager;
     int textSize = 50;
+    Intent intent;
 
     public MyWallPaperManager(Context mContext){
         myWallPaperManager = WallpaperManager.getInstance(mContext);
         this.mContext = mContext;
+
     }
 
     public void setWallPaper(Photo p){
@@ -49,7 +54,6 @@ public class MyWallPaperManager {
                         if (path == null) {
                             Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
                         } else {
-
 
                             Log.i("start set", "start");
                             Bitmap bitmap = BitmapFactory.decodeFile(path);
@@ -111,8 +115,8 @@ public class MyWallPaperManager {
 
 
     public void setTimer(){
-        Intent wallPaperIntent = new Intent(mContext, AutoChangeWallPaper.class);
-        mContext.startService(wallPaperIntent);
-
+        intent = new Intent(mContext, AutoChangeWallPaper.class);
+        intent.putExtra("waitTimeInt", -1);
+        mContext.startService(intent);
     }
 }
