@@ -28,7 +28,6 @@ public class MyAlarmManager extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startID){
 
-
         Log.i(alarmName, "start "+alarmName);
         Toast.makeText(this, alarmName + "running in the background", Toast.LENGTH_SHORT).show();
         alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);

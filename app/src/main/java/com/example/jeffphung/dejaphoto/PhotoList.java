@@ -73,7 +73,8 @@ public class PhotoList{
 
     }
 
-
+    //for testing
+    public int getIndex() { return this.index; }
 
     /*
      * return previous photo in the list

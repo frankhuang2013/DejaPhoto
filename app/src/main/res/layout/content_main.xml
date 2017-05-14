@@ -132,9 +132,10 @@
             android:hint="@string/waitTimeText" />
 
         <Button
-            android:id="@+id/waitTimeEnterButton"
+            android:id="@+id/waitTimeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:text="@string/waitTimeButtonText" />
 
     </LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.jeffphung.dejaphoto;
 
 import android.app.WallpaperManager;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +14,7 @@ import android.graphics.Point;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -24,10 +27,12 @@ public class MyWallPaperManager {
     Context mContext;
     WallpaperManager myWallPaperManager;
     int textSize = 50;
+    Intent intent;
 
     public MyWallPaperManager(Context mContext){
         myWallPaperManager = WallpaperManager.getInstance(mContext);
         this.mContext = mContext;
+
     }
 
     public void setWallPaper(Photo p){
@@ -50,7 +55,6 @@ public class MyWallPaperManager {
                             Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
                         } else {
 
-
                             Log.i("start set", "start");
                             Bitmap bitmap = BitmapFactory.decodeFile(path);
                             Log.i("BITMAP", bitmap + "");
@@ -72,6 +76,18 @@ public class MyWallPaperManager {
                             }
 
                             myWallPaperManager.setBitmap(bitmap);
+                            //new stuff
+                            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
+                            RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.new_app_widget);
+                            ComponentName thisWidget = new ComponentName(mContext, NewAppWidget.class);
+                            if (p.getKarma()) {
+                                remoteViews.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
+                            }
+                            else {
+                                remoteViews.setImageViewResource(R.id.buttonKarma, R.drawable.karma_greyed);
+                            }
+                            appWidgetManager.updateAppWidget(thisWidget, remoteViews);
+                            //new stuff
                             setTimer();
 
 
@@ -111,8 +127,8 @@ public class MyWallPaperManager {
 
 
     public void setTimer(){
-        Intent wallPaperIntent = new Intent(mContext, AutoChangeWallPaper.class);
-        mContext.startService(wallPaperIntent);
-
+        intent = new Intent(mContext, AutoChangeWallPaper.class);
+        intent.putExtra("waitTimeInt", -1);
+        mContext.startService(intent);
     }
 }

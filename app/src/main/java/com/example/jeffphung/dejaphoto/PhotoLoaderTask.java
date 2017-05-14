@@ -29,7 +29,6 @@ import static android.media.ExifInterface.TAG_IMAGE_WIDTH;
  */
 
 /* this class will load photo from default camera album */
- //
 public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
     final private String TAG_KARMA = ExifInterface.TAG_USER_COMMENT;
@@ -176,10 +175,10 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         mContext.startService(intent);
 
         //invoke AlarmManager to sort list every hour
+
         Intent alarmIntent = new Intent(mContext, MyAlarmManager.class);
         mContext.startService(alarmIntent);
 
-        //invoke autoWallPaper change to change background every x seconds.
         Intent wallPaperIntent = new Intent(mContext, AutoChangeWallPaper.class);
         mContext.startService(wallPaperIntent);
 
@@ -253,7 +252,8 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
             //convert DMS to decimal using formula
             double d = Integer.parseInt(gps_dms[0].split("/")[0]) / 1.0;
             double min = Integer.parseInt(gps_dms[1].split("/")[0]) / 60.0;
-            double sec = Integer.parseInt(gps_dms[2].split("/")[0]) / (3600.0);
+            double sec = Integer.parseInt(gps_dms[2].split("/")[0]) /
+                    Integer.parseInt(gps_dms[2].split("/")[1])/(3600.0);
 
             //if ref is W or S, negate the result
             if (ref.equals("W") || ref.equals("S"))
