@@ -62,7 +62,9 @@ public class PhotoList{
 
     }
 
-
+    //for testing
+    public int getIndex() { return this.index; }
+    public void setIndex( int ind ) { this.index = ind; }
 
     public Photo previous(){
         if(photoArrayList.size() ==0){
