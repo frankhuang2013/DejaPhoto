@@ -63,16 +63,15 @@ public class MyWallPaperManager {
                             Paint textPaint = new Paint();
                             textPaint.setTextSize(textSize);
                             textPaint.setColor(Color.WHITE);
-                            if (p.getCityName() != null) {
+                            if (p.getLocationName() != null) {
                                 WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
                                 Display display = wm.getDefaultDisplay();
                                 Point size = new Point();
                                 display.getSize(size);
                                 int phoneWidth = size.x;
                                 int phoneHeight = size.y;
-                                Log.i("PHONE SIZE", phoneWidth + " " + phoneHeight);
-                                Log.i("City name ", p.getCityName());
-                                c.drawText(p.getCityName(), p.getWidth() / 2 - phoneWidth / 2 + 50, p.getHeight() / 2 + phoneHeight / 2 - 150, textPaint);
+                                Log.i("location name ", p.getLocationName());
+                                c.drawText(p.getLocationName(), p.getWidth() / 2 - phoneWidth / 2 + 50, p.getHeight() / 2 + phoneHeight / 2 - 150, textPaint);
                             }
 
                             myWallPaperManager.setBitmap(bitmap);
@@ -107,6 +106,7 @@ public class MyWallPaperManager {
             }*/
         }
         else{
+            Log.i("Sorting photos now","try later");
             Toast.makeText(mContext,"Sorting photos now, try later", Toast.LENGTH_SHORT).show();
         }
 

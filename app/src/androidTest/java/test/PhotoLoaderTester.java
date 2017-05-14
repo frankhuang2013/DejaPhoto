@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import java.text.DecimalFormat;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -44,8 +45,9 @@ public class PhotoLoaderTester {
     @Test
     public void testToGregorianCalendar(){
         // calendar constructor month start at 0, 8 means Sept
-        GregorianCalendar calendar = new GregorianCalendar(
-                2015,8,14,2,28,0);
+        // toCalendar method will take care of this.
+        GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
+        calendar.set(2015,8,14,2,28,0);
         assertEquals(calendar,photoLoaderTask.toGregorianCalendar("2015:9:14", "2:28:0"));
 
         //more test cases

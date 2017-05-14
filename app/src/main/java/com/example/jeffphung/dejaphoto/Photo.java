@@ -180,8 +180,8 @@ public class Photo implements Comparable<Photo> {
 
 
     /* return a city name string, it will return null if no such information */
-    public String getCityName() {
-        Log.i("City",locationName+"");
+    public String getLocationName() {
+        Log.i("location name: ",locationName+"");
         return locationName;
     }
 

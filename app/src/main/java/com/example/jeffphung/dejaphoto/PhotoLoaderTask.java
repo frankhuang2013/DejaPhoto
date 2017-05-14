@@ -55,7 +55,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     protected void onPreExecute(){
         progressDialog = ProgressDialog.show(mContext,
                 "ProgressDialog",
-                "Wait for loading photos");
+                "Waiting for loading");
 
     }
 
@@ -73,8 +73,6 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         File finalCamDir = files[0];
 
         File[] camFiles = finalCamDir.listFiles();
-        Log.i("File","file"+finalCamDir+"");
-        Log.i("File","file"+camFiles+"");
         for(int i = 0; i< camFiles.length; i++){
             try {
                 Log.i("start loading","load "+i+"th photo");
@@ -86,7 +84,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                 exifInterface.setAttribute(TAG_KARMA,"false");
                 exifInterface.saveAttributes();
 
-                Log.i("ImagePath",path);
+                Log.i("ImagePath: ",path);
 
                 String released = exifInterface.getAttribute(TAG_RELEASED);
                 Log.i("ImageReleased",released+"");
@@ -128,6 +126,8 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                             toLocationName(location),
                             toBoolean(karma));
                     PhotoList.getPhotoListInstance().add(photo);
+
+                    Log.i("end loading","ends loading "+i+"th photo");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -137,7 +137,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         }
 
       //  Toast.makeText(mContext,list.size()+"",Toast.LENGTH_SHORT).show();
-        Log.i("end loading","end loading");
+        Log.i("end loading photos","end loading photos");
         return null;
     }
 
@@ -233,8 +233,6 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
             // change gps lat and long to a double using formula
             double la_double = toDouble(la,la_ref);
             double lo_double = toDouble(lo,lo_ref);
-            Log.i("la double",la_double+"");
-            Log.i("lo_double",lo_double+"");
             if(la_double != 0 && lo_double != 0) {
                 location= new Location("location");
                 location.setLatitude(la_double);
@@ -277,20 +275,22 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                 addresses = geocoder.getFromLocation(location.getLatitude(),
                         location.getLongitude(),2);
                 if(addresses.size() > 0) {
-                    //return city name
-                    String locationStr  = null;
+                    //return address
                     if(addresses.get(0).getMaxAddressLineIndex() > 0){
-                        locationStr = addresses.get(0).getAddressLine(0);
+                        String locationStr = addresses.get(0).getAddressLine(0);
                         if( locationStr != null) {
                             return locationStr;
                         }
                     }
+                    //return neighborhood
                     else if (addresses.get(0).getSubLocality() != null){
                         return addresses.get(0).getSubLocality();
                     }
+                    //return city name
                     else if(addresses.get(0).getLocality() != null){
                         return addresses.get(0).getLocality();
                     }
+                    //return coutry name
                     else if(addresses.get(0).getCountryName() != null)
                         return addresses.get(0).getCountryName();
                     Log.i("--------------","---------");
