@@ -64,7 +64,6 @@ public class PhotoList{
 
     //for testing
     public int getIndex() { return this.index; }
-    public void setIndex( int ind ) { this.index = ind; }
 
     public Photo previous(){
         if(photoArrayList.size() ==0){
@@ -110,5 +109,8 @@ public class PhotoList{
         Collections.sort(photoArrayList,Collections.<Photo>reverseOrder());
     }
 
+    public void setIndex(int i){
+        this.index = i;
+    }
 
 }

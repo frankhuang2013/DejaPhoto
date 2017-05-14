@@ -31,6 +31,7 @@ public class Photo implements Comparable<Photo> {
     /* this is a constructor for test purpose, use this constructor to declare a new Photo */
     public Photo(String imgPath){
         this.imgPath = imgPath;
+        Log.i("imgpath", imgPath);
     }
 
     public Photo(
@@ -139,11 +140,6 @@ public class Photo implements Comparable<Photo> {
 
     public Location getLocation() {
         return location;
-    }
-
-
-    public String city(){
-        return locationName;
     }
 
     /* return a city name string, it will return null if no such information */
