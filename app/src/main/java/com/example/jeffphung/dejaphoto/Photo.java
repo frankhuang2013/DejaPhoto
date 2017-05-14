@@ -31,6 +31,7 @@ public class Photo implements Comparable<Photo> {
     /* this is a constructor for test purpose, use this constructor to declare a new Photo */
     public Photo(String imgPath){
         this.imgPath = imgPath;
+        Log.i("imgpath", imgPath);
     }
 
     public Photo(
