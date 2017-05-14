@@ -1,6 +1,8 @@
 package com.example.jeffphung.dejaphoto;
 
 import android.app.WallpaperManager;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -76,6 +79,18 @@ public class MyWallPaperManager {
                             }
 
                             myWallPaperManager.setBitmap(bitmap);
+                            //new stuff
+                            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
+                            RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.new_app_widget);
+                            ComponentName thisWidget = new ComponentName(mContext, NewAppWidget.class);
+                            if (p.getKarma()) {
+                                remoteViews.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
+                            }
+                            else {
+                                remoteViews.setImageViewResource(R.id.buttonKarma, R.drawable.karma_greyed);
+                            }
+                            appWidgetManager.updateAppWidget(thisWidget, remoteViews);
+                            //new stuff
                             setTimer();
 
 
