@@ -46,7 +46,7 @@ public class PhotoLoaderTester {
         // calendar constructor month start at 0, 8 means Sept
         GregorianCalendar calendar = new GregorianCalendar(
                 2015,8,14,2,28,0);
-        assertEquals(calendar,photoLoaderTask.toGregorianCalendar("2015:9:14 2:28:0"));
+        assertEquals(calendar,photoLoaderTask.toGregorianCalendar("2015:9:14", "2:28:0"));
 
         //more test cases
     }

@@ -15,12 +15,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
 
-import static android.media.ExifInterface.TAG_DATETIME;
+import static android.media.ExifInterface.TAG_GPS_DATESTAMP;
 import static android.media.ExifInterface.TAG_GPS_LATITUDE;
 import static android.media.ExifInterface.TAG_GPS_LATITUDE_REF;
 import static android.media.ExifInterface.TAG_GPS_LONGITUDE;
 import static android.media.ExifInterface.TAG_GPS_LONGITUDE_REF;
+import static android.media.ExifInterface.TAG_GPS_TIMESTAMP;
 import static android.media.ExifInterface.TAG_IMAGE_LENGTH;
 import static android.media.ExifInterface.TAG_IMAGE_WIDTH;
 
@@ -71,6 +73,8 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         File finalCamDir = files[0];
 
         File[] camFiles = finalCamDir.listFiles();
+        Log.i("File","file"+finalCamDir+"");
+        Log.i("File","file"+camFiles+"");
         for(int i = 0; i< camFiles.length; i++){
             try {
                 Log.i("start loading","load "+i+"th photo");
@@ -88,8 +92,10 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                 Log.i("ImageReleased",released+"");
                 if(! toBoolean(released)) {
 
-                    String dateTime = exifInterface.getAttribute(TAG_DATETIME);
-                    Log.i("ImageDateTime", dateTime + "");
+                    String time = exifInterface.getAttribute(TAG_GPS_TIMESTAMP);
+                    Log.i("ImagTime", time + "");
+                    String date = exifInterface.getAttribute(TAG_GPS_DATESTAMP);
+                    Log.i("ImageDate",date+"");
                     String karma = exifInterface.getAttribute(TAG_KARMA);
                     Log.i("ImageKarma", karma + "");
                     String gps_longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE);
@@ -117,7 +123,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                             path,
                             toInt(width),
                             toInt(height),
-                            toGregorianCalendar(dateTime),
+                            toGregorianCalendar(date,time),
                             location,
                             toLocationName(location),
                             toBoolean(karma));
@@ -188,18 +194,17 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     /* generate a GregorianCalendar by dateStamp and timeStamp
      * arg format "YYYY:MM:DD HH:MM:SS"
      */
-    public GregorianCalendar toGregorianCalendar(String dateTime){
+    public GregorianCalendar toGregorianCalendar(String dateStamp, String timeStamp){
         GregorianCalendar calendar = null;
-        if(dateTime != null ){
+        if(dateStamp != null && timeStamp != null ){
             try {
                 //parse date and time from string
-                String dateStamp = dateTime.split("\\s+")[0];
-                String timeStamp = dateTime.split("\\s+")[1];
                 String[] date = dateStamp.split(":");
                 String[] time = timeStamp.split(":");
                 //make a calendar if date and time are valid
                 if (date.length == 3 && time.length == 3) {
-                    calendar = new GregorianCalendar(Integer.parseInt(date[YEAR_INDEX])
+                    calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
+                    calendar.set(Integer.parseInt(date[YEAR_INDEX])
                             , (Integer.parseInt(date[MONTH_INDEX])-1)//month start at 0
                             , Integer.parseInt(date[DAY_INDEX])
                             , Integer.parseInt(time[HOUR_INDEX])
@@ -215,7 +220,6 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
         return calendar;
     }
-
 
     /* convert longitude and latitude to a Location Object
      * lo format: "d/1,m/1,s/100"
@@ -271,10 +275,26 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
             try {
                 // call gecoder to get address from location
                 addresses = geocoder.getFromLocation(location.getLatitude(),
-                        location.getLongitude(),5);
+                        location.getLongitude(),2);
                 if(addresses.size() > 0) {
                     //return city name
-                    return addresses.get(0).getLocality();
+                    String locationStr  = null;
+                    if(addresses.get(0).getMaxAddressLineIndex() > 0){
+                        locationStr = addresses.get(0).getAddressLine(0);
+                        if( locationStr != null) {
+                            return locationStr;
+                        }
+                    }
+                    else if (addresses.get(0).getSubLocality() != null){
+                        return addresses.get(0).getSubLocality();
+                    }
+                    else if(addresses.get(0).getLocality() != null){
+                        return addresses.get(0).getLocality();
+                    }
+                    else if(addresses.get(0).getCountryName() != null)
+                        return addresses.get(0).getCountryName();
+                    Log.i("--------------","---------");
+                    Log.i("first",addresses.get(0)+"");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

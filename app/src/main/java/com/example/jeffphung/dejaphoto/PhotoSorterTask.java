@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 /**
  * Created by kaijiecai on 4/30/17.
@@ -44,7 +45,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
     @Override
     protected void onPreExecute(){
         dejaVuMode = DejaVuMode.getDejaVuModeInstance();
-        currentCalendar = new GregorianCalendar();
+        currentCalendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
         list = PhotoList.getPhotoListInstance();
 
     }
@@ -152,7 +153,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     /* check if two calendar time are close */
     public boolean withinHours(GregorianCalendar currentCalendar,GregorianCalendar calendar){
-        Log.i("current time", currentCalendar.get(Calendar.HOUR)+"");
+        Log.i("current UTC time", currentCalendar.get(Calendar.HOUR)+"");
         int currentTime = calendarToSecond(currentCalendar);
         int calendarTime = calendarToSecond(calendar);
         if(Math.abs(currentTime - calendarTime) <= WITHINTIME){

@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         waitTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 waitTimeInt = -1;
                 waitTimeStr = waitTimeText.getText().toString();
                 boolean isNum = true;
