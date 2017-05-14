@@ -33,7 +33,7 @@ import static android.media.ExifInterface.TAG_IMAGE_WIDTH;
 public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
     final private String TAG_KARMA = ExifInterface.TAG_USER_COMMENT;
-    final private String TAG_RELEASED = "TAG_RELEASED";
+    final private String TAG_RELEASED = ExifInterface.TAG_IMAGE_DESCRIPTION;
     final private int YEAR_INDEX = 0;
     final private int MONTH_INDEX = 1;
     final private int DAY_INDEX = 2;
@@ -58,27 +58,12 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
     }
 
-    /* convert string to boolean type
-     * accept string "true" or "false" and return corresponding boolean value
-     */
-    public boolean toBoolean(String str){
-        if(str == null){
-            return false;
-        }
-        else if(str.equals("true")){
-            return true;
-        }
-        else
-            return false;
-    }
 
 
     @Override
     protected String doInBackground(Void... params) {
         Log.i("start loading","start loading");
-        /*
-        String[] strings = {"img1.jpg","img2.jpg","img3.jpg","img4.jpg","img5.jpg","img6.jpg"
-        ,"img7.jpg","img8.jpg","img9.jpg","img10.jpg"};*/
+
         //gets path to camera album photos
         File cameraDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString());
 
@@ -90,14 +75,11 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         for(int i = 0; i< camFiles.length; i++){
             try {
                 Log.i("start loading","load "+i+"th photo");
-                /*
-                String path = Environment
-                        .getExternalStorageDirectory()
-                        .getAbsolutePath()+"/Download/" + strings[i];*/
 
                 String path = camFiles[i].toString();
                 ExifInterface exifInterface = new ExifInterface(path);
 
+                //// TODO: 5/13/17
                 exifInterface.setAttribute(TAG_KARMA,"false");
                 exifInterface.saveAttributes();
 
@@ -125,11 +107,13 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                     Log.i("ImageHeight",height+"");
 
 
+                    //convert to location object using latitude and longitude
                     Location location = toLocation
                             (gps_longitude, gps_longitude_ref, gps_latitude, gps_latitude_ref);
                     Log.i("Location", location + "");
 
 
+                    // create a photo, and add it to list
                     Photo photo = new Photo(
                             path,
                             toInt(width),
@@ -153,6 +137,24 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     }
 
 
+
+    /* convert string to boolean type
+     * accept string "true" or "false" and return corresponding boolean value
+     */
+    public boolean toBoolean(String str){
+        if(str == null){
+            return false;
+        }
+        else if(str.equals("true")){
+            return true;
+        }
+        else
+            return false;
+    }
+
+    /* convrt a string to int
+     * will return -1 for any error condition
+     */
     public int toInt(String str){
         if(str != null) {
             try {
@@ -169,12 +171,15 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     @Override
     public void onPostExecute (String result){
         progressDialog.dismiss();
+        //invoke autoGPStimer to sort list every 500ft change
         Intent intent = new Intent(mContext,AutoGPSTimer.class);
         mContext.startService(intent);
 
+        //invoke AlarmManager to sort list every hour
         Intent alarmIntent = new Intent(mContext, MyAlarmManager.class);
         mContext.startService(alarmIntent);
 
+        //invoke autoWallPaper change to change background every x seconds.
         Intent wallPaperIntent = new Intent(mContext, AutoChangeWallPaper.class);
         mContext.startService(wallPaperIntent);
 
@@ -188,10 +193,12 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         GregorianCalendar calendar = null;
         if(dateTime != null ){
             try {
+                //parse date and time from string
                 String dateStamp = dateTime.split("\\s+")[0];
                 String timeStamp = dateTime.split("\\s+")[1];
                 String[] date = dateStamp.split(":");
                 String[] time = timeStamp.split(":");
+                //make a calendar if date and time are valid
                 if (date.length == 3 && time.length == 3) {
                     calendar = new GregorianCalendar(Integer.parseInt(date[YEAR_INDEX])
                             , (Integer.parseInt(date[MONTH_INDEX])-1)//month start at 0
@@ -220,6 +227,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     public Location toLocation(String lo, String lo_ref,String la, String la_ref){
         Location location= null;
         if(lo != null && la != null){
+            // change gps lat and long to a double using formula
             double la_double = toDouble(la,la_ref);
             double lo_double = toDouble(lo,lo_ref);
             Log.i("la double",la_double+"");
@@ -242,10 +250,12 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     public Double toDouble(String gps,String ref) {
         if(gps != null && ref != null) {
             String[] gps_dms = gps.split(",");
+            //convert DMS to decimal using formula
             double d = Integer.parseInt(gps_dms[0].split("/")[0]) / 1.0;
             double min = Integer.parseInt(gps_dms[1].split("/")[0]) / 60.0;
             double sec = Integer.parseInt(gps_dms[2].split("/")[0]) / (3600.0);
 
+            //if ref is W or S, negate the result
             if (ref.equals("W") || ref.equals("S"))
                 return (d + min + sec) * (-1);
             return d + min + sec;
@@ -259,10 +269,11 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         if(location != null){
             Geocoder geocoder = new Geocoder(mContext);
             try {
+                // call gecoder to get address from location
                 addresses = geocoder.getFromLocation(location.getLatitude(),
                         location.getLongitude(),5);
                 if(addresses.size() > 0) {
-                    //Log.i("---------",addresses.get(0).getLocality());
+                    //return city name
                     return addresses.get(0).getLocality();
                 }
             } catch (IOException e) {

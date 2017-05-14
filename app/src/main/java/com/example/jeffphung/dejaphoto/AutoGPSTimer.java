@@ -24,7 +24,7 @@ public class AutoGPSTimer extends Service implements LocationListener {
     Location location;
     // Declaring a Location Manager
     protected LocationManager locationManager;
-    final long TIMER = 1000*10;  //1000*100 millseconds = 10 seconds
+    final long TIMER = 1000*10;  //1000*100 milliseconds = 10 seconds
     final float LOCATIONCHANGE = 152.4f; // 500 ft/152.4 meters
 
 

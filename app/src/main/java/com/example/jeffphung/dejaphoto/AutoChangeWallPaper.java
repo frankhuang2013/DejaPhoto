@@ -39,10 +39,7 @@ public class AutoChangeWallPaper extends Service {
 
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 SystemClock.elapsedRealtime()+INTERVAL, alarmIntent);
-        /*
-        alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime()+INTERVAL,
-                INTERVAL, alarmIntent);*/
+
         Log.i(alarmName, alarmName+" ends setting timer");
 
         return START_STICKY;
