@@ -2,6 +2,7 @@ package com.example.jeffphung.dejaphoto;
 
 import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -31,7 +32,10 @@ public class MyWallPaperManager {
 
     public void setWallPaper(Photo p){
 
-
+        if (PhotoList.getPhotoListInstance().size() == 0) {
+            setDefaultWallpaper();
+            return;
+        }
 
         if(PhotoList.getPhotoListInstance().isAllowed()) {
             if (p != null) {
@@ -51,7 +55,6 @@ public class MyWallPaperManager {
                             Bitmap bitmap = BitmapFactory.decodeFile(path);
                             Log.i("BITMAP", bitmap + "");
                             bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-
                             Canvas c = new Canvas(bitmap);
                             Paint textPaint = new Paint();
                             textPaint.setTextSize(textSize);
@@ -69,6 +72,7 @@ public class MyWallPaperManager {
                             }
 
                             myWallPaperManager.setBitmap(bitmap);
+                            setTimer();
 
 
                             Log.i("finish set img", "finished");
@@ -81,9 +85,10 @@ public class MyWallPaperManager {
                         // test
                     }
                 }
-            } else if (PhotoList.getPhotoListInstance().size() == 0) {
-                setDefaultWallpaper();
             }
+            /*else if (PhotoList.getPhotoListInstance().size() == 0) {
+                setDefaultWallpaper();
+            }*/
         }
         else{
             Toast.makeText(mContext,"Sorting photos now, try later", Toast.LENGTH_SHORT).show();
@@ -101,6 +106,13 @@ public class MyWallPaperManager {
             e.printStackTrace();
         }
 
+
+    }
+
+
+    public void setTimer(){
+        Intent wallPaperIntent = new Intent(mContext, AutoChangeWallPaper.class);
+        mContext.startService(wallPaperIntent);
 
     }
 }

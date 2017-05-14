@@ -171,8 +171,12 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         progressDialog.dismiss();
         Intent intent = new Intent(mContext,AutoGPSTimer.class);
         mContext.startService(intent);
-        Intent alarmIntent = new Intent(mContext, AutoAlarmTimer.class);
+
+        Intent alarmIntent = new Intent(mContext, MyAlarmManager.class);
         mContext.startService(alarmIntent);
+
+        Intent wallPaperIntent = new Intent(mContext, AutoChangeWallPaper.class);
+        mContext.startService(wallPaperIntent);
 
     }
 

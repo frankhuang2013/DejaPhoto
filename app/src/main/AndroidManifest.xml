@@ -40,22 +40,37 @@
         </receiver>
 
         <service
-            android:name=".AutoAlarmTimer"
+            android:name=".MyAlarmManager"
             android:enabled="true"
             android:exported="true" />
+
+        <service android:name=".AutoChangeWallPaper"
+            android:enabled="true"
+            android:exported="true"/>
 
         <service
             android:name=".AutoGPSTimer"
             android:enabled="true"
             android:exported="true" />
-        <receiver android:name=".AlarmReceiver"
+
+        <receiver android:name=".MyAlarmReceiver"
             android:enabled="true"
             android:exported="true"/>
             <intent-filter>
                 <action android:name="android.intent.action.COMPONENT_ENABLED_STATE_ENABLED" />
             </intent-filter>
 
-            />
+        />
+
+        <receiver android:name=".AutoWallPaperReceiver"
+            android:enabled="true"
+            android:exported="true"/>
+        <intent-filter>
+            <action android:name="android.intent.action.COMPONENT_ENABLED_STATE_ENABLED" />
+        </intent-filter>
+
+        />
+
     </application>
 
 </manifest>

@@ -110,7 +110,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
             //sort the list according to points
             list.sort();
-
+            list.setIndex(0);
             PhotoList.getPhotoListInstance().setAllowed(true);
             // set the first photo in the list as background
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(mContext);
