@@ -15,7 +15,7 @@ public class Photo implements Comparable<Photo> {
 
 
     final private String TAG_KARMA = ExifInterface.TAG_USER_COMMENT;
-    final private String TAG_RELEASED = "TAG_RELEASED";
+    final private String TAG_RELEASED = ExifInterface.TAG_IMAGE_DESCRIPTION;
     private String imgPath;
     private GregorianCalendar calendar;
     private String locationName;
@@ -31,7 +31,6 @@ public class Photo implements Comparable<Photo> {
     /* this is a constructor for test purpose, use this constructor to declare a new Photo */
     public Photo(String imgPath){
         this.imgPath = imgPath;
-        Log.i("imgpath", imgPath);
     }
 
     public Photo(
@@ -55,6 +54,9 @@ public class Photo implements Comparable<Photo> {
 
 
 
+    /*
+     * add points to photo
+     */
     public void addPoints(int points){
         this.points +=points;
     }
@@ -66,6 +68,9 @@ public class Photo implements Comparable<Photo> {
         return karma;
     }
 
+    /*
+     * set Karma to be true or false, and write it to the photo
+     */
     public void setKarma(Boolean karma) {
         this.karma = karma;
         try {
@@ -84,42 +89,69 @@ public class Photo implements Comparable<Photo> {
         return released;
     }
 
+
+    /*
+     * remove the photo from list
+     * and mark it as removed in the photo
+     */
     public void setReleased(Boolean released) {
         this.released = released;
         try {
             ExifInterface exifInterface = new ExifInterface(imgPath);
-            exifInterface.setAttribute(TAG_RELEASED,released+"");
+            exifInterface.setAttribute(TAG_RELEASED,released+"");//// TODO: 5/13/17  
             exifInterface.saveAttributes();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /*
+     * return the points of photo
+     */
     public int getPoints() {
         return points;
     }
 
+    /*
+     * set points
+     */
     public void setPoints(int points) {
         this.points = points;
     }
 
 
+    /*
+     * return calendar of photo
+     */
     public GregorianCalendar getCalendar() {
         return calendar;
     }
 
+    /*
+     * return image path in photo
+     */
     public String getImgPath() { return imgPath;}
 
 
 
+    /*
+     * compare two photos
+     * return 1 if the photo has higher points
+     * return -1 if the photo has lower points
+     * if two photos have same points
+     *   return 1 if photo was taken recent
+     * if two photos have same points and taken at the same time, then 0 will be returned
+     */
     @Override
     public int compareTo(Photo o) {
+        //compare points
         if(getPoints() > o.getPoints()){
             return 1;
         }
         else if(getPoints() < o.getPoints())
             return -1;
 
+        //compare taken time
         else if (getCalendar() != null && o.getCalendar() != null) {
             if (getCalendar().compareTo(o.getCalendar())>0) {
                 return 1;
@@ -129,18 +161,23 @@ public class Photo implements Comparable<Photo> {
 
             }
         }
+
+        //if photo has no time info, then return -1
         else if( getCalendar() == null){
             return -1;
         }
         else if( o.getCalendar() == null){
             return 1;
         }
+
+        // return 0 if photos have same points and taken at same time
         return 0;
     }
 
     public Location getLocation() {
         return location;
     }
+
 
     /* return a city name string, it will return null if no such information */
     public String getCityName() {

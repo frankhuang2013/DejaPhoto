@@ -20,8 +20,6 @@ public class NewAppWidget extends AppWidgetProvider {
     private static  String karmaButtonClicked = "karmaButtonClicked";
     private static  String releaseButtonClicked = "releaseButtonClicked";
 
-    static boolean noPhotos = false;
-
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
@@ -106,7 +104,7 @@ public class NewAppWidget extends AppWidgetProvider {
             Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);
-            setKarmImage(context, views, photo);
+            setKarmImage( views, photo);
 
         }
         else if (intent.getAction().equals(prevButtonClicked)) {
@@ -120,7 +118,7 @@ public class NewAppWidget extends AppWidgetProvider {
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);
             // put behavior here:
-            setKarmImage(context, views, photo);
+            setKarmImage( views, photo);
         }
         else if (intent.getAction().equals(karmaButtonClicked))
         {
@@ -139,7 +137,7 @@ public class NewAppWidget extends AppWidgetProvider {
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);
             if (photo != null) {
-                setKarmImage(context, views, photo);
+                setKarmImage( views, photo);
             }
             else views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_greyed);
 
@@ -151,7 +149,7 @@ public class NewAppWidget extends AppWidgetProvider {
 
 
 
-    public void setKarmImage(Context context, RemoteViews v, Photo p){
+    public void setKarmImage( RemoteViews v, Photo p){
 
         RemoteViews views = v;
         if (p.getKarma()) {
