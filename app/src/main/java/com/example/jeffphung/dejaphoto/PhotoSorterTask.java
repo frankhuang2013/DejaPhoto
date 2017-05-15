@@ -39,7 +39,6 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
     public PhotoSorterTask(Location currentLocation, Context context){
         mContext = context;
         this.currentLocation = currentLocation;
-        Log.i("current Location",currentLocation+"");
     }
 
     @Override
@@ -60,6 +59,8 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
     protected String doInBackground(Void...params) {
         Log.i("photo sorter","--------------");
         Log.i("photo sorter", "sorter invoked");
+
+        Log.i("current Location",currentLocation+"");
         if(PhotoList.getPhotoListInstance().isAllowed()) {
             PhotoList.getPhotoListInstance().setAllowed(false);
             if (dejaVuMode.isDejaVuModeOn()) {
@@ -67,6 +68,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                 for (int i = 0; i < list.size(); i++) {
                     Photo photo = list.getPhoto(i);
                     Log.i("Path", photo.getPoints() + "" + photo.getImgPath());
+
                 /* check if photo is null or if the photo is released by user */
                     if (photo != null && !photo.isReleased()) {
                         photo.setPoints(0);
