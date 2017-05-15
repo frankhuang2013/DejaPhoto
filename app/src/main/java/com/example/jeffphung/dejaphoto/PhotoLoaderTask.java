@@ -63,7 +63,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
     @Override
     protected String doInBackground(Void... params) {
-        Log.i("start loading","start loading");
+        Log.i("start loading","start loading-----------");
 
         //gets path to camera album photos
         File cameraDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString());
@@ -127,7 +127,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                             toBoolean(karma));
                     PhotoList.getPhotoListInstance().add(photo);
 
-                    Log.i("end loading","ends loading "+i+"th photo");
+                    Log.i("end loading","ends loading "+i+"th photo----");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

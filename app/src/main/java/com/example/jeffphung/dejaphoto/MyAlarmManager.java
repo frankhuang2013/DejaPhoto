@@ -11,7 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 /**
- * Created by kaijiecai on 5/5/17.
+ * This class will set a alarm which will invoke receiver every hour
  */
 
 public class MyAlarmManager extends Service {
@@ -19,7 +19,7 @@ public class MyAlarmManager extends Service {
     private PendingIntent alarmIntent;
     private long INTERVAL = AlarmManager.INTERVAL_HOUR;
     private int id = 0;
-    private String alarmName = "Default Alarm";
+    private String alarmName = "alarm to sort photos";
 
     public MyAlarmManager(){
 

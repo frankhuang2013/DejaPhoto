@@ -99,15 +99,4 @@ public class PhotoLoaderTester {
 
 
     }
-
-    @Test
-    public void testToLocationName(){
-        Location location = new Location("location");
-        location.setLatitude(32.715736);
-        location.setLongitude(-117.161087);
-        assertEquals("San Diego",photoLoaderTask.toLocationName(location));
-
-        //more test cases
-
-    }
 }

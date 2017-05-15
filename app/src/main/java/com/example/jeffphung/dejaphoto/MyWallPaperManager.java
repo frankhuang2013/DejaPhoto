@@ -55,25 +55,27 @@ public class MyWallPaperManager {
                             Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
                         } else {
 
+                            WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+                            Display display = wm.getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int phoneWidth = size.x;
+                            int phoneHeight = size.y;
                             Log.i("start set", "start");
                             Bitmap bitmap = BitmapFactory.decodeFile(path);
                             Log.i("BITMAP", bitmap + "");
+                            bitmap = Bitmap.createScaledBitmap(bitmap, phoneWidth, phoneHeight,true);
                             bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+
                             Canvas c = new Canvas(bitmap);
                             Paint textPaint = new Paint();
                             textPaint.setTextSize(textSize);
                             textPaint.setColor(Color.WHITE);
                             if (p.getLocationName() != null) {
-                                WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-                                Display display = wm.getDefaultDisplay();
-                                Point size = new Point();
-                                display.getSize(size);
-                                int phoneWidth = size.x;
-                                int phoneHeight = size.y;
                                 Log.i("location name ", p.getLocationName());
-                                c.drawText(p.getLocationName(), p.getWidth() / 2 - phoneWidth / 2 + 50, p.getHeight() / 2 + phoneHeight / 2 - 150, textPaint);
+                                c.drawText(p.getLocationName(), bitmap.getWidth() / 2 - phoneWidth / 2 + 30,
+                                        bitmap.getHeight() / 2 + phoneHeight / 2 - 80, textPaint);
                             }
-
                             myWallPaperManager.setBitmap(bitmap);
                             //new stuff
                             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);

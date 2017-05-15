@@ -94,6 +94,7 @@ public class NewAppWidget extends AppWidgetProvider {
         Log.i("appWidgetId", appWidgetId + "");
         super.onReceive(context, intent);
         Photo photo = null;
+        if (PhotoList.getPhotoListInstance().size() == 0) return;
         if (intent.getAction().equals(nextButtonClicked)) {
 
             Log.i("start get img","start");
@@ -104,11 +105,9 @@ public class NewAppWidget extends AppWidgetProvider {
             Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);
-            //setKarmImage( views, photo);
 
         }
         else if (intent.getAction().equals(prevButtonClicked)) {
-
             photo = PhotoList.getPhotoListInstance().previous();
             if (photo == null) return;
             Log.i("picPath",photo.getImgPath()+"");
@@ -117,8 +116,6 @@ public class NewAppWidget extends AppWidgetProvider {
             Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);
-            // put behavior here:
-            //setKarmImage( views, photo);
         }
         else if (intent.getAction().equals(karmaButtonClicked))
         {
@@ -136,29 +133,10 @@ public class NewAppWidget extends AppWidgetProvider {
             Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);
-            if (photo != null) {
-                //setKarmImage( views, photo);
-            }
-            else views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_greyed);
-
         }
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
     }
 
-
-
-
-    public void setKarmImage(RemoteViews v, Photo p){
-
-        RemoteViews views = v;
-        if (p.getKarma()) {
-            views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
-        }
-        else {
-            views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_greyed);
-        }
-
-    }
 }
 

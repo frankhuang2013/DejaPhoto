@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/beierli/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/kaijiecai/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="d09d783c6132ed8b3497a26e51eeff10d7c50a52">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_da27012ba838a22cc8afe91605e18ff534b6c1cd/classes.dex" />
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/Users/kaijiecai/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_3a45114b851249190d2a3fe90aebbec327e191cd/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/beierli/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/kaijiecai/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="12920f9016b8b05acbc2af7cdc13cef6946fe7d3">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_e296198ac35123361576e6e888bce0f74c4c0c2c/classes.dex" />
+        sha1="5cba94ad332ae8a661196c5b89f3d236b4327899">
+        <dex dex="/Users/kaijiecai/AndroidStudioProjects/DejaPhoto/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_2b1e171ae88b5a3603f71b21789fceee0aceecad/classes.dex" />
     </item>
 
 </items>

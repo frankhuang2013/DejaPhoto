@@ -9,8 +9,6 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
 
 /**
  * Created by kaijiecai on 5/13/17.
@@ -22,11 +20,7 @@ public class AutoChangeWallPaper extends Service {
     private long INTERVAL = 1000*300;
     private int id = 1;
     private String alarmName = "Auto change photo alarm";
-    private Button waitTimeButton;
-    private EditText waitTimeText;
-    private String waitTimeStr;
     private int waitTimeInt = -1;
-    private Intent mIntent;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startID){

@@ -16,7 +16,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 /**
- * Created by kaijiecai on 5/4/17.
+ * This class will update the location change every 5 secs, and for every 500 ft change
+ * it will call PhotoSoter to sort the photos
  */
 
 public class AutoGPSTimer extends Service implements LocationListener {
@@ -24,20 +25,20 @@ public class AutoGPSTimer extends Service implements LocationListener {
     Location location;
     // Declaring a Location Manager
     protected LocationManager locationManager;
-    final long TIMER = 1000*10;  //1000*100 milliseconds = 10 seconds
+    final long TIMER = 1000*5;  //1000*100 milliseconds = 10 seconds
     final float LOCATIONCHANGE = 152.4f; // 500 ft/152.4 meters
 
 
     @Override
     public void onCreate(){
-        Toast.makeText(this, "running gps in the background", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "GPS running gps in the background", Toast.LENGTH_SHORT).show();
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
     }
 
     @Override
     public void onDestroy(){
-        Toast.makeText(this, "background gps stopped", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "GPS background gps stopped", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -57,15 +58,17 @@ public class AutoGPSTimer extends Service implements LocationListener {
             // for ActivityCompat#requestPermissions for more details.
             return START_NOT_STICKY;
         }
+        // check if network provider available
         else if(locationManager
                 .isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
                     TIMER, LOCATIONCHANGE, this);
             if(locationManager!= null){
+                //update location
                 location= locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             }
         }
-
+        // check if gps provider available
         else if(locationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
@@ -73,6 +76,7 @@ public class AutoGPSTimer extends Service implements LocationListener {
                     TIMER, LOCATIONCHANGE, this);
 
             if(locationManager!= null){
+                //update location
                 location= locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
             }
@@ -83,6 +87,8 @@ public class AutoGPSTimer extends Service implements LocationListener {
 
     }
 
+
+    // call photoSorter to sort list
     private void callPhotoSorter() {
         PhotoSorterTask photoSorterTask = new PhotoSorterTask(location, AutoGPSTimer.this);
         photoSorterTask.execute();
@@ -100,6 +106,7 @@ public class AutoGPSTimer extends Service implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         if(location != null) {
+            this.location = location;
             callPhotoSorter();
         }
         Log.i("location change","on location changed");
