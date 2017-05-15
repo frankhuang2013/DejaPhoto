@@ -106,6 +106,7 @@ public class AutoGPSTimer extends Service implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         if(location != null) {
+            this.location = location;
             callPhotoSorter();
         }
         Log.i("location change","on location changed");
