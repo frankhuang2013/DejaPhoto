@@ -77,6 +77,9 @@ public class MyWallPaperManager {
                                         bitmap.getHeight() / 2 + phoneHeight / 2 - 80, textPaint);
                             }
                             myWallPaperManager.setBitmap(bitmap);
+
+                            bitmap.recycle();
+                            bitmap = null;
                             //new stuff
                             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
                             RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.new_app_widget);

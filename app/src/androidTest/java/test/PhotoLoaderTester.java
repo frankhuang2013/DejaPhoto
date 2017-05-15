@@ -16,6 +16,7 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -39,7 +40,8 @@ public class PhotoLoaderTester {
     public void testToBoolean() {
         assertTrue(photoLoaderTask.toBoolean("true"));
         //more test cases
-
+        assertFalse(photoLoaderTask.toBoolean("false"));
+        assertFalse(photoLoaderTask.toBoolean("-1"));
     }
 
     @Test
@@ -50,21 +52,31 @@ public class PhotoLoaderTester {
         calendar.set(2015,8,14,2,28,0);
         assertEquals(calendar,photoLoaderTask.toGregorianCalendar("2015:9:14", "2:28:0"));
 
-        //more test cases
+        calendar.set(2016,11,30,1,30,59);
+        assertEquals(calendar,photoLoaderTask.toGregorianCalendar("2016:12:30", "1:30:59"));
+
+        calendar.set(1990,6,1,1,1,1);
+        assertEquals(calendar,photoLoaderTask.toGregorianCalendar("1990:7:1", "1:1:1"));
     }
 
     @Test
     public void testToDouble(){
         DecimalFormat twoDForm = new DecimalFormat("#.####");
 
-        assertEquals(new Double(-10.1944),
+        assertEquals(new Double(-10.1669),
                 Double.valueOf(twoDForm.format(photoLoaderTask.toDouble("10/1,10/1,100/100","W"))));
-
-
-
-
         //more test cases
         //google DMS to decimal convertor
+
+        assertEquals(new Double(-20.5003),Double.valueOf(twoDForm.format(photoLoaderTask.toDouble("20/1,30/1,100/100","W"))));
+
+        assertEquals(new Double(-1.0169),Double.valueOf(twoDForm.format(photoLoaderTask.toDouble("1/1,1/1,100/100","W"))));
+        assertEquals(new Double(-10.1694),Double.valueOf(twoDForm.format(photoLoaderTask.toDouble("10/1,10/1,1000/100","W"))));
+
+        assertEquals(new Double(-1.0003),Double.valueOf(twoDForm.format(photoLoaderTask.toDouble("0/0,60/1,100/100","W"))));
+
+        assertEquals(new Double(-20.5003),Double.valueOf(twoDForm.format(photoLoaderTask.toDouble("20/1,30/1,100/100","W"))));
+
 
 
     }
@@ -80,18 +92,11 @@ public class PhotoLoaderTester {
                 photoLoaderTask.toLocation("10/1,10/1,100/100","E","10/1,10/1,100/100","N").getLatitude()
                 ,DELTA);
 
-        //more test cases
 
-    }
+        assertEquals(location.getLatitude(),
+                photoLoaderTask.toLocation("10/1,10/1,100/100","E","10/1,10/1,100/100","N").getLongitude()
+                ,DELTA);
 
-    @Test
-    public void testToLocationName(){
-        Location location = new Location("location");
-        location.setLatitude(32.715736);
-        location.setLongitude(-117.161087);
-        assertEquals("San Diego",photoLoaderTask.toLocationName(location));
-
-        //more test cases
 
     }
 }
