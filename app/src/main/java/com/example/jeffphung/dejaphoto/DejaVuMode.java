@@ -27,87 +27,35 @@ public class DejaVuMode {
     }
 
 
-    /* return true if all sub-modes are off */
-    private boolean isAllModeOff(){
-        return !isDayModeOn()&&!isLocationModeOn()&&!isTimeModeOn();
-    }
-
-    /* return true if all sub-modes are on */
-    private boolean isAllModeOn(){
-        return isDayModeOn()&&isLocationModeOn()&&isTimeModeOn();
-    }
-
     public boolean isDejaVuModeOn() {
         return dejaVuModeOn;
     }
 
-    /* turn off DejaVuMode will automatically turn off all modes */
-    public void setDejaVuModeOn(boolean b) {
-        this.dejaVuModeOn = b;
-        if(!b){
-            this.dayModeOn=false;
-            this.locationModeOn=false;
-            this.timeModeOn=false;
-        }
-        else{
-            this.dayModeOn=true;
-            this.locationModeOn=true;
-            this.timeModeOn=true;
-        }
-
+    public void setDejaVuModeOn(boolean dejaVuModeOn) {
+        this.dejaVuModeOn = dejaVuModeOn;
     }
 
     public boolean isLocationModeOn() {
         return locationModeOn;
     }
 
-
-    /* if received a true, it will turn on the DejaVuMode
-     * if all sub-modes are off, it will turn off the DejaVuMode
-     */
-    public void setLocationModeOn(boolean b) {
-        this.locationModeOn = b;
-        if(isAllModeOff()){
-            this.dejaVuModeOn = false;
-        }
-        else if(b){
-            this.dejaVuModeOn = true;
-        }
+    public void setLocationModeOn(boolean locationModeOn) {
+        this.locationModeOn = locationModeOn;
     }
 
     public boolean isTimeModeOn() {
         return timeModeOn;
     }
 
-    /* if received a true, it will turn on the DejaVuMode
-     * if all sub-modes are off, it will turn off the DejaVuMode
-     */
-    public void setTimeModeOn(boolean b) {
-        this.timeModeOn = b;
-        if(isAllModeOff()){
-            this.dejaVuModeOn = false;
-        }
-        else if(b){
-            this.dejaVuModeOn = true;
-        }
+    public void setTimeModeOn(boolean timeModeOn) {
+        this.timeModeOn = timeModeOn;
     }
 
     public boolean isDayModeOn() {
         return dayModeOn;
     }
 
-
-    /* if received a true, it will turn on the DejaVuMode
-     * if all sub-modes are off, it will turn off the DejaVuMode
-     */
-    public void setDayModeOn(boolean b) {
-        this.dayModeOn = b;
-        if(isAllModeOff()){
-            this.dejaVuModeOn = false;
-        }
-        else if(b){
-            this.dejaVuModeOn = true;
-        }
+    public void setDayModeOn(boolean dayModeOn) {
+        this.dayModeOn = dayModeOn;
     }
-
 }

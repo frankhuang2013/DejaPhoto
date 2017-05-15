@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:layout_marginBottom="150dp"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.jeffphung.dejaphoto.MainActivity"
@@ -17,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:textSize="30dp"
         android:text="@string/header" />
 
     <LinearLayout
@@ -26,21 +28,20 @@
 
         <ToggleButton
             android:id="@+id/dejaVuButton"
-            android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:checked="true" />
 
         <TextView
             android:id="@+id/dejaVuText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/dejavumode"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -50,22 +51,21 @@
 
         <ToggleButton
             android:id="@+id/locationButton"
-            android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:checked="true" />
 
         <TextView
             android:id="@+id/locationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/location"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,22 +73,21 @@
 
         <ToggleButton
             android:id="@+id/timeDayButton"
-            android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:checked="true" />
 
         <TextView
             android:id="@+id/timeDayText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/timeday"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -98,14 +97,12 @@
             android:id="@+id/dayWeekButton"
             android:checked="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/dayWeekText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/day_week"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -116,24 +113,31 @@
     <Button
         android:id="@+id/customAlbum"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/custum_album"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="wrap_content" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="createAlbum"
-        android:text="@string/custum_album" />
-
-    <Switch
-        android:id="@+id/switch1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="temp switch" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/waitTimeEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/waitTimeText" />
+
+        <Button
+            android:id="@+id/waitTimeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="@string/waitTimeButtonText" />
+
+    </LinearLayout>
 
 </LinearLayout>

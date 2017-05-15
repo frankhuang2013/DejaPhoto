@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 /**
  * Created by kaijiecai on 4/30/17.
@@ -44,7 +45,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
     @Override
     protected void onPreExecute(){
         dejaVuMode = DejaVuMode.getDejaVuModeInstance();
-        currentCalendar = new GregorianCalendar();
+        currentCalendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
         list = PhotoList.getPhotoListInstance();
 
     }
@@ -64,6 +65,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
                 for (int i = 0; i < list.size(); i++) {
                     Photo photo = list.getPhoto(i);
+                    Log.i("Path", photo.getPoints() + "" + photo.getImgPath());
                 /* check if photo is null or if the photo is released by user */
                     if (photo != null && !photo.isReleased()) {
                         photo.setPoints(0);
@@ -74,7 +76,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                         if (calendar != null && currentCalendar != null && dejaVuMode.isDayModeOn()) {
                             if (sameDayOfWeek(currentCalendar, calendar)) {
                                 photo.addPoints(DAY_POINTS);
-                                Log.i("Same Day of Week", calendar.get(calendar.DAY_OF_WEEK) + "");
+                                Log.i("Same Day of Week: ", calendar.get(calendar.DAY_OF_WEEK) + "");
                             }
                         }
 
@@ -82,7 +84,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                         if (calendar != null && currentCalendar != null && dejaVuMode.isTimeModeOn()) {
                             if (withinHours(currentCalendar, calendar)) {
                                 photo.addPoints(TIME_POINTS);
-                                Log.i("Hour of Day", calendar.get(calendar.HOUR_OF_DAY) + "");
+                                Log.i("Hour of Day: ", calendar.get(calendar.HOUR_OF_DAY) + "");
                             }
                         }
 
@@ -90,7 +92,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                         if (location != null && currentLocation != null && dejaVuMode.isLocationModeOn()) {
                             if (isLocationClose(currentLocation, location)) {
                                 photo.addPoints(LOCATION_POINTS);
-                                Log.i("Within Location", location + "");
+                                Log.i("Within Location: ", location + "");
 
                             }
 
@@ -99,7 +101,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
                         //check Karma
                         if (photo.getKarma()) {
                             photo.addPoints(KARMA_POINTS);
-                            Log.i("Karm Pressed", "Karma");
+                            Log.i("Karma Pressed: ", "true");
                         }
 
                     }
@@ -110,7 +112,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
             //sort the list according to points
             list.sort();
-
+            list.setIndex(0);
             PhotoList.getPhotoListInstance().setAllowed(true);
             // set the first photo in the list as background
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(mContext);
@@ -129,8 +131,8 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     /* check if same day of week */
     public boolean sameDayOfWeek(GregorianCalendar currentCalendar,GregorianCalendar calendar){
-        Log.i("day of week",""+currentCalendar.get(Calendar.DAY_OF_WEEK));
-        Log.i("day of week",""+calendar.get(Calendar.DAY_OF_WEEK));
+        Log.i("current day of week: ",""+currentCalendar.get(Calendar.DAY_OF_WEEK));
+        Log.i("photo's day of week: ",""+calendar.get(Calendar.DAY_OF_WEEK));
         System.out.print(""+currentCalendar.get(Calendar.DAY_OF_WEEK));
         if(currentCalendar.get(Calendar.DAY_OF_WEEK)==
                 (calendar.get(Calendar.DAY_OF_WEEK))) {
@@ -143,7 +145,7 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     /* convert calendar time to second */
     public int calendarToSecond(GregorianCalendar calendar){
-        int hour = calendar.get(Calendar.HOUR);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
         int second = calendar.get(Calendar.SECOND);
 
@@ -152,7 +154,8 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     /* check if two calendar time are close */
     public boolean withinHours(GregorianCalendar currentCalendar,GregorianCalendar calendar){
-        Log.i("current time", currentCalendar.get(Calendar.HOUR)+"");
+        Log.i("current UTC time", currentCalendar.get(Calendar.HOUR_OF_DAY)+"");
+        Log.i("photo's UTC time", calendar.get(Calendar.HOUR_OF_DAY)+"");
         int currentTime = calendarToSecond(currentCalendar);
         int calendarTime = calendarToSecond(calendar);
         if(Math.abs(currentTime - calendarTime) <= WITHINTIME){

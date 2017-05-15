@@ -12,6 +12,7 @@ import org.junit.Test;
 import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -37,7 +38,13 @@ public class PhotoSorterTester {
         GregorianCalendar gregorianCalendar1 = new GregorianCalendar(2011,2,3,10,1,0);
         assertTrue(photoSorterTask.withinHours(gregorianCalendar,gregorianCalendar1));
 
-        //more test cases
+        gregorianCalendar = new GregorianCalendar(2015,5,3,9,1,0);
+        gregorianCalendar1 = new GregorianCalendar(2015,5,3,10,1,0);
+        assertTrue(photoSorterTask.withinHours(gregorianCalendar,gregorianCalendar1));
+
+        gregorianCalendar = new GregorianCalendar(2015,5,3,9,1,0);
+        gregorianCalendar1 = new GregorianCalendar(2020,8,3,2,2,0);
+        assertFalse(photoSorterTask.withinHours(gregorianCalendar,gregorianCalendar1));
 
     }
 
@@ -51,7 +58,12 @@ public class PhotoSorterTester {
     public void testToSecond(){
         GregorianCalendar gregorianCalendar = new GregorianCalendar(2011,2,3,9,1,0);
         assertEquals(32460,photoSorterTask.calendarToSecond(gregorianCalendar));
-        //more test cases
+
+        gregorianCalendar = new GregorianCalendar(2011,5,5,5,5,50);
+        assertEquals(18350,photoSorterTask.calendarToSecond(gregorianCalendar));
+
+        gregorianCalendar = new GregorianCalendar(2011,1,1,0,0,0);
+        assertEquals(0,photoSorterTask.calendarToSecond(gregorianCalendar));
 
 
     }
@@ -63,8 +75,13 @@ public class PhotoSorterTester {
         GregorianCalendar gregorianCalendar1 = new GregorianCalendar(2017,4,11,9,1,0);
         assertTrue(photoSorterTask.sameDayOfWeek(gregorianCalendar,gregorianCalendar1));
 
-        //more test cases
+        gregorianCalendar = new GregorianCalendar(2017,5,14,9,1,0);
+        gregorianCalendar1 = new GregorianCalendar(2017,5,21,9,1,0);
+        assertTrue(photoSorterTask.sameDayOfWeek(gregorianCalendar,gregorianCalendar1));
 
+        gregorianCalendar = new GregorianCalendar(2016,5,14,9,1,0);
+        gregorianCalendar1 = new GregorianCalendar(2017,6,4,9,1,0);
+        assertTrue(photoSorterTask.sameDayOfWeek(gregorianCalendar,gregorianCalendar1));
     }
 
 
