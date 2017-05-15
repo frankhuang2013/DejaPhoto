@@ -64,9 +64,9 @@ public class MyWallPaperManager {
                             Log.i("start set", "start");
                             Bitmap bitmap = BitmapFactory.decodeFile(path);
                             Log.i("BITMAP", bitmap + "");
+                            bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
                             bitmap = Bitmap.createScaledBitmap(bitmap, phoneWidth, phoneHeight,true);
                             bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-
                             Canvas c = new Canvas(bitmap);
                             Paint textPaint = new Paint();
                             textPaint.setTextSize(textSize);
