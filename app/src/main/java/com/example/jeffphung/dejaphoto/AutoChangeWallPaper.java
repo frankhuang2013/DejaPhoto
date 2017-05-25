@@ -46,7 +46,7 @@ public class AutoChangeWallPaper extends Service {
 
         Log.i(alarmName, alarmName+" ends setting timer");
 
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
 
     @Nullable
