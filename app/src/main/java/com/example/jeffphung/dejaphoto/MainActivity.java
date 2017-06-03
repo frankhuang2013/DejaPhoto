@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     Intent intent;
 
     final int photoPickerID = 1;
+    final int takePhotoID = 2;
 
     Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
     
@@ -107,7 +108,15 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         newIntent.setType("image/*");
         newIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         newIntent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(newIntent, 1);
+        startActivityForResult(newIntent, photoPickerID);
+
+    }
+    public void takePhotoClicked(View v){
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, takePhotoID);
+        }
 
     }
 
@@ -115,55 +124,61 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(resultCode == RESULT_OK && requestCode == photoPickerID){
-                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() +
-                            "/DejaPhotoCopied/" + "copied" + Calendar.getInstance().getTimeInMillis() + ".JPG");
-
-                    FileChannel source = null;
-                    FileChannel destination = null;
-
-                    Uri pickedImage = data.getData();
-                    //String imagePath = getRealPathFromURI(getActivity(),uri);
-                    // Let's read picked image path using content resolver
-
-
-                    String[] filePath = {MediaStore.Images.Media.DATA};
-                    Log.i("---------",filePath[0]+"");
-                    Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
-                    cursor.moveToFirst();
-                    String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
-                    try {
-                        source = new FileInputStream(new File(imagePath)).getChannel();
-                        destination = new FileOutputStream(file).getChannel();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    if (destination != null && source != null) {
-                        try {
-                            destination.transferFrom(source, 0, source.size());
-                            final Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                            final Uri contentUri = Uri.fromFile(file);
-                            scanIntent.setData(contentUri);
-                            sendBroadcast(scanIntent);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }finally {
-                            cursor.close();
-                        }
-                    }
-                    if (source != null) {
-                        try {
-                            source.close();
-                            destination.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
-
+            copyImages(data);
+        }
+        else if(resultCode == RESULT_OK && requestCode == takePhotoID){
+            copyImages(data);
         }
     }
+
+    public void copyImages(Intent data){
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() +
+                "/DejaPhotoCopied/" + "copied" + Calendar.getInstance().getTimeInMillis() + ".JPG");
+
+        FileChannel source = null;
+        FileChannel destination = null;
+
+        Uri pickedImage = data.getData();
+        //String imagePath = getRealPathFromURI(getActivity(),uri);
+        // Let's read picked image path using content resolver
+
+
+        String[] filePath = {MediaStore.Images.Media.DATA};
+        Log.i("---------",filePath[0]+"");
+        Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
+        cursor.moveToFirst();
+        String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
+        try {
+            source = new FileInputStream(new File(imagePath)).getChannel();
+            destination = new FileOutputStream(file).getChannel();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (destination != null && source != null) {
+            try {
+                destination.transferFrom(source, 0, source.size());
+                final Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                final Uri contentUri = Uri.fromFile(file);
+                scanIntent.setData(contentUri);
+                sendBroadcast(scanIntent);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }finally {
+                cursor.close();
+            }
+        }
+        if (source != null) {
+            try {
+                source.close();
+                destination.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
