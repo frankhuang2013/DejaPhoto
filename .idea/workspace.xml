@@ -85,7 +85,16 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1496449100000" expanded="true" signature="432:454" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="59:204136" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="95:154" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="108:139" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="193:299" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="338:454" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="432:454" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="204037:204079" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="204037:204097" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="204037:204110" ph="..." />
+                <marker date="1496449128000" expanded="true" signature="204037:204125" ph="..." />
               </folding>
             </state>
           </provider>
@@ -94,17 +103,17 @@
       <file leaf-file-name="NewAppWidget.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/NewAppWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
+            <state relative-caret-position="361">
               <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyWallPaperManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MyWallPaperManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
+            <state relative-caret-position="361">
               <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
               <folding />
             </state>
@@ -121,7 +130,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PhotoLoaderTask.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PhotoLoaderTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -3125,7 +3134,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1496449100000" expanded="true" signature="432:454" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="59:204136" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="95:154" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="108:139" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="193:299" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="338:454" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="432:454" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="204037:204079" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="204037:204097" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="204037:204110" ph="..." />
+            <marker date="1496449128000" expanded="true" signature="204037:204125" ph="..." />
           </folding>
         </state>
       </provider>
@@ -3151,14 +3169,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/NewAppWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoSorterTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -3167,18 +3177,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoList.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -3196,10 +3198,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoLoaderTask.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/PhotoList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/NewAppWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/jeffphung/dejaphoto/MyWallPaperManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
           <folding />
         </state>
       </provider>
