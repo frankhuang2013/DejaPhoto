@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -24,7 +25,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     final int photoPickerID = 1;
     final int takePhotoID = 2;
+    final String dejaPhoto = "DejaPhoto";
+    final String dejaPhotoCopied = "DejaPhotoCopied";
+
+    File image;
 
     Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
     
@@ -111,10 +118,35 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         startActivityForResult(newIntent, photoPickerID);
 
     }
-    public void takePhotoClicked(View v){
+    public void takePhotoClicked(View v) throws IOException {
+
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String imageFileName = "JPEG_" + timeStamp + "_";
+            File[] DCIMFiles = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).listFiles();
+            int i = 0;
+            for (i = 0; i < DCIMFiles.length; i++) {
+                System.out.println("----------"+DCIMFiles[i].toString()+"");
+                System.out.println(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)+dejaPhoto);
+                if (DCIMFiles[i].toString().equals(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)+"/"+dejaPhoto)){
+                    break;
+                }
+            }
+            File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).listFiles()[i];
+            System.out.println("----------"+storageDir+"");
+            image = File.createTempFile(
+                    imageFileName,  /* prefix */
+                    ".jpg",         /* suffix */
+                    storageDir      /* directory */
+            );
+
+            // Save a file: path for use with ACTION_VIEW intents
+
+            Uri photoURI = FileProvider.getUriForFile(this,"com.example.android.fileprovider",image);
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
             startActivityForResult(takePictureIntent, takePhotoID);
         }
 
@@ -124,16 +156,23 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(resultCode == RESULT_OK && requestCode == photoPickerID){
-            copyImages(data);
+            copyImages(data,dejaPhotoCopied);
         }
         else if(resultCode == RESULT_OK && requestCode == takePhotoID){
-            copyImages(data);
+            final Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            final Uri contentUri = Uri.fromFile(image);
+            scanIntent.setData(contentUri);
+            sendBroadcast(scanIntent);
+            //Bundle extras = data.getExtras();
+
+
+
         }
     }
 
-    public void copyImages(Intent data){
+    public void copyImages(Intent data, String album){
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() +
-                "/DejaPhotoCopied/" + "copied" + Calendar.getInstance().getTimeInMillis() + ".JPG");
+                "/"+album+"/" + "copied" + Calendar.getInstance().getTimeInMillis() + ".JPG");
 
         FileChannel source = null;
         FileChannel destination = null;
@@ -178,6 +217,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         }
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
