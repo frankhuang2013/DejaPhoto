@@ -12,6 +12,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -42,6 +43,13 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     final private int SECOND_INDEX = 2;
     PhotoList photoList;
 
+     String mediaStorePath =
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
+
+
+
+    ArrayList<String> dirs;
+
     Context mContext;
     ProgressDialog progressDialog;
 
@@ -71,68 +79,84 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
 
         //there are multiple folders here, but we are only interested in the first one (ie Camera)
         File[] files = cameraDir.listFiles();
+        Log.i("files-----------------",files.toString()+"");
+        for(int i= 0; i < files.length; i++){
+            Log.i("files-----------------",files[i]+"");
+        }
         File finalCamDir = files[0];
-
+        Log.i("files-------------",finalCamDir+"");
         File[] camFiles = finalCamDir.listFiles();
-        for(int i = 0; i< camFiles.length; i++){
-            try {
-                Log.i("start loading","load "+i+"th photo");
 
-                String path = camFiles[i].toString();
-                if (!path.substring(path.length()-4).equals(".jpg")) {
-                    continue;
+        dirs = new ArrayList<>();
+        dirs.add(mediaStorePath + "/DejaPhoto");
+        dirs.add(mediaStorePath + "/DejaPhotoCopied");
+        dirs.add(mediaStorePath + "/DejaPhotoFriends");
+        for(int n = 0; n < files.length; n++){
+            if(dirs.contains(files[n].toString())) {
+                System.out.println(files[n].toString());
+                File dir = files[n];
+                File[] imgs = dir.listFiles();
+
+                for (int i = 0; i < imgs.length; i++) {
+                    try {
+                        Log.i("start loading", "load " + i + "th photo");
+
+                        String path = imgs[i].toString();
+                        if (!path.toLowerCase().substring(path.length() - 4).equals(".jpg")) {
+                            continue;
+                        }
+                        ExifInterface exifInterface = new ExifInterface(path);
+                        Log.i("ImagePath: ", path);
+
+                        String released = exifInterface.getAttribute(TAG_RELEASED);
+                        Log.i("ImageReleased", released + "");
+                        if (!toBoolean(released)) {
+
+                            String time = exifInterface.getAttribute(TAG_GPS_TIMESTAMP);
+                            Log.i("ImagTime", time + "");
+                            String date = exifInterface.getAttribute(TAG_GPS_DATESTAMP);
+                            Log.i("ImageDate", date + "");
+                            String karma = exifInterface.getAttribute(TAG_KARMA);
+                            Log.i("ImageKarma", karma + "");
+                            String gps_longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE);
+                            Log.i("ImageLongitude", gps_longitude + "");
+                            String gps_longitude_ref = exifInterface.getAttribute(TAG_GPS_LONGITUDE_REF);
+                            Log.i("ImageLongitude_ref", gps_longitude_ref + "");
+                            String gps_latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE);
+                            Log.i("ImageLatitude", gps_latitude + "");
+                            String gps_latitude_ref = exifInterface.getAttribute(TAG_GPS_LATITUDE_REF);
+                            Log.i("ImageLatitude_ref", gps_latitude_ref + "");
+                            String width = exifInterface.getAttribute(TAG_IMAGE_WIDTH);
+                            Log.i("ImageWidth", width + "");
+                            String height = exifInterface.getAttribute(TAG_IMAGE_LENGTH);
+                            Log.i("ImageHeight", height + "");
+
+
+                            //convert to location object using latitude and longitude
+                            Location location = toLocation
+                                    (gps_longitude, gps_longitude_ref, gps_latitude, gps_latitude_ref);
+                            Log.i("Location", location + "");
+
+
+                            // create a photo, and add it to list
+                            Photo photo = new Photo(
+                                    path,
+                                    toInt(width),
+                                    toInt(height),
+                                    toGregorianCalendar(date, time),
+                                    location,
+                                    toLocationName(location),
+                                    toBoolean(karma));
+                            photoList.add(photo);
+
+                            Log.i("end loading", "ends loading " + i + "th photo----");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+
+                    }
                 }
-                ExifInterface exifInterface = new ExifInterface(path);
-                Log.i("ImagePath: ",path);
-
-                String released = exifInterface.getAttribute(TAG_RELEASED);
-                Log.i("ImageReleased",released+"");
-                if(! toBoolean(released)) {
-
-                    String time = exifInterface.getAttribute(TAG_GPS_TIMESTAMP);
-                    Log.i("ImagTime", time + "");
-                    String date = exifInterface.getAttribute(TAG_GPS_DATESTAMP);
-                    Log.i("ImageDate",date+"");
-                    String karma = exifInterface.getAttribute(TAG_KARMA);
-                    Log.i("ImageKarma", karma + "");
-                    String gps_longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE);
-                    Log.i("ImageLongitude", gps_longitude + "");
-                    String gps_longitude_ref = exifInterface.getAttribute(TAG_GPS_LONGITUDE_REF);
-                    Log.i("ImageLongitude_ref", gps_longitude_ref + "");
-                    String gps_latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE);
-                    Log.i("ImageLatitude", gps_latitude + "");
-                    String gps_latitude_ref = exifInterface.getAttribute(TAG_GPS_LATITUDE_REF);
-                    Log.i("ImageLatitude_ref", gps_latitude_ref + "");
-                    String width = exifInterface.getAttribute(TAG_IMAGE_WIDTH);
-                    Log.i("ImageWidth",width+"");
-                    String height = exifInterface.getAttribute(TAG_IMAGE_LENGTH);
-                    Log.i("ImageHeight",height+"");
-
-
-                    //convert to location object using latitude and longitude
-                    Location location = toLocation
-                            (gps_longitude, gps_longitude_ref, gps_latitude, gps_latitude_ref);
-                    Log.i("Location", location + "");
-
-
-                    // create a photo, and add it to list
-                    Photo photo = new Photo(
-                            path,
-                            toInt(width),
-                            toInt(height),
-                            toGregorianCalendar(date,time),
-                            location,
-                            toLocationName(location),
-                            toBoolean(karma));
-                    photoList.add(photo);
-
-                    Log.i("end loading","ends loading "+i+"th photo----");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-
             }
-
         }
 
       //  Toast.makeText(mContext,list.size()+"",Toast.LENGTH_SHORT).show();
