@@ -20,6 +20,7 @@ public class NewAppWidget extends AppWidgetProvider {
     private static  String karmaButtonClicked = "karmaButtonClicked";
     private static  String releaseButtonClicked = "releaseButtonClicked";
 
+
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
@@ -94,11 +95,11 @@ public class NewAppWidget extends AppWidgetProvider {
         Log.i("appWidgetId", appWidgetId + "");
         super.onReceive(context, intent);
         Photo photo = null;
-        if (PhotoList.getPhotoListInstance().size() == 0) return;
+        if (PhotoListManager.getPhotoListManagerInstance().getPhotoList().size() == 0) return;
         if (intent.getAction().equals(nextButtonClicked)) {
 
             Log.i("start get img","start");
-            photo = PhotoList.getPhotoListInstance().next();
+            photo = PhotoListManager.getPhotoListManagerInstance().getPhotoList().next();
             if (photo == null) return;
             Log.i("picPath",photo.getImgPath()+"");
             String path = photo.getImgPath();
@@ -108,7 +109,7 @@ public class NewAppWidget extends AppWidgetProvider {
 
         }
         else if (intent.getAction().equals(prevButtonClicked)) {
-            photo = PhotoList.getPhotoListInstance().previous();
+            photo = PhotoListManager.getPhotoListManagerInstance().getPhotoList().previous();
             if (photo == null) return;
             Log.i("picPath",photo.getImgPath()+"");
             Log.i("start get img", "start");
@@ -119,7 +120,7 @@ public class NewAppWidget extends AppWidgetProvider {
         }
         else if (intent.getAction().equals(karmaButtonClicked))
         {
-            photo = PhotoList.getPhotoListInstance().getCurrentPhoto();
+            photo = PhotoListManager.getPhotoListManagerInstance().getPhotoList().getCurrentPhoto();
             if (photo == null) return;
             if (!photo.getKarma()) {
                 photo.setKarma(true);
@@ -129,7 +130,7 @@ public class NewAppWidget extends AppWidgetProvider {
         }
         else if (intent.getAction().equals(releaseButtonClicked))
         {
-            photo = PhotoList.getPhotoListInstance().removeCurrentPhoto();
+            photo = PhotoListManager.getPhotoListManagerInstance().getPhotoList().removeCurrentPhoto();
             Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);

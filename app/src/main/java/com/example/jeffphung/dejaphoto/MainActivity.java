@@ -3,6 +3,7 @@ package com.example.jeffphung.dejaphoto;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -13,6 +14,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import java.io.File;
 
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     int waitTimeInt = -1;
     Intent intent;
 
+    Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +63,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             }
         });
 
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
+        File wallpaperDirectory = new File(path.toString()+"/adddd");
+        wallpaperDirectory.mkdirs();
         /* initialization */
-        photoList = PhotoList.getPhotoListInstance();
+        photoList = new PhotoList();
+        PhotoListManager.getPhotoListManagerInstance().setPhotoList(photoList);
         dejaVuMode = DejaVuMode.getDejaVuModeInstance();
 
         photoList.setContext(this);

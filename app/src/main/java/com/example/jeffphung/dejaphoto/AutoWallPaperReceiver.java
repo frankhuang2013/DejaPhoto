@@ -28,6 +28,6 @@ public class AutoWallPaperReceiver extends BroadcastReceiver {
         Log.i("------------","------------");
         //call to change the wallPaper.
         MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
-        myWallPaperManager.setWallPaper(PhotoList.getPhotoListInstance().next());
+        myWallPaperManager.setWallPaper(PhotoListManager.getPhotoListManagerInstance().getPhotoList().next());
     }
 }

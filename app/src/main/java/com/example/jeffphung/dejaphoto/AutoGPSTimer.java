@@ -36,6 +36,7 @@ public class AutoGPSTimer extends Service implements LocationListener {
 
     }
 
+
     @Override
     public void onDestroy(){
         Toast.makeText(this, "GPS background gps stopped", Toast.LENGTH_SHORT).show();

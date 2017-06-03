@@ -13,37 +13,17 @@ import java.util.Collections;
 
 
 public class PhotoList{
-    private static PhotoList photoListInstance = new PhotoList();
     ArrayList<Photo> photoArrayList ;
     int index;
-    boolean allowed = true;
+
 
 
     /**
      * private constructor prevent other from initializing
      */
-    private PhotoList(){
+    public PhotoList(){
         photoArrayList = new ArrayList<>();
         index = 0;
-    }
-
-    public Boolean isAllowed(){
-        return allowed;
-    }
-
-
-    /*
-     * disallowed get photo when sorting the list
-     */
-    public void setAllowed(Boolean b){
-        allowed = b;
-    }
-    /**
-     * get Photolist instance
-     * @return
-     */
-    public static PhotoList getPhotoListInstance(){
-        return photoListInstance;
     }
 
 

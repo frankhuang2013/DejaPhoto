@@ -28,6 +28,7 @@ public class MyWallPaperManager {
     WallpaperManager myWallPaperManager;
     int textSize = 50;
     Intent intent;
+    PhotoList photoList;
 
     public MyWallPaperManager(Context mContext){
         myWallPaperManager = WallpaperManager.getInstance(mContext);
@@ -35,85 +36,83 @@ public class MyWallPaperManager {
 
     }
 
-    public void setWallPaper(Photo p){
 
-        if (PhotoList.getPhotoListInstance().size() == 0) {
+    public void setWallPaper(Photo p){
+        photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
+
+        if (photoList.size() == 0) {
             setDefaultWallpaper();
             return;
         }
 
-        if(PhotoList.getPhotoListInstance().isAllowed()) {
-            if (p != null) {
-                String path = p.getImgPath();
-                if (path != null) {
-                    // put behavior here:
-                    Log.i("myWallPaperManager", "start");
-                    Log.i("ImagePath", p.getImgPath());
-                    try {
+        if (p != null) {
+            String path = p.getImgPath();
+            if (path != null) {
+                // put behavior here:
+                Log.i("myWallPaperManager", "start");
+                Log.i("ImagePath", p.getImgPath());
+                try {
 
-                        if (path == null) {
-                            Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
-                        } else {
-
-                            WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-                            Display display = wm.getDefaultDisplay();
-                            Point size = new Point();
-                            display.getSize(size);
-                            int phoneWidth = size.x;
-                            int phoneHeight = size.y;
-                            Log.i("start set", "start");
-                            Bitmap bitmap = BitmapFactory.decodeFile(path);
-                            Log.i("BITMAP", bitmap + "");
-                            bitmap = Bitmap.createScaledBitmap(bitmap, phoneWidth, phoneHeight,true);
-                            bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-
-                            Canvas c = new Canvas(bitmap);
-                            Paint textPaint = new Paint();
-                            textPaint.setTextSize(textSize);
-                            textPaint.setColor(Color.WHITE);
-                            if (p.getLocationName() != null) {
-                                Log.i("location name ", p.getLocationName());
-                                c.drawText(p.getLocationName(), bitmap.getWidth() / 2 - phoneWidth / 2 + 30,
-                                        bitmap.getHeight() / 2 + phoneHeight / 2 - 80, textPaint);
-                            }
-                            myWallPaperManager.setBitmap(bitmap);
-
-                            bitmap.recycle();
-                            bitmap = null;
-                            //new stuff
-                            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
-                            RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.new_app_widget);
-                            ComponentName thisWidget = new ComponentName(mContext, NewAppWidget.class);
-                            if (p.getKarma()) {
-                                remoteViews.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
-                            }
-                            else {
-                                remoteViews.setImageViewResource(R.id.buttonKarma, R.drawable.karma_greyed);
-                            }
-                            appWidgetManager.updateAppWidget(thisWidget, remoteViews);
-                            //new stuff
-                            setTimer();
-
-
-                            Log.i("finish set img", "finished");
-                        }
-                        //Toast.makeText(mContext, "Wallpaper set", Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
+                    if (path == null) {
                         Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+                        Display display = wm.getDefaultDisplay();
+                        Point size = new Point();
+                        display.getSize(size);
+                        int phoneWidth = size.x;
+                        int phoneHeight = size.y;
+                        Log.i("start set", "start");
+                        Bitmap bitmap = BitmapFactory.decodeFile(path);
+                        Log.i("BITMAP", bitmap + "");
+                        bitmap = Bitmap.createScaledBitmap(bitmap, phoneWidth, phoneHeight,true);
+                        bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+                        Canvas c = new Canvas(bitmap);
+                        Paint textPaint = new Paint();
+                        textPaint.setTextSize(textSize);
+                        textPaint.setColor(Color.WHITE);
+                        if (p.getLocationName() != null) {
+                            Log.i("location name ", p.getLocationName());
+                            c.drawText(p.getLocationName(), bitmap.getWidth() / 2 - phoneWidth / 2 + 30,
+                                    bitmap.getHeight() / 2 + phoneHeight / 2 - 80, textPaint);
+                        }
+                        myWallPaperManager.setBitmap(bitmap);
+
+                        bitmap.recycle();
+                        bitmap = null;
+                        //new stuff
+                        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
+                        RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.new_app_widget);
+                        ComponentName thisWidget = new ComponentName(mContext, NewAppWidget.class);
+                        if (p.getKarma()) {
+                            remoteViews.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
+                        }
+                        else {
+                            remoteViews.setImageViewResource(R.id.buttonKarma, R.drawable.karma_greyed);
+                        }
+                        appWidgetManager.updateAppWidget(thisWidget, remoteViews);
+                        //new stuff
+                        setTimer();
 
 
-                        // test
+                        Log.i("finish set img", "finished");
                     }
+                    //Toast.makeText(mContext, "Wallpaper set", Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    Toast.makeText(mContext, "Error setting wallpaper", Toast.LENGTH_SHORT).show();
+
+
+                    // test
                 }
             }
-            /*else if (PhotoList.getPhotoListInstance().size() == 0) {
-                setDefaultWallpaper();
-            }*/
         }
-        else{
-            Log.i("Sorting photos now","try later");
-            Toast.makeText(mContext,"Sorting photos now, try later", Toast.LENGTH_SHORT).show();
-        }
+        /*else if (PhotoList.getPhotoListInstance().size() == 0) {
+            setDefaultWallpaper();
+        }*/
+
+
 
     }
 

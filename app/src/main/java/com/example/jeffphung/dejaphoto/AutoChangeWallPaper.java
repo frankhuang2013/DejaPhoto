@@ -36,6 +36,7 @@ public class AutoChangeWallPaper extends Service {
 
         alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
+
         Intent mIntent = new Intent(this,AutoWallPaperReceiver.class);
 
         alarmIntent = PendingIntent.getBroadcast(this, id, mIntent, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -48,6 +49,7 @@ public class AutoChangeWallPaper extends Service {
 
         return START_NOT_STICKY;
     }
+
 
     @Nullable
     @Override
