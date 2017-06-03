@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.os.AsyncTask;
@@ -268,12 +267,15 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     /* get location name from its location object */
     public String toLocationName(Location location) {
         List<Address> addresses;
+        /*
         if(location != null){
             Geocoder geocoder = new Geocoder(mContext);
             try {
                 // call gecoder to get address from location
                 addresses = geocoder.getFromLocation(location.getLatitude(),
                         location.getLongitude(),2);
+
+
                 if(addresses.size() > 0) {
                     //return address
                     if(addresses.get(0).getMaxAddressLineIndex() > 0){
@@ -300,7 +302,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                 e.printStackTrace();
             }
 
-        }
+        }*/
         return null;
     }
 

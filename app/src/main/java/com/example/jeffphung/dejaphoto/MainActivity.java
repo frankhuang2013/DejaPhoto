@@ -2,8 +2,11 @@ package com.example.jeffphung.dejaphoto;
 
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +19,12 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
@@ -29,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     String waitTimeStr = "";
     int waitTimeInt = -1;
     Intent intent;
+
+    final int photoPickerID = 1;
 
     Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
     
@@ -86,8 +97,73 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         dayWeekButton.setOnCheckedChangeListener(this);
 
 
+        CreateDirs.createDir();
     }
 
+
+    public void pickerClicked(View v){
+
+        Intent newIntent = new Intent();
+        newIntent.setType("image/*");
+        newIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        newIntent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(newIntent, 1);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode == RESULT_OK && requestCode == photoPickerID){
+                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() +
+                            "/DejaPhotoCopied/" + "copied" + Calendar.getInstance().getTimeInMillis() + ".JPG");
+
+                    FileChannel source = null;
+                    FileChannel destination = null;
+
+                    Uri pickedImage = data.getData();
+                    //String imagePath = getRealPathFromURI(getActivity(),uri);
+                    // Let's read picked image path using content resolver
+
+
+                    String[] filePath = {MediaStore.Images.Media.DATA};
+                    Log.i("---------",filePath[0]+"");
+                    Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
+                    cursor.moveToFirst();
+                    String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
+                    try {
+                        source = new FileInputStream(new File(imagePath)).getChannel();
+                        destination = new FileOutputStream(file).getChannel();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    if (destination != null && source != null) {
+                        try {
+                            destination.transferFrom(source, 0, source.size());
+                            final Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            final Uri contentUri = Uri.fromFile(file);
+                            scanIntent.setData(contentUri);
+                            sendBroadcast(scanIntent);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }finally {
+                            cursor.close();
+                        }
+                    }
+                    if (source != null) {
+                        try {
+                            source.close();
+                            destination.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
+
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
