@@ -36,6 +36,7 @@ public class AutoChangeWallPaper extends Service {
 
         alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
+
         Intent mIntent = new Intent(this,AutoWallPaperReceiver.class);
 
         alarmIntent = PendingIntent.getBroadcast(this, id, mIntent, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -46,8 +47,9 @@ public class AutoChangeWallPaper extends Service {
 
         Log.i(alarmName, alarmName+" ends setting timer");
 
-        return START_STICKY;
+        return START_NOT_STICKY;
     }
+
 
     @Nullable
     @Override

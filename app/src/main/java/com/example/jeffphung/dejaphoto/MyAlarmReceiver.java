@@ -21,9 +21,6 @@ import static android.R.attr.id;
 
 public class MyAlarmReceiver extends BroadcastReceiver {
     Location location;
-    public MyAlarmReceiver(){
-
-    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -37,7 +34,7 @@ public class MyAlarmReceiver extends BroadcastReceiver {
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
 
-        Log.i(id+"", "start sort list");
+        Log.i(id+"", "=====start sort list");
         //call sorter
         PhotoSorterTask photoSorterTask = new PhotoSorterTask(getCurrentLocation(context), context);
         photoSorterTask.execute();

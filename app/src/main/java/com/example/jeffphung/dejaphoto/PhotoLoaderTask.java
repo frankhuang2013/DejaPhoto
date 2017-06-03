@@ -41,6 +41,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     final private int HOUR_INDEX = 0;
     final private int MINUTE_INDEX = 1;
     final private int SECOND_INDEX = 2;
+    PhotoList photoList;
 
     Context mContext;
     ProgressDialog progressDialog;
@@ -56,6 +57,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         progressDialog = ProgressDialog.show(mContext,
                 "ProgressDialog",
                 "Waiting for loading");
+        photoList = new PhotoList();
 
     }
 
@@ -78,6 +80,9 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                 Log.i("start loading","load "+i+"th photo");
 
                 String path = camFiles[i].toString();
+                if (!path.substring(path.length()-4).equals(".jpg")) {
+                    continue;
+                }
                 ExifInterface exifInterface = new ExifInterface(path);
                 Log.i("ImagePath: ",path);
 
@@ -120,7 +125,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                             location,
                             toLocationName(location),
                             toBoolean(karma));
-                    PhotoList.getPhotoListInstance().add(photo);
+                    photoList.add(photo);
 
                     Log.i("end loading","ends loading "+i+"th photo----");
                 }
@@ -171,12 +176,12 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     @Override
     public void onPostExecute (String result){
         progressDialog.dismiss();
+        PhotoListManager.getPhotoListManagerInstance().setPhotoList(photoList);
         //invoke autoGPStimer to sort list every 500ft change
         Intent intent = new Intent(mContext,AutoGPSTimer.class);
         mContext.startService(intent);
 
         //invoke AlarmManager to sort list every hour
-
         Intent alarmIntent = new Intent(mContext, MyAlarmManager.class);
         mContext.startService(alarmIntent);
 

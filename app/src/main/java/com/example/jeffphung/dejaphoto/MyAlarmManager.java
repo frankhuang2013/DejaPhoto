@@ -20,7 +20,6 @@ public class MyAlarmManager extends Service {
     private long INTERVAL = AlarmManager.INTERVAL_HOUR;
     private int id = 0;
     private String alarmName = "alarm to sort photos";
-
     public MyAlarmManager(){
 
     }
