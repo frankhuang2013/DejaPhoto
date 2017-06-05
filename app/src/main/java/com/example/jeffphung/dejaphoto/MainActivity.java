@@ -82,9 +82,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             }
         });
 
-        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
-        File wallpaperDirectory = new File(path.toString()+"/adddd");
-        wallpaperDirectory.mkdirs();
         /* initialization */
         photoList = new PhotoList();
         PhotoListManager.getPhotoListManagerInstance().setPhotoList(photoList);
@@ -111,10 +108,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     public void pickerClicked(View v){
 
-        Intent newIntent = new Intent();
-        newIntent.setType("image/*");
-        newIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        newIntent.setAction(Intent.ACTION_GET_CONTENT);
+        Intent newIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //newIntent.setType("image/*");
+        //newIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        //newIntent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(newIntent, photoPickerID);
 
     }
@@ -163,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             final Uri contentUri = Uri.fromFile(image);
             scanIntent.setData(contentUri);
             sendBroadcast(scanIntent);
-            //Bundle extras = data.getExtras();
+
 
 
 
@@ -183,11 +181,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
 
         String[] filePath = {MediaStore.Images.Media.DATA};
-        Log.i("---------",filePath[0]+"");
+        Log.i("---------",filePath[0]+"--"+pickedImage);
         Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
         cursor.moveToFirst();
         String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
         try {
+            Log.i("-------",imagePath+"");
             source = new FileInputStream(new File(imagePath)).getChannel();
             destination = new FileOutputStream(file).getChannel();
         } catch (FileNotFoundException e) {
