@@ -84,7 +84,8 @@ public class MyWallPaperManager {
 
                         // bitmap for the number of Karmar
 
-                        /*else if(p.getKarmarNumber() != null)
+                        /*
+                        else if(p.getKarmarNumber() != null)
 
                         Log.i("Karmar:  ", p.getKarmarNumber());
                         */
