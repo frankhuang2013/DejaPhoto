@@ -38,7 +38,7 @@ public class MyWallPaperManager {
 
 
     public void setWallPaper(Photo p){
-        photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
+        photoList = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
 
         if (photoList.size() == 0) {
             setDefaultWallpaper();

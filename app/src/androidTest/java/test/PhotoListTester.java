@@ -18,7 +18,7 @@ public class PhotoListTester {
 
     @Test
     public void testnext() {
-        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
         //next on an empty list
         assertEquals(null, photoList.next());
 
@@ -44,7 +44,7 @@ public class PhotoListTester {
 
     @Test
     public void testprevious() {
-        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
         //previous on an empty list
         assertEquals(null, photoList.previous());
 
@@ -69,7 +69,7 @@ public class PhotoListTester {
 
     @Test
     public void testremoveCurrentPhoto() {
-        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
         //list of one, index is at 0
         Photo photoOne = new Photo("/storage/sdcard/DCIM/Camera/6_eiffel_tower.JPG");
         photoList.add(photoOne);
@@ -100,7 +100,7 @@ public class PhotoListTester {
 
     @Test
     public void testgetCurrentPhoto() {
-        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
         //empty list
         assertEquals(null,photoList.getCurrentPhoto());
 
@@ -118,7 +118,7 @@ public class PhotoListTester {
 
     @Test
     public void testgetPhoto() {
-        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
         //empty list, invalid index
         assertEquals(null,photoList.getPhoto(0));
 
@@ -134,7 +134,7 @@ public class PhotoListTester {
 
     @Test
     public void testsort() {
-        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
         //add photos
         Photo photoOne = new Photo("/storage/sdcard/DCIM/Camera/6_eiffel_tower.JPG");
         photoList.add(photoOne);
@@ -166,7 +166,7 @@ public class PhotoListTester {
 
     @Test
     public void testsize() {
-        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
         //size from constructor
         assertEquals(0,photoList.size());
         //size after adding a photo

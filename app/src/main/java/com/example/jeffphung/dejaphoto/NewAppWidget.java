@@ -95,11 +95,11 @@ public class NewAppWidget extends AppWidgetProvider {
         Log.i("appWidgetId", appWidgetId + "");
         super.onReceive(context, intent);
         Photo photo = null;
-        if (PhotoListManager.getPhotoListManagerInstance().getPhotoList().size() == 0) return;
+        if (PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().size() == 0) return;
         if (intent.getAction().equals(nextButtonClicked)) {
 
             Log.i("start get img","start");
-            photo = PhotoListManager.getPhotoListManagerInstance().getPhotoList().next();
+            photo = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().next();
             if (photo == null) return;
             Log.i("picPath",photo.getImgPath()+"");
             String path = photo.getImgPath();
@@ -109,7 +109,7 @@ public class NewAppWidget extends AppWidgetProvider {
 
         }
         else if (intent.getAction().equals(prevButtonClicked)) {
-            photo = PhotoListManager.getPhotoListManagerInstance().getPhotoList().previous();
+            photo = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().previous();
             if (photo == null) return;
             Log.i("picPath",photo.getImgPath()+"");
             Log.i("start get img", "start");
@@ -120,7 +120,7 @@ public class NewAppWidget extends AppWidgetProvider {
         }
         else if (intent.getAction().equals(karmaButtonClicked))
         {
-            photo = PhotoListManager.getPhotoListManagerInstance().getPhotoList().getCurrentPhoto();
+            photo = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().getCurrentPhoto();
             if (photo == null) return;
             if (!photo.getKarma()) {
                 photo.setKarma(true);
@@ -130,7 +130,7 @@ public class NewAppWidget extends AppWidgetProvider {
         }
         else if (intent.getAction().equals(releaseButtonClicked))
         {
-            photo = PhotoListManager.getPhotoListManagerInstance().getPhotoList().removeCurrentPhoto();
+            photo = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().removeCurrentPhoto();
             Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);
