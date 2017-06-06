@@ -26,7 +26,7 @@ import java.io.IOException;
 public class MyWallPaperManager {
     Context mContext;
     WallpaperManager myWallPaperManager;
-    int textSize = 50;
+    int textSize = 42;
     Intent intent;
     PhotoList photoList;
 
@@ -73,11 +73,26 @@ public class MyWallPaperManager {
                         Paint textPaint = new Paint();
                         textPaint.setTextSize(textSize);
                         textPaint.setColor(Color.WHITE);
-                        if (p.getLocationName() != null) {
+
+                        // bitmap for the location name
+                        if (p.getLocationName() != null)
+                        {
                             Log.i("location name ", p.getLocationName());
                             c.drawText(p.getLocationName(), bitmap.getWidth() / 2 - phoneWidth / 2 + 30,
                                     bitmap.getHeight() / 2 + phoneHeight / 2 - 80, textPaint);
                         }
+
+                        // bitmap for the number of Karmar
+
+                        /*else if(p.getKarmarNumber() != null)
+
+                        Log.i("Karmar:  ", p.getKarmarNumber());
+                        */
+
+                            c.drawText("Karmar: 2 " , bitmap.getWidth()/2 + 80,
+                            bitmap.getHeight() / 2 + phoneHeight / 2 -80, textPaint);
+
+
                         myWallPaperManager.setBitmap(bitmap);
 
                         bitmap.recycle();
