@@ -1,6 +1,6 @@
 package test;
 
-import android.support.test.rule.ActivityTestRule;
+//import android.support.test.rule.ActivityTestRule;
 
 import com.example.jeffphung.dejaphoto.MainActivity;
 import com.example.jeffphung.dejaphoto.PhotoSorterTask;
@@ -22,15 +22,18 @@ import static org.junit.Assert.assertTrue;
 public class PhotoSorterTester {
     PhotoSorterTask photoSorterTask;
 
+    /*
     @Rule
     public ActivityTestRule<MainActivity> mainActivity = new ActivityTestRule<MainActivity>(MainActivity.class);
+    */
 
+    /*
     @Before
     public void setUp(){
         photoSorterTask = new PhotoSorterTask(mainActivity.getActivity());
 
     }
-
+    */
     @Test
     public void testWithinHours(){
 

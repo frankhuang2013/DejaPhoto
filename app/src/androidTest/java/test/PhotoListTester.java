@@ -3,8 +3,8 @@ package test;
 
 import com.example.jeffphung.dejaphoto.Photo;
 import com.example.jeffphung.dejaphoto.PhotoList;
+import com.example.jeffphung.dejaphoto.PhotoListManager;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,26 +16,9 @@ import static org.junit.Assert.assertTrue;
 
 public class PhotoListTester {
 
-    PhotoList photoList;
-
-    /*
-    @Before
-    public void setUp() { photoList = PhotoList.getPhotoListInstance(); }
-
-    @Test
-    public void testisAllowed() {
-        //Testing value from constructor
-        assertTrue(photoList.isAllowed());
-
-        //Testing setter method
-        photoList.setAllowed(false);
-        assertTrue(!photoList.isAllowed());
-        photoList.setAllowed(true);
-        assertTrue(photoList.isAllowed());
-    }
-    */
     @Test
     public void testnext() {
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
         //next on an empty list
         assertEquals(null, photoList.next());
 
@@ -54,10 +37,14 @@ public class PhotoListTester {
         //index at 1 now, next on two-photo list
         assertEquals(photoOne, photoList.next());
         assertEquals(0, photoList.getIndex());
+
+
+        photoList.clear();
     }
 
     @Test
     public void testprevious() {
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
         //previous on an empty list
         assertEquals(null, photoList.previous());
 
@@ -76,10 +63,13 @@ public class PhotoListTester {
         //index at 1 now, previous on two-photo list
         assertEquals(photoOne, photoList.previous());
         assertEquals(0, photoList.getIndex());
+
+        photoList.clear();
     }
 
     @Test
     public void testremoveCurrentPhoto() {
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
         //list of one, index is at 0
         Photo photoOne = new Photo("/storage/sdcard/DCIM/Camera/6_eiffel_tower.JPG");
         photoList.add(photoOne);
@@ -104,10 +94,13 @@ public class PhotoListTester {
         assertEquals(2,photoList.size());
         assertTrue(photoTwo.isReleased());
 
+        photoList.clear();
+
     }
 
     @Test
     public void testgetCurrentPhoto() {
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
         //empty list
         assertEquals(null,photoList.getCurrentPhoto());
 
@@ -119,10 +112,13 @@ public class PhotoListTester {
         photoList.add(new Photo("/storage/sdcard/DCIM/Camera/3_la_jolla_cove.JPG"));
         photoList.setIndex(2);
         assertEquals(photoCurr,photoList.getCurrentPhoto());
+
+        photoList.clear();
     }
 
     @Test
     public void testgetPhoto() {
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
         //empty list, invalid index
         assertEquals(null,photoList.getPhoto(0));
 
@@ -132,10 +128,13 @@ public class PhotoListTester {
         photoList.add(photoCurr);
         photoList.add(new Photo("/storage/sdcard/DCIM/Camera/6_eiffel_tower.JPG"));
         assertEquals(photoCurr,photoList.getPhoto(1));
+
+        photoList.clear();
     }
 
     @Test
     public void testsort() {
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
         //add photos
         Photo photoOne = new Photo("/storage/sdcard/DCIM/Camera/6_eiffel_tower.JPG");
         photoList.add(photoOne);
@@ -161,14 +160,19 @@ public class PhotoListTester {
         assertEquals(photoFour,photoList.getPhoto(1));
         assertEquals(photoThree,photoList.getPhoto(2));
         assertEquals(photoOne,photoList.getPhoto(3));
+
+        photoList.clear();
     }
 
     @Test
     public void testsize() {
+        PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
         //size from constructor
         assertEquals(0,photoList.size());
         //size after adding a photo
         photoList.add(new Photo("/storage/sdcard/DCIM/Camera/6_eiffel_tower.JPG"));
         assertEquals(1,photoList.size());
+
+        photoList.clear();
     }
 }
