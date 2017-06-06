@@ -2,7 +2,7 @@ package test;
 
 
 import android.location.Location;
-import android.support.test.rule.ActivityTestRule;
+//import android.support.test.rule.ActivityTestRule;
 
 import com.example.jeffphung.dejaphoto.MainActivity;
 import com.example.jeffphung.dejaphoto.PhotoLoaderTask;
@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
 public class PhotoLoaderTester {
 
     PhotoLoaderTask photoLoaderTask;
-
+    /*
     @Rule
     public ActivityTestRule<MainActivity> mainActivity = new ActivityTestRule<MainActivity>(MainActivity.class);
 
@@ -35,7 +35,7 @@ public class PhotoLoaderTester {
     public void setup(){
         photoLoaderTask = new PhotoLoaderTask(mainActivity.getActivity());
     }
-
+    */
     @Test
     public void testToBoolean() {
         assertTrue(photoLoaderTask.toBoolean("true"));

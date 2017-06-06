@@ -10,6 +10,7 @@ import android.util.Log;
 import java.io.File;
 
 import static com.example.jeffphung.dejaphoto.ExifDataParser.createNewPhoto;
+import static com.google.api.client.http.HttpMethods.HEAD;
 
 /**
  * Created by kaijiecai on 4/29/17.
