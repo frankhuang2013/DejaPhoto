@@ -137,4 +137,9 @@ public class PhotoList{
         this.index = i;
     }
 
+    public void clear(){
+        photoArrayList.clear();
+        index = 0;
+    }
+
 }
