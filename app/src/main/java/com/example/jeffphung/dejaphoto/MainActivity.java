@@ -33,6 +33,9 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     PhotoList photoList; // PhotoList contains all photo in the app
+    PhotoList dejaPhotoList;
+    PhotoList dejaPhotoListCopied;
+    PhotoList dejaPhotoListFriend;
     DejaVuMode dejaVuMode; // DejaVumode class
     PhotoLoaderTask photoLoader; // PhotoLoader class: load photo to app from photo
     // PhotoSorter class: sort the photo according to location and time
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     final int takePhotoID = 2;
     final String dejaPhoto = "DejaPhoto";
     final String dejaPhotoCopied = "DejaPhotoCopied";
+    final String dejaPhotoFriend = "DejaPhotoFriends";
 
     File image;
 
@@ -83,8 +87,17 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         });
 
         /* initialization */
-        photoList = new PhotoList();
-        PhotoListManager.getPhotoListManagerInstance().setPhotoList(photoList);
+        photoList = new PhotoList("main");
+        // add three photLists into photolistManager
+        dejaPhotoList = new PhotoList(dejaPhoto);
+        dejaPhotoListCopied = new PhotoList(dejaPhotoCopied);
+        dejaPhotoListFriend = new PhotoList(dejaPhotoFriend);
+        PhotoListManager.getPhotoListManagerInstance().addPhotoList(dejaPhotoList);
+        PhotoListManager.getPhotoListManagerInstance().addPhotoList(dejaPhotoListCopied);
+        PhotoListManager.getPhotoListManagerInstance().addPhotoList(dejaPhotoListFriend);
+
+        PhotoListManager.getPhotoListManagerInstance().setMainPhotoList(photoList);
+
         dejaVuMode = DejaVuMode.getDejaVuModeInstance();
 
         photoList.setContext(this);
@@ -114,6 +127,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         //newIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         //newIntent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(newIntent, photoPickerID);
+
+    }
+    public void changeLocationClicked(View v) {
 
     }
     public void takePhotoClicked(View v) throws IOException {
@@ -163,6 +179,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             sendBroadcast(scanIntent);
 
 
+            PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhoto);
+            addToPhotoList(photoList,image.toString());
+
+
 
 
         }
@@ -171,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void copyImages(Intent data, String album){
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() +
                 "/"+album+"/" + "copied" + Calendar.getInstance().getTimeInMillis() + ".JPG");
+        String path = file.toString();
 
         FileChannel source = null;
         FileChannel destination = null;
@@ -199,6 +220,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 final Uri contentUri = Uri.fromFile(file);
                 scanIntent.setData(contentUri);
                 sendBroadcast(scanIntent);
+                PhotoList p = PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhotoCopied);
+                addToPhotoList(p, path);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -218,6 +241,15 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
 
+    public void addToPhotoList(PhotoList p, String path){
+        Photo photo = ExifDataParser.createNewPhoto(path);
+        UpdatePoints.updatePhotoPoint(photo);
+        p.add(photo);
+        PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().add(photo);
+        PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().sort();
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
