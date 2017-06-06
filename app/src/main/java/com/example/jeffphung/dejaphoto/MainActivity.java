@@ -1,5 +1,6 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -7,11 +8,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-
 import android.support.annotation.NonNull;
-
 import android.support.v4.content.FileProvider;
-
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -20,29 +19,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
-
-import java.util.ArrayList;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.api.services.people.v1.People;
@@ -50,6 +36,17 @@ import com.google.api.services.people.v1.PeopleScopes;
 import com.google.api.services.people.v1.model.EmailAddress;
 import com.google.api.services.people.v1.model.ListConnectionsResponse;
 import com.google.api.services.people.v1.model.Person;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -70,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     final int photoPickerID = 1;
     final int takePhotoID = 2;
+    final int changeLocationID = 3;
     final String dejaPhoto = "DejaPhoto";
     final String dejaPhotoCopied = "DejaPhotoCopied";
     final String dejaPhotoFriend = "DejaPhotoFriends";
@@ -84,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     private List<String> emailList;
 
+    private static String newLocName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,6 +190,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
     public void changeLocationClicked(View v) {
 
+        Intent newIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(newIntent, changeLocationID);
+
     }
     public void takePhotoClicked(View v) throws IOException {
 
@@ -226,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(resultCode == RESULT_OK && requestCode == photoPickerID){
             copyImages(data,dejaPhotoCopied);
@@ -240,8 +243,43 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
             PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhoto);
             addToPhotoList(photoList,image.toString());
+        }
+        else if(resultCode ==RESULT_OK && requestCode == changeLocationID){
+
+            //final EditText locEditText = (EditText) findViewById(R.id.editLocation);
+            final AlertDialog.Builder locAlertDialog = new AlertDialog.Builder(this);
+            locAlertDialog.setTitle("Change Photo Location");
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT);
+            final EditText locEditText = new EditText(this);
+            locEditText.setLayoutParams(lp);
+            locAlertDialog.setView(locEditText);
+            locAlertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    newLocName = locEditText.getText().toString();
+
+                    Uri pickedImage = data.getData();
+                    //String imagePath = getRealPathFromURI(getActivity(),uri);
+                    // Let's read picked image path using content resolver
 
 
+                    String[] filePath = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
+                    cursor.moveToFirst();
+                    String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
+                    setLocationName(imagePath,newLocName);
+
+                }
+            });
+            locAlertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    //do nothing
+                }
+            });
+
+            locAlertDialog.show();
 
 
         }
@@ -250,6 +288,15 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
+        }
+    }
+
+    public void setLocationName(String imagePath, String newLocName){
+        PhotoList p = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
+        for(int i = 0; i < p.size(); i++){
+            if(p.getPhoto(i).getImgPath().equals(imagePath)){
+                p.getPhoto(i).setLocationName(newLocName);
+            }
         }
     }
 

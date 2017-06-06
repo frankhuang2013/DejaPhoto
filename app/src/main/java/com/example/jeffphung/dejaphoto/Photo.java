@@ -198,6 +198,10 @@ public class Photo implements Comparable<Photo> {
         return locationName;
     }
 
+    public void setLocationName(String strLocation){
+        locationName = strLocation;
+    }
+
     public Integer getWidth(){
         return width;
     }
