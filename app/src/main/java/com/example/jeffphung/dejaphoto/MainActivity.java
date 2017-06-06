@@ -1,12 +1,15 @@
 package com.example.jeffphung.dejaphoto;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -24,7 +28,41 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
+import com.google.api.client.googleapis.auth.oauth2.GoogleBrowserClientRequestUrl;
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeRequestUrl;
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
+
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
+
+import com.google.api.services.people.v1.People;
+import com.google.api.services.people.v1.PeopleScopes;
+import com.google.api.services.people.v1.model.EmailAddress;
+import com.google.api.services.people.v1.model.ListConnectionsResponse;
+import com.google.api.services.people.v1.model.Name;
+import com.google.api.services.people.v1.model.Person;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
@@ -43,14 +81,24 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     final int takePhotoID = 2;
 
     Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-    
+
+    private static final int RC_SIGN_IN = 9001;
+
+    private GoogleApiClient mGoogleApiClient;
+
+    private List<String> emailList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button waitTimeButton = (Button)findViewById(R.id.waitTimeButton);
-        waitTimeText = (EditText)findViewById(R.id.waitTimeEditText);
+
+        emailList = new ArrayList<>();
+
+        Button waitTimeButton = (Button) findViewById(R.id.waitTimeButton);
+        waitTimeText = (EditText) findViewById(R.id.waitTimeEditText);
         intent = new Intent(this, AutoChangeWallPaper.class);
         waitTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,9 +122,34 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
             }
         });
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail().requestServerAuthCode("233552778796-7fm2m9cd3h8cjforhuo8p8q0v5sse786.apps.googleusercontent.com")
+                .requestScopes(new Scope(PeopleScopes.CONTACTS), new Scope(PeopleScopes.USERINFO_EMAIL))
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                        //TODO
+                    }
+                }/* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        SignInButton signInButton = (SignInButton) findViewById(R.id.signin);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                signIn();
+                Toast.makeText(v.getContext(), "YOU HAVE NOW SIGNED IN", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
-        File wallpaperDirectory = new File(path.toString()+"/adddd");
+        File wallpaperDirectory = new File(path.toString() + "/adddd");
         wallpaperDirectory.mkdirs();
         /* initialization */
         photoList = new PhotoList();
@@ -88,21 +161,21 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         photoLoader.execute();
 
           /* toggleButtons */
-        ToggleButton dButton = (ToggleButton) findViewById(R.id.dejaVuButton);
+        ToggleButton dButton = (ToggleButton) findViewById(R.id.sharebtn);
         dButton.setOnCheckedChangeListener(this);
-        ToggleButton lButton = (ToggleButton) findViewById(R.id.locationButton);
+        ToggleButton lButton = (ToggleButton) findViewById(R.id.friendbtn);
         lButton.setOnCheckedChangeListener(this);
-        ToggleButton timeDayButton = (ToggleButton) findViewById(R.id.timeDayButton);
+        ToggleButton timeDayButton = (ToggleButton) findViewById(R.id.mebtn);
         timeDayButton.setOnCheckedChangeListener(this);
-        ToggleButton dayWeekButton = (ToggleButton) findViewById(R.id.dayWeekButton);
-        dayWeekButton.setOnCheckedChangeListener(this);
 
 
         CreateDirs.createDir();
+
+
     }
 
 
-    public void pickerClicked(View v){
+    public void pickerClicked(View v) {
 
         Intent newIntent = new Intent();
         newIntent.setType("image/*");
@@ -111,7 +184,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         startActivityForResult(newIntent, photoPickerID);
 
     }
-    public void takePhotoClicked(View v){
+
+    public void takePhotoClicked(View v) {
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -121,17 +195,22 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode == RESULT_OK && requestCode == photoPickerID){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == photoPickerID) {
+            copyImages(data);
+        } else if (resultCode == RESULT_OK && requestCode == takePhotoID) {
             copyImages(data);
         }
-        else if(resultCode == RESULT_OK && requestCode == takePhotoID){
-            copyImages(data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
         }
     }
 
-    public void copyImages(Intent data){
+    public void copyImages(Intent data) {
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() +
                 "/DejaPhotoCopied/" + "copied" + Calendar.getInstance().getTimeInMillis() + ".JPG");
 
@@ -144,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
 
         String[] filePath = {MediaStore.Images.Media.DATA};
-        Log.i("---------",filePath[0]+"");
+        Log.i("---------", filePath[0] + "");
         Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
         cursor.moveToFirst();
         String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
@@ -164,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
             } catch (IOException e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 cursor.close();
             }
         }
@@ -204,68 +283,133 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Toast.makeText(MainActivity.this, photoList.size()+"",Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, photoList.size() + "", Toast.LENGTH_SHORT).show();
 
 
-        switch (buttonView.getId()){
-            case R.id.dejaVuButton:
+        switch (buttonView.getId()) {
+            case R.id.sharebtn:
                 if (isChecked) {
                     // The toggle is enabled
-                    Log.i("dejaVu","button enabled");
-                    dejaVuMode.setDejaVuModeOn(true);
+                    ShareManager sharer = new ShareManager();
+                    sharer.share(emailList, photoList);
 
                 } else {
                     // The toggle is disabled
-                    Log.i("dejaVu","button disabled");
-                    dejaVuMode.setDejaVuModeOn(false);
+                    //TODO: for all user photos, setShare(false);
                 }
                 break;
-            case R.id.locationButton:
+            case R.id.friendbtn:
                 if (isChecked) {
-                    // The toggle is enabled
-                    Log.i("location","enabled");
-                    dejaVuMode.setLocationModeOn(true);
+                    //TODO: if share == true and user != this user, then add to friends photolist (???)
+                    //TODO: ^^need to keep karma, location fields etc. so get photos
 
                 } else {
                     // The toggle is disabled
-                    Log.i("location","disabled");
-                    dejaVuMode.setLocationModeOn(false);
+                    //TODO: implement with photolist???
                 }
                 break;
-            case R.id.timeDayButton:
+            case R.id.mebtn:
                 if (isChecked) {
                     // The toggle is enabled
-                    Log.i("timeDay","enabled");
-                    dejaVuMode.setTimeModeOn(true);
                 } else {
                     // The toggle is disabled
-                    Log.i("timeDay","disabled");
-                    dejaVuMode.setTimeModeOn(false);
                 }
                 break;
-            case R.id.dayWeekButton:
-                if (isChecked) {
-                    // The toggle is enabled
-                    Log.i("day of week","enabled!");
-                    dejaVuMode.setDayModeOn(true);
-                } else {
-                    // The toggle is disabled
-                    Log.i("day of week", "disabled");
-                    dejaVuMode.setDayModeOn(false);
-                }
-                break;
-
-
 
         }
 
     }
 
-    public void createAlbum(View v){
-        Log.i("creating custom album","Creating Custom Album");
-
-
+    private void signIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
 
+    private void handleSignInResult(GoogleSignInResult result) {
+        Log.d("signintag", "handleSignInResult:" + result.isSuccess());
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            String name = acct.getDisplayName();
+
+            // This is what we need to exchange with the server.
+            String authcode = acct.getServerAuthCode();
+
+            new PeoplesAsync().execute(acct.getServerAuthCode());
+
+
+            System.out.println("the name is: " + name);
+
+
+            /*
+            try{
+                setUp(authcode);
+            }
+            catch(IOException e){
+
+            }
+        */
+            updateUI(true);
+        } else {
+            // Signed out, show unauthenticated UI.
+            updateUI(false);
+        }
+    }
+
+    private void updateUI(boolean signedIn) {
+        if (signedIn) {
+            findViewById(R.id.signin).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.signin).setVisibility(View.VISIBLE);
+        }
+    }
+    class PeoplesAsync extends AsyncTask<String, Void, List<String>> {
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected List<String> doInBackground(String... params) {
+
+            List<String> nameList = new ArrayList<>();
+
+            try {
+                People peopleService = PeopleHelper.setUp(MainActivity.this, params[0]);
+
+                ListConnectionsResponse response = peopleService.people().connections()
+                        .list("people/me")
+                        // This line's really important! Here's why:
+                        // http://stackoverflow.com/questions/35604406/retrieving-information-about-a-contact-with-google-people-api-java
+                        .setRequestMaskIncludeField("person.emailAddresses")
+                        .execute();
+                List<Person> connections = response.getConnections();
+
+                for (Person person : connections) {
+                    if (!person.isEmpty()) {
+
+                        List<EmailAddress> emailAddresses = person.getEmailAddresses();
+
+
+                        if (emailAddresses != null)
+                            for (EmailAddress emailAddress : emailAddresses) {
+                                emailList.add(emailAddress.getValue());
+                        }
+
+                    }
+                }
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return nameList;
+        }
+    }
 }
+
+

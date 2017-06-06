@@ -26,6 +26,9 @@ public class Photo implements Comparable<Photo> {
     private Integer width;
     private Integer height;
 
+    private boolean share = true;
+    private String user = "";
+
 
 
     /* this is a constructor for test purpose, use this constructor to declare a new Photo */
@@ -62,7 +65,17 @@ public class Photo implements Comparable<Photo> {
     }
 
 
+    public void setShare(boolean share) {
+        this.share = share;
+    }
 
+    public String getUser() {
+        return this.user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public Boolean getKarma() {
         return karma;

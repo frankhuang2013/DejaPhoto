@@ -80,6 +80,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
         //there are multiple folders here, but we are only interested in the first one (ie Camera)
         File[] files = cameraDir.listFiles();
 
+
         dirs = new ArrayList<>();
         dirs.add(mediaStorePath + "/DejaPhoto");
         dirs.add(mediaStorePath + "/DejaPhotoCopied");

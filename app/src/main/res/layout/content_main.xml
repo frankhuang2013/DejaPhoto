@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:layout_marginBottom="150dp"
+    android:gravity="center_horizontal"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.jeffphung.dejaphoto.MainActivity"
     tools:showIn="@layout/activity_main"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:layout_marginTop="15dp">
 
 
     <TextView
@@ -28,16 +28,17 @@
         android:orientation="horizontal">
 
         <ToggleButton
-            android:id="@+id/dejaVuButton"
+            android:id="@+id/sharebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true" />
 
         <TextView
-            android:id="@+id/dejaVuText"
+            android:id="@+id/sharetxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dejavumode"
+            android:text="Share my photos"
+            android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -51,16 +52,17 @@
         android:orientation="horizontal">
 
         <ToggleButton
-            android:id="@+id/locationButton"
+            android:id="@+id/friendbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true" />
 
         <TextView
-            android:id="@+id/locationText"
+            android:id="@+id/friendtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/location"
+            android:text="Show friends' photos"
+            android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -73,38 +75,17 @@
         android:orientation="horizontal">
 
         <ToggleButton
-            android:id="@+id/timeDayButton"
+            android:id="@+id/mebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true" />
 
         <TextView
-            android:id="@+id/timeDayText"
+            android:id="@+id/metxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/timeday"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ToggleButton
-            android:id="@+id/dayWeekButton"
-            android:checked="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/dayWeekText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/day_week"
+            android:text="Show my photos"
+            android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -160,5 +141,20 @@
             android:text="@string/waitTimeButtonText" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in to Google"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="left"
+        />
+
+    <com.google.android.gms.common.SignInButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signin"
+    />
 
 </LinearLayout>

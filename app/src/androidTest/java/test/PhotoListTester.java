@@ -18,6 +18,7 @@ public class PhotoListTester {
 
     PhotoList photoList;
 
+    /*
     @Before
     public void setUp() { photoList = PhotoList.getPhotoListInstance(); }
 
@@ -32,7 +33,7 @@ public class PhotoListTester {
         photoList.setAllowed(true);
         assertTrue(photoList.isAllowed());
     }
-
+    */
     @Test
     public void testnext() {
         //next on an empty list
