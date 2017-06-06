@@ -26,7 +26,7 @@ public class Photo implements Comparable<Photo> {
     private Integer width;
     private Integer height;
 
-    private boolean share = true;
+    private boolean share = false;
     private String user = "";
 
 

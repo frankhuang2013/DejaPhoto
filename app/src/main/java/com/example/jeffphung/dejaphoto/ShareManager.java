@@ -13,39 +13,39 @@ import java.util.List;
 
 public class ShareManager {
 
-    public ShareManager() {}
+    final String dejaPhoto = "DejaPhoto";
+    final String dejaPhotoCopied = "DejaPhotoCopied";
+
+    public ShareManager() {
+    }
 
     public void share(List<String> emailList, PhotoList photoList) {
 
         String mediaStorePath =
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
 
-        //TODO: Do not share friends' photos
-
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myFirebaseRef = database.getReference();
 
-        myFirebaseRef.child("ahh!!").setValue("hi");
+        //for(int i = 0 ; i < emailList.size(); i++) {
+        //    System.out.println(emailList.get(i));
+        //}
 
-        for(int i = 0 ; i < emailList.size(); i++){
-            System.out.println(emailList.get(i));
+        PhotoList shareList = PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhoto);
+        PhotoList shareListCopied = PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhotoCopied);
+
+        for (Photo photo : shareList.getPhotoArrayList()) {
+            photo.setUser(emailList.get(0));
+            String photoId = photo.getImgPath().replace(".", "");
+            photoId = photoId.replace("/storage/sdcard/DCIM/", "");
+            myFirebaseRef.child(photo.getUser()).child(photoId).setValue(photo);
         }
-        /*
 
-       // PhotoList photoList1 = PhotoListManager.getPhotoListManagerInstance().getPhotoList();
-
-        //Photo p = photoList.getPhoto(0);
-       // String path = p.getImgPath();
-
-
-        //ArrayList<Photo> sharePhotos = new ArrayList<>(photoList.photoArrayList);
-
-        //TODO: Add user field to all photos except DejaPhotoFriends (we need Friends to be separate!)
-
-        for (Photo photo : sharePhotos) {
-            //TODO reference.child(photo.getUser()).setValue(photo); --includes karma, location, imgPath :)
+        for (Photo photo : shareListCopied.getPhotoArrayList()) {
+            photo.setUser(emailList.get(0));
+            String photoId = photo.getImgPath().replace(".", "");
+            photoId = photoId.replace("/storage/sdcard/DCIM/", "");
+            myFirebaseRef.child(photo.getUser()).child(photoId).setValue(photo);
         }
-*/
     }
 }

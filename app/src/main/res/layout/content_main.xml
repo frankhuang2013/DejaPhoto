@@ -31,7 +31,7 @@
             android:id="@+id/sharebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true" />
+            android:checked="false" />
 
         <TextView
             android:id="@+id/sharetxt"
@@ -55,7 +55,7 @@
             android:id="@+id/friendbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true" />
+            android:checked="false" />
 
         <TextView
             android:id="@+id/friendtxt"
@@ -78,7 +78,7 @@
             android:id="@+id/mebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true" />
+            android:checked="false" />
 
         <TextView
             android:id="@+id/metxt"
