@@ -26,6 +26,8 @@ public class ShareManager {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myFirebaseRef = database.getReference();
 
+
+
         myFirebaseRef.child("ahh!!").setValue("hi");
 
         for(int i = 0 ; i < emailList.size(); i++){
