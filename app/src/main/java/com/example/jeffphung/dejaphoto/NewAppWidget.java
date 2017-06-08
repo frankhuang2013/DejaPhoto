@@ -120,6 +120,7 @@ public class NewAppWidget extends AppWidgetProvider {
         }
         else if (intent.getAction().equals(releaseButtonClicked))
         {
+            if (PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().size() == 0) return;
             photo = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().removeCurrentPhoto();
             Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
