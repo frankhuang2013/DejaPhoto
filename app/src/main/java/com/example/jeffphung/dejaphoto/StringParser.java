@@ -50,13 +50,10 @@ public class StringParser {
         return number;
     }
 
-    public static boolean toBoolean (String a)
+    public static boolean toBoolean (String b)
     {
-        if(a == "true")
-        {
-            return true;
-        }
-        return false;
+
+        return b.equals("true");
     }
 
 }
