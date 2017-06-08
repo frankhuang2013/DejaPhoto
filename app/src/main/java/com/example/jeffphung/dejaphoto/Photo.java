@@ -25,6 +25,7 @@ public class Photo implements Comparable<Photo> {
     private int points = 0;
     private Integer width;
     private Integer height;
+    private int numKarma = 0;
 
     private boolean share = false;
     private String user = "";
@@ -85,17 +86,20 @@ public class Photo implements Comparable<Photo> {
      * set Karma to be true or false, and write it to the photo
      */
     public void setKarma(Boolean karma) {
-        this.karma = karma;
-        try {
-            ExifInterface exifInterface = new ExifInterface(imgPath);
-            exifInterface.setAttribute(TAG_KARMA,"true");
-            exifInterface.saveAttributes();
-            Log.i("write karma to photo","successfully");
+        if(!this.karma) {
+            incrementKarma();
+            this.karma = karma;
+            try {
 
-        } catch (IOException e) {
-            e.printStackTrace();
+                ExifInterface exifInterface = new ExifInterface(imgPath);
+                exifInterface.setAttribute(TAG_KARMA, "true");
+                exifInterface.saveAttributes();
+                Log.i("write karma to photo", "successfully");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
     public Boolean isReleased() {
@@ -208,5 +212,17 @@ public class Photo implements Comparable<Photo> {
 
     public Integer getHeight(){
         return  height;
+    }
+
+    public int getNumKarma(){
+        return numKarma;
+    }
+
+    public void setNumKarma(int n){
+        numKarma = n;
+    }
+
+    public void incrementKarma(){
+        numKarma++;
     }
 }
