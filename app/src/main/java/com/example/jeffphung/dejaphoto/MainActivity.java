@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     private GoogleApiClient mGoogleApiClient;
 
     private List<String> emailList;
+    private String email;
 
     private static String newLocName;
 
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
 
         emailList = new ArrayList<>();
+        email = "";
 
         Button waitTimeButton = (Button) findViewById(R.id.waitTimeButton);
         waitTimeText = (EditText) findViewById(R.id.waitTimeEditText);
@@ -443,6 +445,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             String name = acct.getDisplayName();
+            email = acct.getEmail();
+
+            System.out.println(email);
 
             // This is what we need to exchange with the server.
             String authcode = acct.getServerAuthCode();
@@ -499,16 +504,20 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         .execute();
                 List<Person> connections = response.getConnections();
 
+                email = email.replace(".", "");
+                emailList.add(email);
+
                 for (Person person : connections) {
                     if (!person.isEmpty()) {
 
                         List<EmailAddress> emailAddresses = person.getEmailAddresses();
 
-
-                        if (emailAddresses != null)
-                            for (EmailAddress emailAddress : emailAddresses) {
-                                emailList.add(emailAddress.getValue());
+                        if (emailAddresses != null){
+                            //for (EmailAddress emailAddress : emailAddresses) {
+                                emailAddresses.get(0).setValue(emailAddresses.get(0).getValue().replace(".", ""));
+                                emailList.add(emailAddresses.get(0).getValue());
                         }
+                        //}
 
                     }
                 }

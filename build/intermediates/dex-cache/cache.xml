@@ -3,192 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/6e59444bbcd63805b0af5dbffdd6074d43ed6b8e/output/jars/classes.jar"
+        jar="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_bb37122794f85db2f2b73ab2aa3e7c945ce5385f/classes.dex" />
+        sha1="e1d5e3ff68a3abe48c8dfa172b74580e2eff29cf">
+        <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_04466a5809b02a1e077a9ee22daf9999923062c1/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/beierli/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client/1.21.0/42631630fe1276d4d6d6397bb07d53a4e4fec278/google-http-client-1.21.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="42631630fe1276d4d6d6397bb07d53a4e4fec278">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/google-http-client-1.21.0_00a7d8d7b4f3e12acfb285f5e88061ab499c5114/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9dac4dcb656bbf541d041a9d049d875852f317ca/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-people/v1-rev2-1.21.0/c5f47733867e4e6a5673b618332b97ae8b9f6be8/google-api-services-people-v1-rev2-1.21.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c5f47733867e4e6a5673b618332b97ae8b9f6be8">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/google-api-services-people-v1-rev2-1.21.0_bf849fea39aeaaaa124a3970ba32f89d0c6ba952/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="04f26b519c9df83e27cd9841bd43fa46d223745b">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c579733eefce125c2bf170487b6c22fd220ec948/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/98260b276e3474c5e24d8aa0dd59a1965f1286b2/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f39672d6c46099cd50886be850b09ba3f4d122ea/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/b91bf07cd4cd483d31522cc392ac2124131f40a2/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a4d93763bcc8e1b0405f55d14b801bfe1645c634/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/6e395826d4961e600b4d26cdd9628dea72026067/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e2185aff89caeb337b1ffc36d5e525d8318e7cfe">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d260f51013099b55312cc2148579ebe72b36f25c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/jsr305-1.3.9_c01ce5f2ff347ff69a601a8f509c965699aaef97/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/7e5aa2e4a85f221f3832d8b7ffb7f7221546cd8f/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e96c6974cf924e7ee3b230e6847d5731423388c9">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_73df75a52a0d4534d7a6cc3c04e32ddbacf361d7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/42edfcffa7205aa2c5834d41fc22bffc55462615/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f9b0bb9d6b0060e6eaa291b98a6328b3d6cb4fa3/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.21.0/61ec42bbfc51aafde5eb8b4923c602c5b5965bc2/google-oauth-client-1.21.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="61ec42bbfc51aafde5eb8b4923c602c5b5965bc2">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/google-oauth-client-1.21.0_8fc367f79b1353995351559202c0faab73e88ec3/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-jdk5/17.0/463f8378feba44df7ba7cd9272d01837dad62b36/guava-jdk5-17.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="463f8378feba44df7ba7cd9272d01837dad62b36">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/guava-jdk5-17.0_c1f382be8498fe75973c7620494087c12a5b8b0c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/e89147074fd8bb2b6bd3dd03fc5e2e86a9315ad5/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_95bb3db5950a3a93119c72e28e01f930c52bcaf1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.3/f6c3aed1cdfa21b5c1737c915186ea93a95a58bd/jackson-core-2.1.3.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f6c3aed1cdfa21b5c1737c915186ea93a95a58bd">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.1.3_3d389eeca900b8c970442d9143f73eaebdc5d22b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/83ee32480da315491b0d1f6a1e2382eb734ad03f/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_54738267e91aefe7fe875d5e2d3a8cc1f13ec27d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-jackson2/1.21.0/8ce17bdd15fff0fd8cf359757f29e778fc7191ad/google-http-client-jackson2-1.21.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8ce17bdd15fff0fd8cf359757f29e778fc7191ad">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/google-http-client-jackson2-1.21.0_9991dee9b7cd96a56a5251d6fb08805c31d470d1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/ea8ab2e052e498850f976af27451810290a2f1be/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_22868d16a11ca113b88b2955d362609537048c49/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.21.0/16a6b3c680f3bf7b81bb42790ff5c1b72c5bbedc/google-api-client-1.21.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="16a6b3c680f3bf7b81bb42790ff5c1b72c5bbedc">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/google-api-client-1.21.0_5ebeb77a27de85d174e7cf019972021e853acd3d/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/244303413b25a1bd203605786c488034cce136da/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0f3b995890d4927c958cd3c518ef61d92ba42aa6/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/beierli/.android/build-cache/0cc0825ea98ad86ed54457998e53f348d57c3189/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9e64ba952d702025bd1b7717390067f3f5b0d876/classes.dex" />
+        <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_cb3b5cec3684312bd922ef5632c2b23c1a7d89b7/classes.dex" />
     </item>
 
 </items>
