@@ -35,7 +35,7 @@ public class PhotoLoaderTester {
     public void setup(){
         photoLoaderTask = new PhotoLoaderTask(mainActivity.getActivity());
     }
-    */
+
     @Test
     public void testToBoolean() {
         assertTrue(photoLoaderTask.toBoolean("true"));
@@ -97,6 +97,6 @@ public class PhotoLoaderTester {
                 photoLoaderTask.toLocation("10/1,10/1,100/100","E","10/1,10/1,100/100","N").getLongitude()
                 ,DELTA);
 
-
     }
+    */
 }

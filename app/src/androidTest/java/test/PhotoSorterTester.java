@@ -34,6 +34,7 @@ public class PhotoSorterTester {
 
     }
     */
+    /*
     @Test
     public void testWithinHours(){
 
@@ -88,5 +89,5 @@ public class PhotoSorterTester {
     }
 
 
-
+*/
 }

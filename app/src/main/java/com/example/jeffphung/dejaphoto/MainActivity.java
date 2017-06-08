@@ -398,23 +398,22 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         Toast.makeText(MainActivity.this, photoList.size() + "", Toast.LENGTH_SHORT).show();
 
+        ShareManager sharer = new ShareManager();
 
         switch (buttonView.getId()) {
             case R.id.sharebtn:
                 if (isChecked) {
                     // The toggle is enabled
-                    ShareManager sharer = new ShareManager();
-                    sharer.share(emailList, photoList);
+                    sharer.share(emailList);
 
                 } else {
                     // The toggle is disabled
-                    //TODO: for all user photos, setShare(false);
+                    sharer.unshare(emailList);
                 }
                 break;
             case R.id.friendbtn:
                 if (isChecked) {
-                    //TODO: if share == true and user != this user, then add to friends photolist (???)
-                    //TODO: ^^need to keep karma, location fields etc. so get photos
+                    sharer.friendCopy(emailList);
 
                 } else {
                     // The toggle is disabled
@@ -454,21 +453,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
             new PeoplesAsync().execute(acct.getServerAuthCode());
 
-
             System.out.println("the name is: " + name);
 
-
-            /*
-            try{
-                setUp(authcode);
-            }
-            catch(IOException e){
-
-            }
-        */
             updateUI(true);
         } else {
-            // Signed out, show unauthenticated UI.
+
             updateUI(false);
         }
     }
@@ -498,8 +487,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
                 ListConnectionsResponse response = peopleService.people().connections()
                         .list("people/me")
-                        // This line's really important! Here's why:
-                        // http://stackoverflow.com/questions/35604406/retrieving-information-about-a-contact-with-google-people-api-java
                         .setRequestMaskIncludeField("person.emailAddresses")
                         .execute();
                 List<Person> connections = response.getConnections();
