@@ -15,16 +15,21 @@ import java.util.Collections;
 public class PhotoList{
     ArrayList<Photo> photoArrayList ;
     int index;
+    String id;
 
 
 
     /**
      * private constructor prevent other from initializing
      */
-    public PhotoList(){
+    public PhotoList(String id){
         photoArrayList = new ArrayList<>();
         index = 0;
+        this.id = id;
     }
+
+
+
 
 
     //need context to be able to set background when there is no pictures
@@ -137,4 +142,20 @@ public class PhotoList{
         this.index = i;
     }
 
+    public void clear(){
+        photoArrayList.clear();
+        index = 0;
+    }
+
+    public void mergeLists(PhotoList p){
+        photoArrayList.addAll(p.getPhotoArrayList());
+    }
+
+    public ArrayList<Photo> getPhotoArrayList(){
+        return photoArrayList;
+    }
+
+    public String getId(){
+        return id;
+    }
 }
