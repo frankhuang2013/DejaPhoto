@@ -1,6 +1,8 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.content.Context;
 import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.util.Log;
@@ -35,6 +37,12 @@ public class ExifDataParser {
 
     final private static String TAG_KARMA = ExifInterface.TAG_USER_COMMENT;
     final private static String TAG_RELEASED = ExifInterface.TAG_IMAGE_DESCRIPTION;
+
+    static Context mContext;
+
+    public static void setContext( Context c){
+        mContext = c;
+    }
 
 
     public static Photo createNewPhoto(String path){
@@ -201,7 +209,7 @@ public class ExifDataParser {
     /* get location name from its location object */
     public static String toLocationName(Location location) {
         List<Address> addresses;
-        /*
+
         if(location != null){
             Geocoder geocoder = new Geocoder(mContext);
             try {
@@ -236,7 +244,7 @@ public class ExifDataParser {
                 e.printStackTrace();
             }
 
-        }*/
+        }
         return null;
     }
 
