@@ -18,7 +18,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -107,12 +106,12 @@ public class ShareManager {
                 account = name;
                 Log.i("-----currentEmail", currentEmail + "");
                 FirebaseStorage storage = FirebaseStorage.getInstance();
+                index = 0;
                 for(int n = 0; n < num; n++) {
                     StorageReference storageRef = storage.getReference().child(name+"/"+n+".jpg");
 
                     Log.i("------path", storageRef+"");
 
-                    index = n;
 
                     //PhotoList theInstance = photoListManager.getPhotoListManagerInstance().getMainPhotoList();
 
@@ -124,7 +123,7 @@ public class ShareManager {
                             //create image from byte array given from database
                             try {
                                 Log.i("---------photo", "thisisatest");
-                                String path = externalPath+"/"+dejaPhotoFriend+"/"+account+ Calendar.getInstance().getTimeInMillis()+".jpg";
+                                String path = externalPath+"/"+dejaPhotoFriend+"/"+account+ (index++)+".jpg";
                                 FileOutputStream fos = new FileOutputStream(path);
                                 fos.write(bytes);
                                 fos.close();

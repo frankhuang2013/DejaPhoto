@@ -7,9 +7,9 @@ package com.example.jeffphung.dejaphoto;
 public class Options {
 
     static Options optionsInstance = new Options();
-    private static boolean shareMyPhotos = true;
-    private static boolean showFriendPhotos = true;
-    private static boolean showMyPhotos = true;
+    private static boolean shareMyPhotos = false;
+    private static boolean showFriendPhotos = false;
+    private static boolean showMyPhotos = false;
 
     public Options(){
 
