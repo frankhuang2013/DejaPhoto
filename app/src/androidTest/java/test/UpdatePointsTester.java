@@ -2,9 +2,15 @@ package test;
 
 //import android.support.test.rule.ActivityTestRule;
 
+import android.support.test.rule.ActivityTestRule;
+import android.util.Log;
+
+import com.example.jeffphung.dejaphoto.MainActivity;
+import com.example.jeffphung.dejaphoto.MockLocation;
+import com.example.jeffphung.dejaphoto.PhotoSorterTask;
 import com.example.jeffphung.dejaphoto.UpdatePoints;
 
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.GregorianCalendar;
 
@@ -19,19 +25,20 @@ import static org.junit.Assert.assertTrue;
 public class UpdatePointsTester {
 
 
-    /*
+    PhotoSorterTask photoSorterTask;
+
     @Rule
     public ActivityTestRule<MainActivity> mainActivity = new ActivityTestRule<MainActivity>(MainActivity.class);
-    */
 
-    /*
+
+
     @Before
     public void setUp(){
         photoSorterTask = new PhotoSorterTask(mainActivity.getActivity());
 
     }
-    */
-    /*
+
+
     @Test
     public void testWithinHours(){
 
@@ -52,8 +59,18 @@ public class UpdatePointsTester {
 
     @Test
     public void testIsLocationClose(){
+        MockLocation m1 = new MockLocation();
+        MockLocation m2 = new MockLocation();
 
+        m1.setLatitude(0);
+        m1.setLongitude(0);
+        m2.setLatitude(0.001);
+        m2.setLongitude(0.001);
 
+        assertTrue(UpdatePoints.isLocationClose(m1,m2));
+
+        m2.setLongitude(3);
+        assertFalse(UpdatePoints.isLocationClose(m1,m2));
     }
     @Test
     public void testToSecond(){
@@ -86,5 +103,5 @@ public class UpdatePointsTester {
     }
 
 
-*/
+
 }
