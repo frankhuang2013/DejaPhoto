@@ -1,6 +1,5 @@
 package com.example.jeffphung.dejaphoto;
 
-import android.graphics.Bitmap;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.util.Log;
@@ -86,7 +85,8 @@ public class Photo implements Comparable<Photo> {
             try {
 
                 ExifInterface exifInterface = new ExifInterface(imgPath);
-                exifInterface.setAttribute(TAG_KARMA, "true");
+                String photoInfo = StringParser.encodeString(!karma, numKarma, locationName);
+                exifInterface.setAttribute(TAG_KARMA, photoInfo);
                 exifInterface.saveAttributes();
                 Log.i("write karma to photo", "successfully");
 

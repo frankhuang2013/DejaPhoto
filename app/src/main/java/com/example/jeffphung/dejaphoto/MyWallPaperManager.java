@@ -43,6 +43,11 @@ public class MyWallPaperManager {
         Log.i("-----",photoList.size()+"");
         if (photoList.size() == 0) {
             setDefaultWallpaper();
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
+            RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.new_app_widget);
+            ComponentName thisWidget = new ComponentName(mContext, NewAppWidget.class);
+            remoteViews.setImageViewResource(R.id.buttonKarma, R.drawable.karma_greyed);
+            appWidgetManager.updateAppWidget(thisWidget, remoteViews);
             return;
         }
 

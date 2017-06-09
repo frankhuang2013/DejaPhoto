@@ -1,5 +1,7 @@
 package com.example.jeffphung.dejaphoto;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -102,7 +104,6 @@ public class ShareManager {
 
         Log.i("-------emailListsize",emailList.size()+"");
         Log.i("current email: ",""+ emailList.get(0));
-
 
         for (int i = 1; i < emailList.size(); i++) {
 
