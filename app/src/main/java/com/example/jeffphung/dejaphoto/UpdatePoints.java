@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 public class UpdatePoints {
 
     static GregorianCalendar currentCalendar;
-    static Location currentLocation;
+    static ILocation currentLocation;
     private final static int KARMA_POINTS = 10;
     private final static int LOCATION_POINTS = 10;
     private final static int TIME_POINTS = 10;
@@ -28,7 +28,7 @@ public class UpdatePoints {
 
         photo.setPoints(0);
         GregorianCalendar calendar = photo.getCalendar(); //photo's calendar
-        Location location = photo.getLocation(); //photo's location
+        ILocation iloc = new LocationAdapter(photo.getLocation()); //photo's location
 
         //check day of week
         if (calendar != null && currentCalendar != null && dejaVuMode.isDayModeOn()) {
@@ -47,10 +47,10 @@ public class UpdatePoints {
         }
 
         //check withinLocation
-        if (location != null && currentLocation != null && dejaVuMode.isLocationModeOn()) {
-            if (isLocationClose(currentLocation, location)) {
+        if (iloc.getLoc() != null && currentLocation.getLoc() != null && dejaVuMode.isLocationModeOn()) {
+            if (isLocationClose(currentLocation, iloc)) {
                 photo.addPoints(LOCATION_POINTS);
-                Log.i("Within Location: ", location + "");
+                Log.i("Within Location: ", iloc.getLoc() + "");
 
             }
 
@@ -66,7 +66,7 @@ public class UpdatePoints {
 
 
     public static void setCurrentLocation(Location l){
-        currentLocation = l;
+        currentLocation = new LocationAdapter(l);
     }
 
     public static void setCurrentCalendar(GregorianCalendar c){
@@ -75,7 +75,13 @@ public class UpdatePoints {
 
 
     /* check if two location are close */
-    public static boolean isLocationClose(Location currentLocation, Location location){
+    /*public static boolean isLocationClose(ILocation currentLocation, ILocation location){
+        if(currentLocation.distanceTo(location) <= WITHINRANGE) {
+            return true;
+        }
+        return false;
+    }*/
+    public static boolean isLocationClose(ILocation currentLocation, ILocation location){
         if(currentLocation.distanceTo(location) <= WITHINRANGE) {
             return true;
         }
