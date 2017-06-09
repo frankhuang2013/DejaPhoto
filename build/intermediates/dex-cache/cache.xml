@@ -12,57 +12,12 @@
     </item>
     <item
         is-multidex="true"
-<<<<<<< Updated upstream
         jar="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="be69ab16958b8d58a9f620bd80a234e926dd67b7">
         <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c579733eefce125c2bf170487b6c22fd220ec948/classes.dex" />
-=======
-        jar="C:\Users\romel\.android\build-cache\fba1320fd241b347db0bbd695721d4039b850676\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="D:\DejaPhoto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9dfc83b9ff5227699d0beb54fb282e4fb1417689\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\romel\.android\build-cache\a6febff50ad641f4dca8ebfc168f31a054eadc5d\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
-        <dex dex="D:\DejaPhoto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8359dffa19c368368e81d4a49968d5c50ea9bcce\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\romel\.android\build-cache\977d773dc7c91d58ccbdf42dcf3cab01063d92bb\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="D:\DejaPhoto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b1229a3d9470331bf69394068d7135d89a1f7ccc\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\romel\.android\build-cache\15ceeceec85752cd7666f2963d862a1a239f6b63\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
-        <dex dex="D:\DejaPhoto\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_210211a9b187e61a0f620d575c0a7f78cc06e950\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\DejaPhoto\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="373bf025c45fcf20843a77c883c1da27ff067271">
-        <dex dex="D:\DejaPhoto\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_3a2a56c2e20187b0803564c5fab6c8c402dc78e1\classes.dex" />
->>>>>>> Stashed changes
     </item>
 
 </items>
