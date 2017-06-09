@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -123,7 +124,7 @@ public class ShareManager {
                             //create image from byte array given from database
                             try {
                                 Log.i("---------photo", "thisisatest");
-                                String path = externalPath+"/"+dejaPhotoCopied+"/"+account+"/"+index;
+                                String path = externalPath+"/"+dejaPhotoFriend+"/"+account+ Calendar.getInstance().getTimeInMillis()+".jpg";
                                 FileOutputStream fos = new FileOutputStream(path);
                                 fos.write(bytes);
                                 fos.close();
@@ -133,9 +134,9 @@ public class ShareManager {
                                 mContext.sendBroadcast(scanIntent);
 
                                 Photo photo = ExifDataParser.createNewPhoto(path);
-                                PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhotoCopied).add(photo);
+                                PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhotoFriend).add(photo);
                             } catch (Exception e) {
-                                System.out.println("FILE TOO BIG");
+                                System.out.println("FILE TOO BIG"+e.toString());
                             }
 
                         }
