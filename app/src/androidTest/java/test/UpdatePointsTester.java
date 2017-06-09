@@ -2,16 +2,6 @@ package test;
 
 //import android.support.test.rule.ActivityTestRule;
 
-import com.example.jeffphung.dejaphoto.UpdatePoints;
-
-import org.junit.Test;
-
-import java.util.GregorianCalendar;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 /**
  * Created by kaijiecai on 5/1/17.
  */

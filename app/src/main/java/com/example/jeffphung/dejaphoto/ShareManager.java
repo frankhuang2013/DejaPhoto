@@ -1,7 +1,5 @@
 package com.example.jeffphung.dejaphoto;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,6 +28,7 @@ public class ShareManager {
 
     public ShareManager() {
     }
+
 
     public void share(List<String> emailList) {
 
@@ -84,7 +83,7 @@ public class ShareManager {
 
             System.out.println("My friends are:" + currentEmail);
             FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReference().child("/mrjohnwhite10@gmail.com/images/0.jpeg");
+            StorageReference storageRef = storage.getReference().child("/mrjohnwhite10@gmail.com/images/0");
 
             //PhotoList theInstance = photoListManager.getPhotoListManagerInstance().getMainPhotoList();
 
@@ -95,7 +94,7 @@ public class ShareManager {
                     //create image from byte array given from database
                     try {
                         System.out.println("GOT THE IMAGE INFO");
-                        FileOutputStream fos = new FileOutputStream("/storage/sdcard/DCIM/DejaPhoto/test.jpg");
+                        FileOutputStream fos = new FileOutputStream("/storage/sdcard/DCIM/DejaPhoto/");
                         fos.write(bytes);
                         fos.close();
                     }
