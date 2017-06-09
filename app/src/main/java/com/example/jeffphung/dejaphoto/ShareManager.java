@@ -1,20 +1,14 @@
 package com.example.jeffphung.dejaphoto;
 
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -24,7 +18,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -114,14 +107,16 @@ public class ShareManager {
                 Log.i("-----currentEmail", currentEmail + "");
                 FirebaseStorage storage = FirebaseStorage.getInstance();
                 for(int n = 0; n < num; n++) {
-                    StorageReference storageRef = storage.getReference().child(name+"/"+n);
+                    StorageReference storageRef = storage.getReference().child(name+"/"+n+".jpg");
+
+                    Log.i("------path", storageRef+"");
 
                     index = n;
 
                     //PhotoList theInstance = photoListManager.getPhotoListManagerInstance().getMainPhotoList();
 
 
-                    final long TENMB = 10000000;
+                    final long TENMB = 1000000000;
                     storageRef.getBytes(TENMB).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] bytes) {

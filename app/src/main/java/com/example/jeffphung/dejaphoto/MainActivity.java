@@ -3,7 +3,6 @@ package com.example.jeffphung.dejaphoto;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Path;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -201,7 +200,14 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         ToggleButton timeDayButton = (ToggleButton) findViewById(R.id.mebtn);
         timeDayButton.setOnCheckedChangeListener(this);
 
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setApplicationId("1:233552778796:android:30604417558d9a73")
+                .setDatabaseUrl("https://dejaphoto-cce7b.firebaseio.com/")
+                .build();
 
+
+        database = FirebaseDatabase.getInstance(FirebaseApp.initializeApp(this,options,"AAA"));
+        myRef = database.getReference();
 
 
         CreateDirs.createDir();
@@ -571,15 +577,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     public void startFirebase(){
-        FirebaseOptions options = new FirebaseOptions.Builder()
-                .setApplicationId("1:233552778796:android:30604417558d9a73")
-                .setDatabaseUrl("https://dejaphoto-cce7b.firebaseio.com/")
-                .build();
 
-
-        database = FirebaseDatabase.getInstance(FirebaseApp.initializeApp(this,options,"secondary"));
-        myRef = database.getReference();
         allowed = true;
+        startFirebaseListener();
+        //onStart();
 
     }
 
@@ -591,9 +592,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     }
 
-    public void onStart(){
+    public void startFirebaseListener(){
 
-        super.onStart();
+       // super.onStart();
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
@@ -608,13 +609,13 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     //if( !eName.equals(emailList.get(0)));
 
 
-                    if( allowed) {
+                   // if( allowed) {
 
                         if (!eName.equals(emailList.get(0))) {
                             String num = snapshot.getValue(String.class);
                             sharer.friendCopy(emailList, eName, Integer.parseInt(num));
                         }
-                    }
+             //       }
 
                 }
 
