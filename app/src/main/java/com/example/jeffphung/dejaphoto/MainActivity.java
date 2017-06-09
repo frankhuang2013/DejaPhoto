@@ -31,6 +31,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.api.services.people.v1.People;
 import com.google.api.services.people.v1.PeopleScopes;
 import com.google.api.services.people.v1.model.EmailAddress;
@@ -42,6 +43,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -89,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         emailList = new ArrayList<>();
         email = "";
@@ -417,7 +418,6 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
                 } else {
                     // The toggle is disabled
-                    //TODO: implement with photolist???
                 }
                 break;
             case R.id.mebtn:
@@ -491,7 +491,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         .execute();
                 List<Person> connections = response.getConnections();
 
-                email = email.replace(".", "");
+                //email = email.replace(".", "");
                 emailList.add(email);
 
                 for (Person person : connections) {
@@ -501,7 +501,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
                         if (emailAddresses != null){
                             //for (EmailAddress emailAddress : emailAddresses) {
-                                emailAddresses.get(0).setValue(emailAddresses.get(0).getValue().replace(".", ""));
+                                //emailAddresses.get(0).setValue(emailAddresses.get(0).getValue().replace(".", ""));
                                 emailList.add(emailAddresses.get(0).getValue());
                         }
                         //}

@@ -1,5 +1,6 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.util.Log;

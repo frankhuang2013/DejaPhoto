@@ -3,21 +3,39 @@
 
     <item
         is-multidex="true"
-        jar="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b63a2e44adf172c167de3c835eefbbe14ffb1068">
-        <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_04466a5809b02a1e077a9ee22daf9999923062c1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
         <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_cb3b5cec3684312bd922ef5632c2b23c1a7d89b7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c86e92db7e4844a1cc99fd89fd5620c69b8fe887">
+        <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_04466a5809b02a1e077a9ee22daf9999923062c1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jeffphung/.android/build-cache/7589dac38f04bcbfea10c72354205bd9a8c1059c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
+        <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_63446fbbe462bb89baa79a580e2df55501227a9e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jeffphung/.android/build-cache/ffc7c9fb651f853b0bbdce434c2c3436df51d719/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
+        <dex dex="/Users/jeffphung/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b2aae4b6164e5a1e1662160200339887e93d9262/classes.dex" />
     </item>
 
 </items>
