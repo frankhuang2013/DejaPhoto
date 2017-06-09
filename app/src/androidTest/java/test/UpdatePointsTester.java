@@ -31,6 +31,7 @@ public class UpdatePointsTester {
 
     }
     */
+    /*
     @Test
     public void testWithinHours(){
 
@@ -85,5 +86,5 @@ public class UpdatePointsTester {
     }
 
 
-
+*/
 }
