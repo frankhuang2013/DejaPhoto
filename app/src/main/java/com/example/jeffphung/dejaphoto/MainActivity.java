@@ -37,6 +37,13 @@ import com.google.api.services.people.v1.PeopleScopes;
 import com.google.api.services.people.v1.model.EmailAddress;
 import com.google.api.services.people.v1.model.ListConnectionsResponse;
 import com.google.api.services.people.v1.model.Person;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -62,11 +69,15 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     PhotoLoaderTask photoLoader; // PhotoLoader class: load photo to app from photo
     // PhotoSorter class: sort the photo according to location and time
 
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+
     EditText waitTimeText;
     String waitTimeStr = "";
     int waitTimeInt = -1;
     Intent intent;
 
+    boolean allowed = false;
     final int photoPickerID = 1;
     final int takePhotoID = 2;
     final int changeLocationID = 3;
@@ -87,11 +98,25 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     private static String newLocName;
 
+    ShareManager sharer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        /* set up realtime database */
+
+
+
+        //myRef = database.getReferenceFromUrl("https://dejaphoto-cce7b.firebaseio.com/");
+
+
+        /* set up realtime database */
+
+
+
+        sharer = new ShareManager(this);
         emailList = new ArrayList<>();
         email = "";
 
@@ -176,6 +201,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         lButton.setOnCheckedChangeListener(this);
         ToggleButton timeDayButton = (ToggleButton) findViewById(R.id.mebtn);
         timeDayButton.setOnCheckedChangeListener(this);
+
+
 
 
         CreateDirs.createDir();
@@ -400,17 +427,19 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         Toast.makeText(MainActivity.this, photoList.size() + "", Toast.LENGTH_SHORT).show();
 
-        ShareManager sharer = new ShareManager();
+       // ShareManager sharer = new ShareManager();
 
         switch (buttonView.getId()) {
             case R.id.sharebtn:
                 if (isChecked) {
                     // The toggle is enabled
-                    sharer.share(emailList);
+                    int num = sharer.share(emailList);
+                    sendToDatabase(num);
 
                 } else {
                     // The toggle is disabled
                     sharer.unshare(emailList);
+                    sendToDatabase(0);
                 }
                 Options.setShareMyPhotos(isChecked);
 
@@ -418,7 +447,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 break;
             case R.id.friendbtn:
                 if (isChecked) {
-                    sharer.friendCopy(emailList);
+                    //sharer.friendCopy(emailList,"all",);
 
                 } else {
                     // The toggle is disabled
@@ -456,7 +485,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             String name = acct.getDisplayName();
             email = acct.getEmail();
 
-            System.out.println(email);
+            System.out.println("ahhh!" + email);
 
             // This is what we need to exchange with the server.
             String authcode = acct.getServerAuthCode();
@@ -464,6 +493,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             new PeoplesAsync().execute(acct.getServerAuthCode());
 
             System.out.println("the name is: " + name);
+
 
             updateUI(true);
         } else {
@@ -480,6 +510,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         }
     }
     class PeoplesAsync extends AsyncTask<String, Void, List<String>> {
+
 
 
         @Override
@@ -501,14 +532,20 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         .execute();
                 List<Person> connections = response.getConnections();
 
+                Log.i("-------connections",connections.size()+"");
+
                 //email = email.replace(".", "");
                 emailList.add(email);
+                int i = 0;
 
                 for (Person person : connections) {
+
+                    Log.i("-----person",i+"   "+person+"");
                     if (!person.isEmpty()) {
 
                         List<EmailAddress> emailAddresses = person.getEmailAddresses();
 
+                        Log.i("-----email",emailAddresses+"");
                         if (emailAddresses != null){
                             //for (EmailAddress emailAddress : emailAddresses) {
                                 //emailAddresses.get(0).setValue(emailAddresses.get(0).getValue().replace(".", ""));
@@ -517,7 +554,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         //}
 
                     }
+                    i++;
                 }
+                startFirebase();
+
+
 
 
             } catch (IOException e) {
@@ -526,5 +567,62 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
             return nameList;
         }
+    }
+
+    public void startFirebase(){
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setApplicationId("1:233552778796:android:30604417558d9a73")
+                .setDatabaseUrl("https://dejaphoto-cce7b.firebaseio.com/")
+                .build();
+
+
+        database = FirebaseDatabase.getInstance(FirebaseApp.initializeApp(this,options,"secondary"));
+        myRef = database.getReference();
+        allowed = true;
+
+    }
+
+
+    public void sendToDatabase(int i){
+        String name = emailList.get(0)+"";
+
+        myRef.child(name.split("\\.")[0]).setValue(new Integer(i).toString());
+
+    }
+
+    public void onStart(){
+
+        super.onStart();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String eName = snapshot.getKey()+".com";
+                    //emailList.get(0);
+                    //if( !eName.equals(emailList.get(0)));
+
+
+                    if( allowed) {
+
+                        if (!eName.equals(emailList.get(0))) {
+                            String num = snapshot.getValue(String.class);
+                            sharer.friendCopy(emailList, eName, Integer.parseInt(num));
+                        }
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
