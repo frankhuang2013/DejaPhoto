@@ -40,6 +40,7 @@ public class MyWallPaperManager {
     public void setWallPaper(Photo p){
         photoList = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList();
 
+        Log.i("-----",photoList.size()+"");
         if (photoList.size() == 0) {
             setDefaultWallpaper();
             return;
@@ -90,14 +91,13 @@ public class MyWallPaperManager {
                         Log.i("Karmar:  ", p.getKarmarNumber());
                         */
 
-                            c.drawText("Karmar: 2 " , bitmap.getWidth()/2 + 80,
+                            c.drawText("Karma:" + p.getNumKarma() , bitmap.getWidth()/2 + 80,
                             bitmap.getHeight() / 2 + phoneHeight / 2 -80, textPaint);
 
 
                         myWallPaperManager.setBitmap(bitmap);
 
                         bitmap.recycle();
-                        bitmap = null;
                         //new stuff
                         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
                         RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.new_app_widget);

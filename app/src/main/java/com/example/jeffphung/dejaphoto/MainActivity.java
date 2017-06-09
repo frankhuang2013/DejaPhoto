@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     public void pickerClicked(View v) {
 
+
         Intent newIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(newIntent, photoPickerID);
@@ -411,6 +412,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     // The toggle is disabled
                     sharer.unshare(emailList);
                 }
+                Options.setShareMyPhotos(isChecked);
+
+                PhotoListManager.updateMainPhotolist();
                 break;
             case R.id.friendbtn:
                 if (isChecked) {
@@ -419,6 +423,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 } else {
                     // The toggle is disabled
                 }
+                Options.setShowFriendPhotos(isChecked);
+                PhotoListManager.updateMainPhotolist();
                 break;
             case R.id.mebtn:
                 if (isChecked) {
@@ -426,7 +432,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 } else {
                     // The toggle is disabled
                 }
+                Options.setShowMyPhotos(isChecked);
+
+                PhotoListManager.updateMainPhotolist();
                 break;
+
 
         }
 

@@ -2,7 +2,6 @@ package com.example.jeffphung.dejaphoto;
 
 import android.content.Context;
 import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.media.ExifInterface;
 import android.util.Log;
@@ -210,6 +209,7 @@ public class ExifDataParser {
     public static String toLocationName(Location location) {
         List<Address> addresses;
 
+        /*
         if(location != null){
             Geocoder geocoder = new Geocoder(mContext);
             try {
@@ -244,7 +244,7 @@ public class ExifDataParser {
                 e.printStackTrace();
             }
 
-        }
+        }*/
         return null;
     }
 

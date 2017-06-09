@@ -96,8 +96,6 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                 ExifDataParser.setContext(mContext);
                 Photo photo = createNewPhoto(path);
                 photoList.add(photo);
-                //TODO
-                PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().add(photo);
 
                 Log.i("end loading", "ends loading " + i + "th photo----");
             }
@@ -113,6 +111,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
     @Override
     public void onPostExecute (String result){
         progressDialog.dismiss();
+        PhotoListManager.updateMainPhotolist();
         //invoke autoGPStimer to sort list every 500ft change
         Intent intent = new Intent(mContext,AutoGPSTimer.class);
         mContext.startService(intent);

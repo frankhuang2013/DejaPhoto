@@ -7,6 +7,10 @@ import java.util.ArrayList;
  */
 
 public class PhotoListManager {
+
+    final static String dejaPhoto = "DejaPhoto";
+    final static String dejaPhotoCopied = "DejaPhotoCopied";
+    final static String dejaPhotoFriend = "DejaPhotoFriends";
     static PhotoListManager photoListManager = new PhotoListManager();
     ArrayList<PhotoList> photolists = new ArrayList<>();
 
@@ -40,4 +44,20 @@ public class PhotoListManager {
         }
         return null;
     }
+
+    public static void updateMainPhotolist(){
+        Options options = Options.getOptionsInstance();
+        PhotoList p = new PhotoList("main");
+        if( options.isShowFriendPhotos()){
+            p.mergeLists(photoListManager.getPhotoList(dejaPhotoFriend));
+        }
+        if( options.isShowMyPhotos()){
+            p.mergeLists(photoListManager.getPhotoList(dejaPhoto));
+            p.mergeLists(photoListManager.getPhotoList(dejaPhotoCopied));
+        }
+        p.sort();
+        PhotoListManager.getPhotoListManagerInstance().setMainPhotoList(p);
+    }
+
+
 }

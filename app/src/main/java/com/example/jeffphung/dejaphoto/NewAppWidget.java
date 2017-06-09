@@ -95,26 +95,16 @@ public class NewAppWidget extends AppWidgetProvider {
         Log.i("appWidgetId", appWidgetId + "");
         super.onReceive(context, intent);
         Photo photo = null;
-        if (PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().size() == 0) return;
         if (intent.getAction().equals(nextButtonClicked)) {
 
             Log.i("start get img","start");
             photo = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().next();
-            if (photo == null) return;
-            Log.i("picPath",photo.getImgPath()+"");
-            String path = photo.getImgPath();
-            Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);
 
         }
         else if (intent.getAction().equals(prevButtonClicked)) {
             photo = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().previous();
-            if (photo == null) return;
-            Log.i("picPath",photo.getImgPath()+"");
-            Log.i("start get img", "start");
-            String path = photo.getImgPath();
-            Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
             myWallPaperManager.setWallPaper(photo);
         }
@@ -130,6 +120,7 @@ public class NewAppWidget extends AppWidgetProvider {
         }
         else if (intent.getAction().equals(releaseButtonClicked))
         {
+            if (PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().size() == 0) return;
             photo = PhotoListManager.getPhotoListManagerInstance().getMainPhotoList().removeCurrentPhoto();
             Log.i("finish get img", "finished");
             MyWallPaperManager myWallPaperManager = new MyWallPaperManager(context);
