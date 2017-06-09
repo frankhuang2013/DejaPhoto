@@ -2,22 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/kaijiecai/.android/build-cache/eb3bc36b291f2bf35a77e8bd12b4982cbdc6cdb3/output/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
-        <dex dex="/Users/kaijiecai/AndroidStudioProjects/FirebaseApp/DejaPhoto/app/build/intermediates/pre-dexed/debug/classes_be7b79665f63d6b69e9518927db29845a65323af.jar" />
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9dac4dcb656bbf541d041a9d049d875852f317ca/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/kaijiecai/.android/build-cache/08f015975073240917fdf66c18d57e03d88436cc/output/jars/classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
-        <dex dex="/Users/kaijiecai/AndroidStudioProjects/FirebaseApp/DejaPhoto/app/build/intermediates/pre-dexed/debug/classes_ec86d0cef79384336b332b2bf9e3e4e00941b9fa.jar" />
+        sha1="be69ab16958b8d58a9f620bd80a234e926dd67b7">
+        <dex dex="/Users/beierli/AndroidStudioProjects/DejaPhoto/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_c579733eefce125c2bf170487b6c22fd220ec948/classes.dex" />
     </item>
 
 </items>
