@@ -3,6 +3,7 @@ package com.example.jeffphung.dejaphoto;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Path;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -414,6 +415,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 }
                 Options.setShareMyPhotos(isChecked);
 
+                Log.i("Checking mysharePhotos", Options.isShareMyPhotos()+"");
                 PhotoListManager.updateMainPhotolist();
                 break;
             case R.id.friendbtn:
@@ -424,6 +426,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     // The toggle is disabled
                 }
                 Options.setShowFriendPhotos(isChecked);
+                Log.i("Checking FriendPhoto", Options.isShowFriendPhotos()+"");
                 PhotoListManager.updateMainPhotolist();
                 break;
             case R.id.mebtn:
@@ -433,7 +436,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     // The toggle is disabled
                 }
                 Options.setShowMyPhotos(isChecked);
-
+                Log.i("Checking myphoto", Options.isShowMyPhotos()+"");
                 PhotoListManager.updateMainPhotolist();
                 break;
 

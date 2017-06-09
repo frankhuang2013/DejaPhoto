@@ -40,7 +40,8 @@ public class Options {
         return showMyPhotos;
     }
 
-    public static void setShowMyPhotos(boolean showMyPhotos) {
+    public static void setShowMyPhotos(boolean showMyPhotos)
+    {
         Options.showMyPhotos = showMyPhotos;
     }
 
