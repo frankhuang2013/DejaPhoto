@@ -30,6 +30,10 @@ public class PhotoSorterTask extends AsyncTask<Void,String,String>{
 
     }
 
+    public PhotoSorterTask(){
+
+    }
+
 
     public PhotoSorterTask(Location currentLocation, Context context){
         mContext = context;

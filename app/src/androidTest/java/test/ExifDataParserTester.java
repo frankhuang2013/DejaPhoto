@@ -3,6 +3,8 @@ package test;
 
 import android.location.Location;
 
+import com.example.jeffphung.dejaphoto.ExifDataParser;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,27 +36,33 @@ public class ExifDataParserTester {
     */
     @Test
     public void testToBoolean() {
-        assertTrue(com.example.jeffphung.dejaphoto.ExifDataParser.toBoolean("true"));
+        assertTrue(ExifDataParser.toBooleanTruth("true"));
         //more test cases
-        assertFalse(com.example.jeffphung.dejaphoto.ExifDataParser.toBoolean("false"));
-        assertFalse(com.example.jeffphung.dejaphoto.ExifDataParser.toBoolean("-1"));
+        assertFalse(ExifDataParser.toBooleanTruth("false"));
+        assertFalse(ExifDataParser.toBooleanTruth("-1"));
     }
 
     @Test
-    public void testToGregorianCalendar(){
+    public void testToGregorianCalendar() {
         // calendar constructor month start at 0, 8 means Sept
         // toCalendar method will take care of this.
         GregorianCalendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
-        calendar.set(2015,8,14,2,28,0);
-        Assert.assertEquals(calendar, com.example.jeffphung.dejaphoto.ExifDataParser.toGregorianCalendar("2015:9:14", "2:28:0"));
+        calendar.set(2015, 8, 14, 2, 28, 0);
 
-        calendar.set(2016,11,30,1,30,59);
-        Assert.assertEquals(calendar, com.example.jeffphung.dejaphoto.ExifDataParser.toGregorianCalendar("2016:12:30", "1:30:59"));
 
-        calendar.set(1990,6,1,1,1,1);
-        Assert.assertEquals(calendar, com.example.jeffphung.dejaphoto.ExifDataParser.toGregorianCalendar("1990:7:1", "1:1:1"));
+        GregorianCalendar calendar1 = com.example.jeffphung.dejaphoto.ExifDataParser.toGregorianCalendar("2015:9:14", "2:28:0");
+
+        Assert.assertEquals(calendar.HOUR, calendar1.HOUR);
+
+        calendar.set(2016, 11, 30, 1, 30, 59);
+
+        calendar1 = com.example.jeffphung.dejaphoto.ExifDataParser.toGregorianCalendar("2016:12:30", "1:30:59");
+        Assert.assertEquals(calendar.MONTH, calendar1.MONTH);
+
+        calendar.set(1990, 6, 1, 1, 1, 1);
+        calendar1 = com.example.jeffphung.dejaphoto.ExifDataParser.toGregorianCalendar("1990:7:1", "1:1:1");
+        Assert.assertEquals(calendar.HOUR, calendar1.HOUR);
     }
-
     @Test
     public void testToDouble(){
         DecimalFormat twoDForm = new DecimalFormat("#.####");

@@ -115,6 +115,12 @@ public class ExifDataParser {
             return false;
     }
 
+    public static boolean toBooleanTruth(String str){
+        if(str.equals("true"))
+            return true;
+        return false;
+    }
+
     /* convrt a string to int
      * will return -1 for any error condition
      */

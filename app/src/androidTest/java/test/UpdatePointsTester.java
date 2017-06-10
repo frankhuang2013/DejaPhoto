@@ -27,14 +27,12 @@ public class UpdatePointsTester {
 
     PhotoSorterTask photoSorterTask;
 
-    @Rule
-    public ActivityTestRule<MainActivity> mainActivity = new ActivityTestRule<MainActivity>(MainActivity.class);
 
 
 
     @Before
     public void setUp(){
-        photoSorterTask = new PhotoSorterTask(mainActivity.getActivity());
+        photoSorterTask = new PhotoSorterTask();
 
     }
 
