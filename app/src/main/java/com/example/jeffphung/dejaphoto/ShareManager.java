@@ -147,7 +147,6 @@ public class ShareManager {
                             Photo photo1 = p.findPhoto(path);
                             if( photo1!=null){
                                 photo1.setNumKarma(num);
-                                photo1.setKarma(false);
                             }
                             else{
 

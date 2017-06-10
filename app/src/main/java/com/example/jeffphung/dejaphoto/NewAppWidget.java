@@ -118,6 +118,8 @@ public class NewAppWidget extends AppWidgetProvider {
             if (photo == null) return;
             if (!photo.getKarma()) {
                 photo.setKarma(true);
+                photo.incrementKarma();
+
 
                 views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
                 //

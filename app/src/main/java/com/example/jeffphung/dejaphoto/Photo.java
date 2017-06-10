@@ -84,7 +84,6 @@ public class Photo implements Comparable<Photo> {
      */
     public void setKarma(Boolean karma) {
         if(karma) {
-            incrementKarma();
             this.karma = karma;
             try {
 
