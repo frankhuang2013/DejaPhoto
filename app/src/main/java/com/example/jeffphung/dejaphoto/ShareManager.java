@@ -33,10 +33,11 @@ public class ShareManager {
     PhotoListManager photoListManager;
     Context mContext;
 
-    int index = 0;
-    String account;
+    String[] photoNames;
 
     int numPhoto;
+
+    public ShareManager(){};
 
     public ShareManager(Context c) {
         mContext = c;
@@ -50,10 +51,18 @@ public class ShareManager {
         PhotoList photoList = PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhoto);
         photoList.mergeLists(PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhotoCopied));
 
+        photoNames = new String[photoList.size()];
         numPhoto= photoList.size();
         for (int i = 0; i < photoList.size(); i++) {
 
-            final String imgPath = "/" + emailList.get(0) + "/"+i+".jpg";
+            String[] imageNames = photoList.getPhoto(i).getImgPath().split("/");
+            String imageName = imageNames[imageNames.length-1];
+            imageName = imageName.split("\\.")[0]+".jpg";
+            final String imgPath = "/" + emailList.get(0) + "/"+imageName;
+
+            Log.i("---------photo", imgPath);
+
+            photoNames[i] = imgPath;
             StorageReference imagesRef = storageRef.child(imgPath);
 
             InputStream stream = null;
@@ -84,7 +93,8 @@ public class ShareManager {
         for (int i = 0; i < numPhoto; i++) {
 
 
-            final String imgPath = "/" + emailList.get(0) + "/"+i+".jpg";
+            //final String imgPath = "/" + emailList.get(0) + "/"+i+".jpg";
+            String imgPath = photoNames[i];
             StorageReference imagesRef = storageRef.child(imgPath);
 
             imagesRef.delete();
@@ -93,60 +103,72 @@ public class ShareManager {
 
     }
 
-    public void friendCopy(List<String> emailList, String name, int num) {
+    public void friendCopy(List<String> emailList, final String name, final String imgName, final int num) {
 
         Log.i("-------emailListsize",emailList.size()+"");
         Log.i("current email: ",""+ emailList.get(0));
+
+        Log.i("current email: ",""+ name);
 
         for (int i = 1; i < emailList.size(); i++) {
 
             String currentEmail = emailList.get(i);
 
             if (currentEmail.equals(name)) {
-                account = name;
                 Log.i("-----currentEmail", currentEmail + "");
                 FirebaseStorage storage = FirebaseStorage.getInstance();
-                index = 0;
-                for(int n = 0; n < num; n++) {
-                    StorageReference storageRef = storage.getReference().child(name+"/"+n+".jpg");
 
-                    Log.i("------path", storageRef+"");
+                StorageReference storageRef = storage.getReference().child(name+"/"+imgName+".jpg");
 
-
-                    //PhotoList theInstance = photoListManager.getPhotoListManagerInstance().getMainPhotoList();
+                Log.i("------path", storageRef+"");
 
 
-                    final long TENMB = 1000000000;
-                    storageRef.getBytes(TENMB).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                        @Override
-                        public void onSuccess(byte[] bytes) {
-                            //create image from byte array given from database
-                            try {
-                                Log.i("---------photo", "thisisatest");
-                                String path = externalPath+"/"+dejaPhotoFriend+"/"+account+ (index++)+".jpg";
-                                FileOutputStream fos = new FileOutputStream(path);
-                                fos.write(bytes);
-                                fos.close();
-                                final Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                                final Uri contentUri = Uri.fromFile(new File(path));
-                                scanIntent.setData(contentUri);
-                                mContext.sendBroadcast(scanIntent);
+                //PhotoList theInstance = photoListManager.getPhotoListManagerInstance().getMainPhotoList();
+
+
+                final long TENMB = 1000000000;
+                storageRef.getBytes(TENMB).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        //create image from byte array given from database
+                        try {
+
+                            String path = externalPath+"/"+dejaPhotoFriend+"/"+imgName+".jpg";
+                            Log.i("---------photo", path);
+                            FileOutputStream fos = new FileOutputStream(path);
+                            fos.write(bytes);
+                            fos.close();
+                            final Intent scanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            final Uri contentUri = Uri.fromFile(new File(path));
+                            scanIntent.setData(contentUri);
+                            mContext.sendBroadcast(scanIntent);
+
+                            PhotoList p = PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhotoFriend);
+                            Photo photo1 = p.findPhoto(path);
+                            if( photo1!=null){
+                                photo1.setNumKarma(num);
+                            }
+                            else{
 
                                 Photo photo = ExifDataParser.createNewPhoto(path);
-                                PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhotoFriend).add(photo);
-                            } catch (Exception e) {
-                                System.out.println("FILE TOO BIG"+e.toString());
+                                photo.setParent(name);
+                                photo.setNumKarma(num);
+                                p.add(photo);
                             }
 
+                        } catch (Exception e) {
+                            System.out.println("FILE TOO BIG"+e.toString());
                         }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            // Handle any errors
-                            Log.i("---------photofailure", "thisisatest");
-                        }
-                    });
-                }
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle any errors
+                        Log.i("---------photofailure", "thisisatest");
+                    }
+                });
+
 
 
             }

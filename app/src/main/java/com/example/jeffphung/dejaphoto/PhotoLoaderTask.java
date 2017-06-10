@@ -49,6 +49,7 @@ public class PhotoLoaderTask extends AsyncTask<Void,String,String> {
                 "ProgressDialog",
                 "Waiting for loading");
 
+
     }
 
 

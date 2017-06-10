@@ -1,5 +1,7 @@
 package com.example.jeffphung.dejaphoto;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -15,6 +17,20 @@ public class PhotoListManager {
     ArrayList<PhotoList> photolists = new ArrayList<>();
 
     PhotoList mainPhotoList = new PhotoList("");
+
+    MainActivity mainActivity = null;
+
+    public void setMainAcitivtyRef(MainActivity mainAcitivtyRef){
+        mainActivity = mainAcitivtyRef;
+    }
+
+    public void updateKarma(String parent, String file, int num){
+        if( mainActivity !=null) {
+            mainActivity.updateKarmaNum(parent, file, num);
+        }else{
+            Log.i("----Mainactivity", "it is null");
+        }
+    }
 
     public PhotoListManager(){
 

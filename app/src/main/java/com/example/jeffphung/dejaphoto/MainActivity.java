@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         setContentView(R.layout.activity_main);
 
 
+
         /* set up realtime database */
 
 
@@ -173,6 +174,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
         File wallpaperDirectory = new File(path.toString() + "/adddd");
         wallpaperDirectory.mkdirs();
+
+        PhotoListManager photoListManager = PhotoListManager.getPhotoListManagerInstance();
+        photoListManager.setMainAcitivtyRef(this);
 
         /* initialization */
         photoList = new PhotoList("main");
@@ -340,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void copyImages(Intent data, String album){
 
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() +
-                "/"+album+"/" + "copied" + Calendar.getInstance().getTimeInMillis() + ".JPG");
+                "/"+album+"/" + "copied" + Calendar.getInstance().getTimeInMillis() + ".jpg");
         String path = file.toString();
 
         FileChannel source = null;
@@ -438,13 +442,17 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             case R.id.sharebtn:
                 if (isChecked) {
                     // The toggle is enabled
-                    int num = sharer.share(emailList);
-                    sendToDatabase(num);
+                    if( allowed) {
+                        int num = sharer.share(emailList);
+                        sendToDatabase(num);
+                    }
 
                 } else {
                     // The toggle is disabled
-                    sharer.unshare(emailList);
-                    sendToDatabase(0);
+                    if( allowed) {
+                        sharer.unshare(emailList);
+                        sendToDatabase(0);
+                    }
                 }
                 Options.setShareMyPhotos(isChecked);
 
@@ -588,9 +596,33 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void sendToDatabase(int i){
         String name = emailList.get(0)+"";
 
-        myRef.child(name.split("\\.")[0]).setValue(new Integer(i).toString());
+        //myRef.child(name.split("\\.")[0]).setValue(new Integer(i).toString());
+
+        PhotoList plist = PhotoListManager.getPhotoListManagerInstance().getPhotoList(dejaPhoto);
+        for( int a = 0 ; a < plist.size(); a++)
+        {
+            String[] pathL = plist.getPhoto(a).getImgPath().split("/");
+            String fileName = pathL[pathL.length-1];
+            name = name.replace(".","&");
+            myRef.child(name).child(fileName.split("\\.")[0]).setValue(plist.getPhoto(a).getNumKarma());
+        }
 
     }
+
+    public void updateKarmaNum(String parent, String path, int num){
+        if( parent.equals("user")){
+            parent = emailList.get(0);
+        }
+
+        parent = parent.replace(".","&");
+
+        myRef.child(parent).child(path.split("\\.")[0]).setValue(num);
+
+
+    }
+
+
+
 
     public void startFirebaseListener(){
 
@@ -604,18 +636,20 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String eName = snapshot.getKey()+".com";
-                    //emailList.get(0);
-                    //if( !eName.equals(emailList.get(0)));
-
-
-                   // if( allowed) {
+                    String eName = snapshot.getKey();
 
                         if (!eName.equals(emailList.get(0))) {
-                            String num = snapshot.getValue(String.class);
-                            sharer.friendCopy(emailList, eName, Integer.parseInt(num));
+                            for( DataSnapshot snapshot1: snapshot.getChildren()) {
+
+                                eName = eName.replace("&",".");
+
+                                //String num = snapshot1.getValue(String.class);
+                                String imgName = snapshot1.getKey();
+                                String num = snapshot1.getValue()+"";
+                                Log.i(snapshot1.getKey(),num);
+                                sharer.friendCopy(emailList, eName, imgName, Integer.parseInt(num));
+                            }
                         }
-             //       }
 
                 }
 

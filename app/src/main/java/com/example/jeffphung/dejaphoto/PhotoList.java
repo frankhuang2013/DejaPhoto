@@ -158,4 +158,14 @@ public class PhotoList{
     public String getId(){
         return id;
     }
+
+    public Photo findPhoto(String path){
+        for(int i = 0; i < size(); i++){
+            if(photoArrayList.get(i).getImgPath().equals(path)){
+                return photoArrayList.get(i);
+            }
+        }
+        return null;
+    }
+
 }

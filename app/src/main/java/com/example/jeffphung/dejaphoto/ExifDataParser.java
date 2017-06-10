@@ -93,6 +93,7 @@ public class ExifDataParser {
                         location,
                         toLocationName(location),
                         toBoolean(karma));
+                photo.setNumKarma(getKarmaNum(path));
             }
         } catch (IOException e) {
                 e.printStackTrace();
@@ -104,11 +105,10 @@ public class ExifDataParser {
      * accept string "true" or "false" and return corresponding boolean value
      */
     public static boolean toBoolean(String str){
-        if(str == null){
-            return false;
-        }
-        else if(str.equals("true")){
-            return true;
+
+        String[] strings = StringParser.decodeString(str);
+        if(strings!=null){
+            return StringParser.toBoolean(strings[0]);
         }
         else
             return false;
@@ -249,5 +249,25 @@ public class ExifDataParser {
     }
 
 
+    public static int getKarmaNum(String path){
+
+        ExifInterface exifInterface = null;
+        try {
+            exifInterface = new ExifInterface(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String str = exifInterface.getAttribute(TAG_KARMA);
+
+        String[] strings = StringParser.decodeString(str);
+        if( strings != null){
+            return StringParser.toInt(strings[1]);
+        }
+
+        return 0;
+
+
+    }
 
 }

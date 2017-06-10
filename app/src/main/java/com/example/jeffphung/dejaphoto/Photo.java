@@ -27,6 +27,10 @@ public class Photo implements Comparable<Photo> {
     private Integer height;
     private int numKarma = 0;
 
+    private String parent = "user";
+
+
+
     private String user = "";
 
 
@@ -84,10 +88,13 @@ public class Photo implements Comparable<Photo> {
             this.karma = karma;
             try {
 
+
                 ExifInterface exifInterface = new ExifInterface(imgPath);
-                String photoInfo = StringParser.encodeString(!karma, numKarma, locationName);
+
+                String photoInfo = StringParser.encodeString(karma, numKarma, locationName);
                 exifInterface.setAttribute(TAG_KARMA, photoInfo);
                 exifInterface.saveAttributes();
+
                 Log.i("write karma to photo", "successfully");
 
             } catch (IOException e) {
@@ -218,5 +225,13 @@ public class Photo implements Comparable<Photo> {
 
     public void incrementKarma(){
         numKarma++;
+    }
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
     }
 }

@@ -21,8 +21,12 @@ public class NewAppWidget extends AppWidgetProvider {
     private static  String releaseButtonClicked = "releaseButtonClicked";
 
 
+
+
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
+
+
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.new_app_widget);
@@ -116,6 +120,11 @@ public class NewAppWidget extends AppWidgetProvider {
                 photo.setKarma(true);
             }
             views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
+            //
+            String[] filenames = photo.getImgPath().split("/");
+            String filename = filenames[filenames.length-1];
+            PhotoListManager.getPhotoListManagerInstance().updateKarma(photo.getParent(),filename, photo.getNumKarma());
+            //
 
         }
         else if (intent.getAction().equals(releaseButtonClicked))

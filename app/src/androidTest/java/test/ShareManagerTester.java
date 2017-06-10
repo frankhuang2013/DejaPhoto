@@ -1,16 +1,12 @@
 package test;
 
 
-import android.support.test.rule.ActivityTestRule;
-
-import com.example.jeffphung.dejaphoto.MainActivity;
 import com.example.jeffphung.dejaphoto.ShareManager;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.LinkedList;
@@ -24,10 +20,8 @@ import java.util.List;
 
 
 public class ShareManagerTester {
-    ShareManager shareManager = new ShareManager();
+    ShareManager shareManager;
 
-    @Rule
-    public ActivityTestRule<MainActivity> mainActivity = new ActivityTestRule<MainActivity>(MainActivity.class);
 
     @Before
     public void setUp(){

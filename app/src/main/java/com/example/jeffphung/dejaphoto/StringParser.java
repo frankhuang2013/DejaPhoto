@@ -8,17 +8,14 @@ public class StringParser {
     public static String [] decodeString (String s)
     {
         String array[];
+        if(s !=null) {
+            array = s.split(";");
 
-
-        array = s.split(";");
-
-        if( array.length == 3) {
-            return array;
+            if (array.length == 3) {
+                return array;
+            }
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
 
     public static String encodeString (boolean a, int b, String c)
