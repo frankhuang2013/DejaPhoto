@@ -624,7 +624,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     }
 
     public void clearDataBase(){
-        myRef.child(emailList.get(0)).removeValue();
+        String parent = emailList.get(0).replace(".","&");
+        myRef.child(parent).removeValue();
     }
 
 
