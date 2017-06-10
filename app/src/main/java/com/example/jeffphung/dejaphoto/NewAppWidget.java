@@ -118,12 +118,13 @@ public class NewAppWidget extends AppWidgetProvider {
             if (photo == null) return;
             if (!photo.getKarma()) {
                 photo.setKarma(true);
+
+                views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
+                //
+                String[] filenames = photo.getImgPath().split("/");
+                String filename = filenames[filenames.length-1];
+                PhotoListManager.getPhotoListManagerInstance().updateKarma(photo.getParent(),filename, photo.getNumKarma());
             }
-            views.setImageViewResource(R.id.buttonKarma, R.drawable.karma_colored);
-            //
-            String[] filenames = photo.getImgPath().split("/");
-            String filename = filenames[filenames.length-1];
-            PhotoListManager.getPhotoListManagerInstance().updateKarma(photo.getParent(),filename, photo.getNumKarma());
             //
 
         }

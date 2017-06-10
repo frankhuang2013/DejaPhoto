@@ -451,7 +451,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     // The toggle is disabled
                     if( allowed) {
                         sharer.unshare(emailList);
-                        sendToDatabase(0);
+                        clearDataBase();
                     }
                 }
                 Options.setShareMyPhotos(isChecked);
@@ -611,7 +611,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     public void updateKarmaNum(String parent, String path, int num){
         if( parent.equals("user")){
-            parent = emailList.get(0);
+            if( emailList!=null && emailList.size()!=0) {
+                parent = emailList.get(0);
+            }
         }
 
         parent = parent.replace(".","&");
@@ -619,6 +621,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         myRef.child(parent).child(path.split("\\.")[0]).setValue(num);
 
 
+    }
+
+    public void clearDataBase(){
+        myRef.child(emailList.get(0)).removeValue();
     }
 
 

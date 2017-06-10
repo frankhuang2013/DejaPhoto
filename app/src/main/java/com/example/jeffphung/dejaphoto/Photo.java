@@ -89,6 +89,7 @@ public class Photo implements Comparable<Photo> {
             try {
 
 
+
                 ExifInterface exifInterface = new ExifInterface(imgPath);
 
                 String photoInfo = StringParser.encodeString(karma, numKarma, locationName);
