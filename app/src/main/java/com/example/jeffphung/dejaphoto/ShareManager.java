@@ -153,6 +153,7 @@ public class ShareManager {
                                 Photo photo = ExifDataParser.createNewPhoto(path);
                                 photo.setParent(name);
                                 photo.setNumKarma(num);
+                                photo.setKarma(false);
                                 p.add(photo);
                             }
 
