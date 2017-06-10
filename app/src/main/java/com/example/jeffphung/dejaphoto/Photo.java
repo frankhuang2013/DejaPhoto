@@ -83,7 +83,7 @@ public class Photo implements Comparable<Photo> {
      * set Karma to be true or false, and write it to the photo
      */
     public void setKarma(Boolean karma) {
-        if(!this.karma) {
+        if(karma) {
             incrementKarma();
             this.karma = karma;
             try {
@@ -101,6 +101,9 @@ public class Photo implements Comparable<Photo> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        else {
+            this.karma = false;
         }
     }
 
